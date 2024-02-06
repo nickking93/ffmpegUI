@@ -24,8 +24,9 @@ namespace ffmpegUI
         {
             string[] lines =
             {
+                    "cd ffmpeg\\bin && ",
                     line0,
-                    "pause"
+                    "exit"
                 };
 
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
@@ -121,7 +122,7 @@ namespace ffmpegUI
             string path = txtFileOut.Text + "\\";
             string dir = System.IO.Directory.GetCurrentDirectory();
             int qp = tbQP.Value;
-            string cmd0 = $"cd ffmpeg\\bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -probesize 100M -analyzeduration 250M -i \"{fileIn}\" -fflags +genpts ";
+            string cmd0 = $"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -probesize 100M -analyzeduration 250M -i \"{fileIn}\" -fflags +genpts ";
             string resW = tbWidth.Text;
             string resH = tbHeight.Text;
             string cmdEncoder = string.Empty;

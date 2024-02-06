@@ -37,13 +37,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.rbAMDGPU = new System.Windows.Forms.RadioButton();
+            this.rbNVIDIAGPU = new System.Windows.Forms.RadioButton();
+            this.rbCPUEncode = new System.Windows.Forms.RadioButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.rb264 = new System.Windows.Forms.RadioButton();
+            this.rbHEVC = new System.Windows.Forms.RadioButton();
             this.pbProgress = new System.Windows.Forms.PictureBox();
             this.lblComplete = new System.Windows.Forms.Label();
             this.lblProgress = new System.Windows.Forms.Label();
-            this.rbCPUEncode = new System.Windows.Forms.RadioButton();
-            this.label5 = new System.Windows.Forms.Label();
-            this.rbNVIDIAGPU = new System.Windows.Forms.RadioButton();
-            this.rbAMDGPU = new System.Windows.Forms.RadioButton();
             this.btnConvert = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblExn = new System.Windows.Forms.Label();
@@ -61,6 +66,8 @@
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -169,13 +176,11 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumPurple;
+            this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.pbProgress);
             this.panel2.Controls.Add(this.lblComplete);
             this.panel2.Controls.Add(this.lblProgress);
-            this.panel2.Controls.Add(this.rbCPUEncode);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.rbNVIDIAGPU);
-            this.panel2.Controls.Add(this.rbAMDGPU);
             this.panel2.Controls.Add(this.btnConvert);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(177, 273);
@@ -183,6 +188,115 @@
             this.panel2.Size = new System.Drawing.Size(623, 177);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.rbAMDGPU);
+            this.panel5.Controls.Add(this.rbNVIDIAGPU);
+            this.panel5.Controls.Add(this.rbCPUEncode);
+            this.panel5.Location = new System.Drawing.Point(47, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(200, 102);
+            this.panel5.TabIndex = 46;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(12, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(161, 26);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "CPU/GPU Encoder:";
+            // 
+            // rbAMDGPU
+            // 
+            this.rbAMDGPU.AutoSize = true;
+            this.rbAMDGPU.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbAMDGPU.ForeColor = System.Drawing.Color.White;
+            this.rbAMDGPU.Location = new System.Drawing.Point(26, 25);
+            this.rbAMDGPU.Name = "rbAMDGPU";
+            this.rbAMDGPU.Size = new System.Drawing.Size(85, 23);
+            this.rbAMDGPU.TabIndex = 6;
+            this.rbAMDGPU.Text = "AMD GPU";
+            this.rbAMDGPU.UseVisualStyleBackColor = true;
+            this.rbAMDGPU.CheckedChanged += new System.EventHandler(this.rbAMDGPU_CheckedChanged);
+            // 
+            // rbNVIDIAGPU
+            // 
+            this.rbNVIDIAGPU.AutoSize = true;
+            this.rbNVIDIAGPU.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbNVIDIAGPU.ForeColor = System.Drawing.Color.White;
+            this.rbNVIDIAGPU.Location = new System.Drawing.Point(26, 44);
+            this.rbNVIDIAGPU.Name = "rbNVIDIAGPU";
+            this.rbNVIDIAGPU.Size = new System.Drawing.Size(98, 23);
+            this.rbNVIDIAGPU.TabIndex = 7;
+            this.rbNVIDIAGPU.Text = "NVIDIA GPU";
+            this.rbNVIDIAGPU.UseVisualStyleBackColor = true;
+            this.rbNVIDIAGPU.CheckedChanged += new System.EventHandler(this.rbNVIDIAGPU_CheckedChanged);
+            // 
+            // rbCPUEncode
+            // 
+            this.rbCPUEncode.AutoSize = true;
+            this.rbCPUEncode.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbCPUEncode.ForeColor = System.Drawing.Color.White;
+            this.rbCPUEncode.Location = new System.Drawing.Point(26, 65);
+            this.rbCPUEncode.Name = "rbCPUEncode";
+            this.rbCPUEncode.Size = new System.Drawing.Size(106, 23);
+            this.rbCPUEncode.TabIndex = 9;
+            this.rbCPUEncode.Text = "CPU Encoding";
+            this.rbCPUEncode.UseVisualStyleBackColor = true;
+            this.rbCPUEncode.CheckedChanged += new System.EventHandler(this.rbCPUEncode_CheckedChanged);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Controls.Add(this.rb264);
+            this.panel4.Controls.Add(this.rbHEVC);
+            this.panel4.Location = new System.Drawing.Point(275, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(106, 99);
+            this.panel4.TabIndex = 45;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(3, -6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 26);
+            this.label6.TabIndex = 44;
+            this.label6.Text = "Codec:";
+            // 
+            // rb264
+            // 
+            this.rb264.AutoSize = true;
+            this.rb264.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rb264.ForeColor = System.Drawing.Color.White;
+            this.rb264.Location = new System.Drawing.Point(12, 23);
+            this.rb264.Name = "rb264";
+            this.rb264.Size = new System.Drawing.Size(51, 23);
+            this.rb264.TabIndex = 42;
+            this.rb264.Text = "264";
+            this.rb264.UseVisualStyleBackColor = true;
+            this.rb264.CheckedChanged += new System.EventHandler(this.rb264_CheckedChanged);
+            // 
+            // rbHEVC
+            // 
+            this.rbHEVC.AutoSize = true;
+            this.rbHEVC.BackColor = System.Drawing.Color.MediumPurple;
+            this.rbHEVC.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbHEVC.ForeColor = System.Drawing.Color.White;
+            this.rbHEVC.Location = new System.Drawing.Point(12, 48);
+            this.rbHEVC.Name = "rbHEVC";
+            this.rbHEVC.Size = new System.Drawing.Size(60, 23);
+            this.rbHEVC.TabIndex = 43;
+            this.rbHEVC.Text = "HEVC";
+            this.rbHEVC.UseVisualStyleBackColor = false;
+            this.rbHEVC.CheckedChanged += new System.EventHandler(this.rbHEVC_CheckedChanged);
             // 
             // pbProgress
             // 
@@ -218,53 +332,6 @@
             this.lblProgress.TabIndex = 39;
             this.lblProgress.Text = "Encoding in progress";
             this.lblProgress.Visible = false;
-            // 
-            // rbCPUEncode
-            // 
-            this.rbCPUEncode.AutoSize = true;
-            this.rbCPUEncode.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rbCPUEncode.ForeColor = System.Drawing.Color.White;
-            this.rbCPUEncode.Location = new System.Drawing.Point(197, 79);
-            this.rbCPUEncode.Name = "rbCPUEncode";
-            this.rbCPUEncode.Size = new System.Drawing.Size(106, 23);
-            this.rbCPUEncode.TabIndex = 9;
-            this.rbCPUEncode.Text = "CPU Encoding";
-            this.rbCPUEncode.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(197, 4);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(161, 26);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "CPU/GPU Encoder:";
-            // 
-            // rbNVIDIAGPU
-            // 
-            this.rbNVIDIAGPU.AutoSize = true;
-            this.rbNVIDIAGPU.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rbNVIDIAGPU.ForeColor = System.Drawing.Color.White;
-            this.rbNVIDIAGPU.Location = new System.Drawing.Point(197, 57);
-            this.rbNVIDIAGPU.Name = "rbNVIDIAGPU";
-            this.rbNVIDIAGPU.Size = new System.Drawing.Size(98, 23);
-            this.rbNVIDIAGPU.TabIndex = 7;
-            this.rbNVIDIAGPU.Text = "NVIDIA GPU";
-            this.rbNVIDIAGPU.UseVisualStyleBackColor = true;
-            // 
-            // rbAMDGPU
-            // 
-            this.rbAMDGPU.AutoSize = true;
-            this.rbAMDGPU.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rbAMDGPU.ForeColor = System.Drawing.Color.White;
-            this.rbAMDGPU.Location = new System.Drawing.Point(197, 33);
-            this.rbAMDGPU.Name = "rbAMDGPU";
-            this.rbAMDGPU.Size = new System.Drawing.Size(85, 23);
-            this.rbAMDGPU.TabIndex = 6;
-            this.rbAMDGPU.Text = "AMD GPU";
-            this.rbAMDGPU.UseVisualStyleBackColor = true;
             // 
             // btnConvert
             // 
@@ -484,6 +551,10 @@
             this.panelIcon.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -522,5 +593,10 @@
         private CheckBox cbFolder;
         private ComboBox cbExtension;
         private Label lblExn;
+        private Panel panel5;
+        private Panel panel4;
+        private Label label6;
+        private RadioButton rb264;
+        private RadioButton rbHEVC;
     }
 }
