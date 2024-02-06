@@ -29,757 +29,753 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormShrink));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnFormPreset = new System.Windows.Forms.Button();
-            this.btnFormClip = new System.Windows.Forms.Button();
-            this.btnFormShrink = new System.Windows.Forms.Button();
-            this.panelIcon = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pnlIO = new System.Windows.Forms.Panel();
-            this.lblExn = new System.Windows.Forms.Label();
-            this.cbExtension = new System.Windows.Forms.ComboBox();
-            this.cbFolder = new System.Windows.Forms.CheckBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.lblSize = new System.Windows.Forms.Label();
-            this.lblInput = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnBrowse = new System.Windows.Forms.Button();
-            this.txtFileOut = new System.Windows.Forms.TextBox();
-            this.txtFileIn = new System.Windows.Forms.TextBox();
-            this.btnBrowseOut = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnConvert = new System.Windows.Forms.Button();
-            this.lblProgress = new System.Windows.Forms.Label();
-            this.lblComplete = new System.Windows.Forms.Label();
-            this.pbProgress = new System.Windows.Forms.PictureBox();
-            this.pnlCodec = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.rb264 = new System.Windows.Forms.RadioButton();
-            this.rbHEVC = new System.Windows.Forms.RadioButton();
-            this.pnlEncoder = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.rbAMDGPU = new System.Windows.Forms.RadioButton();
-            this.rbNVIDIAGPU = new System.Windows.Forms.RadioButton();
-            this.rbCPUEncode = new System.Windows.Forms.RadioButton();
-            this.pnlPreset = new System.Windows.Forms.Panel();
-            this.lbPresets = new System.Windows.Forms.ListBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.pnlRes = new System.Windows.Forms.Panel();
-            this.rb1440 = new System.Windows.Forms.RadioButton();
-            this.rb2160 = new System.Windows.Forms.RadioButton();
-            this.rb540 = new System.Windows.Forms.RadioButton();
-            this.rb1080p = new System.Windows.Forms.RadioButton();
-            this.rbResCopy = new System.Windows.Forms.RadioButton();
-            this.rbRes720 = new System.Windows.Forms.RadioButton();
-            this.label8 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.cbDeleteOrig = new System.Windows.Forms.CheckBox();
-            this.pnlProgress = new System.Windows.Forms.Panel();
-            this.lblCount = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.panel1.SuspendLayout();
-            this.panelIcon.SuspendLayout();
-            this.pnlIO.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).BeginInit();
-            this.pnlCodec.SuspendLayout();
-            this.pnlEncoder.SuspendLayout();
-            this.pnlPreset.SuspendLayout();
-            this.pnlRes.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.pnlProgress.SuspendLayout();
-            this.SuspendLayout();
+            panel1 = new Panel();
+            btnFormPreset = new Button();
+            btnFormClip = new Button();
+            btnFormShrink = new Button();
+            panelIcon = new Panel();
+            label2 = new Label();
+            label1 = new Label();
+            pnlIO = new Panel();
+            lblExn = new Label();
+            cbExtension = new ComboBox();
+            cbFolder = new CheckBox();
+            btnClose = new Button();
+            lblSize = new Label();
+            lblInput = new Label();
+            label4 = new Label();
+            btnBrowse = new Button();
+            txtFileOut = new TextBox();
+            txtFileIn = new TextBox();
+            btnBrowseOut = new Button();
+            label3 = new Label();
+            btnConvert = new Button();
+            lblProgress = new Label();
+            lblComplete = new Label();
+            pbProgress = new PictureBox();
+            pnlCodec = new Panel();
+            label6 = new Label();
+            rb264 = new RadioButton();
+            rbHEVC = new RadioButton();
+            pnlEncoder = new Panel();
+            label5 = new Label();
+            rbAMDGPU = new RadioButton();
+            rbNVIDIAGPU = new RadioButton();
+            rbCPUEncode = new RadioButton();
+            pnlPreset = new Panel();
+            lbPresets = new ListBox();
+            label7 = new Label();
+            pnlRes = new Panel();
+            cbPortrait = new CheckBox();
+            rb1440 = new RadioButton();
+            rb2160 = new RadioButton();
+            rb540 = new RadioButton();
+            rb1080p = new RadioButton();
+            rbResCopy = new RadioButton();
+            rbRes720 = new RadioButton();
+            label8 = new Label();
+            panel2 = new Panel();
+            cbDeleteOrig = new CheckBox();
+            pnlProgress = new Panel();
+            lblCount = new Label();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            panel1.SuspendLayout();
+            panelIcon.SuspendLayout();
+            pnlIO.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbProgress).BeginInit();
+            pnlCodec.SuspendLayout();
+            pnlEncoder.SuspendLayout();
+            pnlPreset.SuspendLayout();
+            pnlRes.SuspendLayout();
+            panel2.SuspendLayout();
+            pnlProgress.SuspendLayout();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnFormPreset);
-            this.panel1.Controls.Add(this.btnFormClip);
-            this.panel1.Controls.Add(this.btnFormShrink);
-            this.panel1.Controls.Add(this.panelIcon);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(177, 450);
-            this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            panel1.Controls.Add(btnFormPreset);
+            panel1.Controls.Add(btnFormClip);
+            panel1.Controls.Add(btnFormShrink);
+            panel1.Controls.Add(panelIcon);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(177, 450);
+            panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
             // btnFormPreset
             // 
-            this.btnFormPreset.FlatAppearance.BorderSize = 0;
-            this.btnFormPreset.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Plum;
-            this.btnFormPreset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Violet;
-            this.btnFormPreset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFormPreset.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnFormPreset.ForeColor = System.Drawing.Color.White;
-            this.btnFormPreset.Image = ((System.Drawing.Image)(resources.GetObject("btnFormPreset.Image")));
-            this.btnFormPreset.Location = new System.Drawing.Point(0, 347);
-            this.btnFormPreset.Name = "btnFormPreset";
-            this.btnFormPreset.Size = new System.Drawing.Size(177, 103);
-            this.btnFormPreset.TabIndex = 3;
-            this.btnFormPreset.Text = "Preset Conversions";
-            this.btnFormPreset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnFormPreset.UseVisualStyleBackColor = true;
-            this.btnFormPreset.Click += new System.EventHandler(this.button3_Click);
+            btnFormPreset.FlatAppearance.BorderSize = 0;
+            btnFormPreset.FlatAppearance.MouseDownBackColor = Color.Plum;
+            btnFormPreset.FlatAppearance.MouseOverBackColor = Color.Violet;
+            btnFormPreset.FlatStyle = FlatStyle.Flat;
+            btnFormPreset.Font = new Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnFormPreset.ForeColor = Color.White;
+            btnFormPreset.Image = (Image)resources.GetObject("btnFormPreset.Image");
+            btnFormPreset.Location = new Point(0, 347);
+            btnFormPreset.Name = "btnFormPreset";
+            btnFormPreset.Size = new Size(177, 103);
+            btnFormPreset.TabIndex = 3;
+            btnFormPreset.Text = "Preset Conversions";
+            btnFormPreset.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnFormPreset.UseVisualStyleBackColor = true;
+            btnFormPreset.Click += button3_Click;
             // 
             // btnFormClip
             // 
-            this.btnFormClip.FlatAppearance.BorderSize = 0;
-            this.btnFormClip.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Plum;
-            this.btnFormClip.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Violet;
-            this.btnFormClip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFormClip.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnFormClip.ForeColor = System.Drawing.Color.White;
-            this.btnFormClip.Image = ((System.Drawing.Image)(resources.GetObject("btnFormClip.Image")));
-            this.btnFormClip.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnFormClip.Location = new System.Drawing.Point(0, 234);
-            this.btnFormClip.Name = "btnFormClip";
-            this.btnFormClip.Size = new System.Drawing.Size(177, 113);
-            this.btnFormClip.TabIndex = 2;
-            this.btnFormClip.Text = "Trim Tool";
-            this.btnFormClip.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnFormClip.UseVisualStyleBackColor = true;
-            this.btnFormClip.Click += new System.EventHandler(this.btnManual);
+            btnFormClip.FlatAppearance.BorderSize = 0;
+            btnFormClip.FlatAppearance.MouseDownBackColor = Color.Plum;
+            btnFormClip.FlatAppearance.MouseOverBackColor = Color.Violet;
+            btnFormClip.FlatStyle = FlatStyle.Flat;
+            btnFormClip.Font = new Font("Segoe Print", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnFormClip.ForeColor = Color.White;
+            btnFormClip.Image = (Image)resources.GetObject("btnFormClip.Image");
+            btnFormClip.ImageAlign = ContentAlignment.TopCenter;
+            btnFormClip.Location = new Point(0, 234);
+            btnFormClip.Name = "btnFormClip";
+            btnFormClip.Size = new Size(177, 113);
+            btnFormClip.TabIndex = 2;
+            btnFormClip.Text = "Trim Tool";
+            btnFormClip.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnFormClip.UseVisualStyleBackColor = true;
+            btnFormClip.Click += btnManual;
             // 
             // btnFormShrink
             // 
-            this.btnFormShrink.BackColor = System.Drawing.Color.Plum;
-            this.btnFormShrink.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnFormShrink.FlatAppearance.BorderSize = 3;
-            this.btnFormShrink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFormShrink.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnFormShrink.ForeColor = System.Drawing.Color.White;
-            this.btnFormShrink.Image = ((System.Drawing.Image)(resources.GetObject("btnFormShrink.Image")));
-            this.btnFormShrink.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnFormShrink.Location = new System.Drawing.Point(0, 111);
-            this.btnFormShrink.Name = "btnFormShrink";
-            this.btnFormShrink.Size = new System.Drawing.Size(177, 117);
-            this.btnFormShrink.TabIndex = 1;
-            this.btnFormShrink.Text = "Manual Conversion";
-            this.btnFormShrink.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnFormShrink.UseVisualStyleBackColor = true;
-            this.btnFormShrink.Click += new System.EventHandler(this.btnFormShrink_Click);
+            btnFormShrink.BackColor = Color.Plum;
+            btnFormShrink.FlatAppearance.BorderColor = Color.Black;
+            btnFormShrink.FlatAppearance.BorderSize = 3;
+            btnFormShrink.FlatStyle = FlatStyle.Flat;
+            btnFormShrink.Font = new Font("Segoe Print", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnFormShrink.ForeColor = Color.White;
+            btnFormShrink.Image = (Image)resources.GetObject("btnFormShrink.Image");
+            btnFormShrink.ImageAlign = ContentAlignment.TopCenter;
+            btnFormShrink.Location = new Point(0, 111);
+            btnFormShrink.Name = "btnFormShrink";
+            btnFormShrink.Size = new Size(177, 117);
+            btnFormShrink.TabIndex = 1;
+            btnFormShrink.Text = "Manual Conversion";
+            btnFormShrink.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnFormShrink.UseVisualStyleBackColor = true;
+            btnFormShrink.Click += btnFormShrink_Click;
             // 
             // panelIcon
             // 
-            this.panelIcon.BackColor = System.Drawing.Color.BlueViolet;
-            this.panelIcon.Controls.Add(this.label2);
-            this.panelIcon.Controls.Add(this.label1);
-            this.panelIcon.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelIcon.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.panelIcon.ForeColor = System.Drawing.Color.White;
-            this.panelIcon.Location = new System.Drawing.Point(0, 0);
-            this.panelIcon.Name = "panelIcon";
-            this.panelIcon.Size = new System.Drawing.Size(177, 113);
-            this.panelIcon.TabIndex = 0;
+            panelIcon.BackColor = Color.BlueViolet;
+            panelIcon.Controls.Add(label2);
+            panelIcon.Controls.Add(label1);
+            panelIcon.Dock = DockStyle.Top;
+            panelIcon.Font = new Font("Segoe Print", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            panelIcon.ForeColor = Color.White;
+            panelIcon.Location = new Point(0, 0);
+            panelIcon.Name = "panelIcon";
+            panelIcon.Size = new Size(177, 113);
+            panelIcon.TabIndex = 0;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 42);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "ffmpegUI";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            label2.AutoSize = true;
+            label2.Location = new Point(23, 35);
+            label2.Name = "label2";
+            label2.Size = new Size(130, 42);
+            label2.TabIndex = 1;
+            label2.Text = "ffmpegUI";
+            label2.Click += label2_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 42);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ffmpegUI";
+            label1.AutoSize = true;
+            label1.Location = new Point(27, 38);
+            label1.Name = "label1";
+            label1.Size = new Size(130, 42);
+            label1.TabIndex = 0;
+            label1.Text = "ffmpegUI";
             // 
             // pnlIO
             // 
-            this.pnlIO.BackColor = System.Drawing.Color.MediumPurple;
-            this.pnlIO.Controls.Add(this.lblExn);
-            this.pnlIO.Controls.Add(this.cbExtension);
-            this.pnlIO.Controls.Add(this.cbFolder);
-            this.pnlIO.Controls.Add(this.btnClose);
-            this.pnlIO.Controls.Add(this.lblSize);
-            this.pnlIO.Controls.Add(this.lblInput);
-            this.pnlIO.Controls.Add(this.label4);
-            this.pnlIO.Controls.Add(this.btnBrowse);
-            this.pnlIO.Controls.Add(this.txtFileOut);
-            this.pnlIO.Controls.Add(this.txtFileIn);
-            this.pnlIO.Controls.Add(this.btnBrowseOut);
-            this.pnlIO.Controls.Add(this.label3);
-            this.pnlIO.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlIO.Location = new System.Drawing.Point(177, 0);
-            this.pnlIO.Name = "pnlIO";
-            this.pnlIO.Size = new System.Drawing.Size(623, 210);
-            this.pnlIO.TabIndex = 0;
-            this.pnlIO.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            pnlIO.BackColor = Color.MediumPurple;
+            pnlIO.Controls.Add(lblExn);
+            pnlIO.Controls.Add(cbExtension);
+            pnlIO.Controls.Add(cbFolder);
+            pnlIO.Controls.Add(btnClose);
+            pnlIO.Controls.Add(lblSize);
+            pnlIO.Controls.Add(lblInput);
+            pnlIO.Controls.Add(label4);
+            pnlIO.Controls.Add(btnBrowse);
+            pnlIO.Controls.Add(txtFileOut);
+            pnlIO.Controls.Add(txtFileIn);
+            pnlIO.Controls.Add(btnBrowseOut);
+            pnlIO.Controls.Add(label3);
+            pnlIO.Dock = DockStyle.Top;
+            pnlIO.Location = new Point(177, 0);
+            pnlIO.Name = "pnlIO";
+            pnlIO.Size = new Size(623, 210);
+            pnlIO.TabIndex = 0;
+            pnlIO.Paint += panel3_Paint;
             // 
             // lblExn
             // 
-            this.lblExn.AutoSize = true;
-            this.lblExn.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblExn.ForeColor = System.Drawing.Color.White;
-            this.lblExn.Location = new System.Drawing.Point(238, 102);
-            this.lblExn.Name = "lblExn";
-            this.lblExn.Size = new System.Drawing.Size(179, 26);
-            this.lblExn.TabIndex = 41;
-            this.lblExn.Text = "Choose input file type:";
-            this.lblExn.Visible = false;
+            lblExn.AutoSize = true;
+            lblExn.Font = new Font("Segoe Print", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblExn.ForeColor = Color.White;
+            lblExn.Location = new Point(238, 102);
+            lblExn.Name = "lblExn";
+            lblExn.Size = new Size(179, 26);
+            lblExn.TabIndex = 41;
+            lblExn.Text = "Choose input file type:";
+            lblExn.Visible = false;
             // 
             // cbExtension
             // 
-            this.cbExtension.BackColor = System.Drawing.Color.MediumPurple;
-            this.cbExtension.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbExtension.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbExtension.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbExtension.ForeColor = System.Drawing.Color.White;
-            this.cbExtension.FormattingEnabled = true;
-            this.cbExtension.Items.AddRange(new object[] {
-            "--Select Type--",
-            ".mp4",
-            ".mkv",
-            ".mov",
-            ".ts",
-            ".avi",
-            ".m4v"});
-            this.cbExtension.Location = new System.Drawing.Point(433, 98);
-            this.cbExtension.Name = "cbExtension";
-            this.cbExtension.Size = new System.Drawing.Size(150, 34);
-            this.cbExtension.TabIndex = 40;
-            this.cbExtension.Visible = false;
-            this.cbExtension.SelectedIndexChanged += new System.EventHandler(this.cbExtension_SelectedIndexChanged);
+            cbExtension.BackColor = Color.MediumPurple;
+            cbExtension.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbExtension.FlatStyle = FlatStyle.Popup;
+            cbExtension.Font = new Font("Segoe Print", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            cbExtension.ForeColor = Color.White;
+            cbExtension.FormattingEnabled = true;
+            cbExtension.Items.AddRange(new object[] { "--Select Type--", ".mp4", ".mkv", ".mov", ".ts", ".avi", ".m4v" });
+            cbExtension.Location = new Point(433, 98);
+            cbExtension.Name = "cbExtension";
+            cbExtension.Size = new Size(150, 34);
+            cbExtension.TabIndex = 40;
+            cbExtension.Visible = false;
+            cbExtension.SelectedIndexChanged += cbExtension_SelectedIndexChanged;
             // 
             // cbFolder
             // 
-            this.cbFolder.AutoSize = true;
-            this.cbFolder.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbFolder.ForeColor = System.Drawing.Color.White;
-            this.cbFolder.Location = new System.Drawing.Point(53, 103);
-            this.cbFolder.Name = "cbFolder";
-            this.cbFolder.Size = new System.Drawing.Size(174, 30);
-            this.cbFolder.TabIndex = 39;
-            this.cbFolder.Text = "All Videos in folder";
-            this.cbFolder.UseVisualStyleBackColor = true;
-            this.cbFolder.CheckedChanged += new System.EventHandler(this.cbFolder_CheckedChanged);
+            cbFolder.AutoSize = true;
+            cbFolder.Font = new Font("Segoe Print", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            cbFolder.ForeColor = Color.White;
+            cbFolder.Location = new Point(53, 103);
+            cbFolder.Name = "cbFolder";
+            cbFolder.Size = new Size(174, 30);
+            cbFolder.TabIndex = 39;
+            cbFolder.Text = "All Videos in folder";
+            cbFolder.UseVisualStyleBackColor = true;
+            cbFolder.CheckedChanged += cbFolder_CheckedChanged;
             // 
             // btnClose
             // 
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
-            this.btnClose.Location = new System.Drawing.Point(583, 3);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(37, 23);
-            this.btnClose.TabIndex = 38;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.button4_Click);
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
+            btnClose.Location = new Point(583, 3);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(37, 23);
+            btnClose.TabIndex = 38;
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += button4_Click;
             // 
             // lblSize
             // 
-            this.lblSize.AutoSize = true;
-            this.lblSize.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblSize.ForeColor = System.Drawing.Color.White;
-            this.lblSize.Location = new System.Drawing.Point(468, 135);
-            this.lblSize.Name = "lblSize";
-            this.lblSize.Size = new System.Drawing.Size(46, 26);
-            this.lblSize.TabIndex = 37;
-            this.lblSize.Text = "Size:";
-            this.lblSize.Visible = false;
+            lblSize.AutoSize = true;
+            lblSize.Font = new Font("Segoe Print", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblSize.ForeColor = Color.White;
+            lblSize.Location = new Point(468, 135);
+            lblSize.Name = "lblSize";
+            lblSize.Size = new Size(46, 26);
+            lblSize.TabIndex = 37;
+            lblSize.Text = "Size:";
+            lblSize.Visible = false;
             // 
             // lblInput
             // 
-            this.lblInput.AutoSize = true;
-            this.lblInput.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblInput.ForeColor = System.Drawing.Color.White;
-            this.lblInput.Location = new System.Drawing.Point(63, 139);
-            this.lblInput.Name = "lblInput";
-            this.lblInput.Size = new System.Drawing.Size(88, 26);
-            this.lblInput.TabIndex = 36;
-            this.lblInput.Text = "Input File:";
+            lblInput.AutoSize = true;
+            lblInput.Font = new Font("Segoe Print", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblInput.ForeColor = Color.White;
+            lblInput.Location = new Point(63, 139);
+            lblInput.Name = "lblInput";
+            lblInput.Size = new Size(88, 26);
+            lblInput.TabIndex = 36;
+            lblInput.Text = "Input File:";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(47, 168);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 26);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Output Path:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe Print", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(47, 168);
+            label4.Name = "label4";
+            label4.Size = new Size(112, 26);
+            label4.TabIndex = 34;
+            label4.Text = "Output Path:";
+            label4.Click += label4_Click;
             // 
             // btnBrowse
             // 
-            this.btnBrowse.BackColor = System.Drawing.Color.Plum;
-            this.btnBrowse.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.btnBrowse.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Violet;
-            this.btnBrowse.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Plum;
-            this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnBrowse.ForeColor = System.Drawing.Color.White;
-            this.btnBrowse.Location = new System.Drawing.Point(389, 138);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowse.TabIndex = 31;
-            this.btnBrowse.Text = "Browse";
-            this.btnBrowse.UseVisualStyleBackColor = false;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            btnBrowse.BackColor = Color.Plum;
+            btnBrowse.FlatAppearance.BorderColor = Color.DimGray;
+            btnBrowse.FlatAppearance.MouseDownBackColor = Color.Violet;
+            btnBrowse.FlatAppearance.MouseOverBackColor = Color.Plum;
+            btnBrowse.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBrowse.ForeColor = Color.White;
+            btnBrowse.Location = new Point(389, 138);
+            btnBrowse.Name = "btnBrowse";
+            btnBrowse.Size = new Size(75, 23);
+            btnBrowse.TabIndex = 31;
+            btnBrowse.Text = "Browse";
+            btnBrowse.UseVisualStyleBackColor = false;
+            btnBrowse.Click += btnBrowse_Click;
             // 
             // txtFileOut
             // 
-            this.txtFileOut.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtFileOut.Location = new System.Drawing.Point(157, 172);
-            this.txtFileOut.Name = "txtFileOut";
-            this.txtFileOut.ReadOnly = true;
-            this.txtFileOut.Size = new System.Drawing.Size(226, 23);
-            this.txtFileOut.TabIndex = 35;
-            this.txtFileOut.TabStop = false;
+            txtFileOut.BackColor = Color.Gainsboro;
+            txtFileOut.Location = new Point(157, 172);
+            txtFileOut.Name = "txtFileOut";
+            txtFileOut.ReadOnly = true;
+            txtFileOut.Size = new Size(226, 23);
+            txtFileOut.TabIndex = 35;
+            txtFileOut.TabStop = false;
             // 
             // txtFileIn
             // 
-            this.txtFileIn.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtFileIn.Location = new System.Drawing.Point(157, 139);
-            this.txtFileIn.Name = "txtFileIn";
-            this.txtFileIn.ReadOnly = true;
-            this.txtFileIn.Size = new System.Drawing.Size(226, 23);
-            this.txtFileIn.TabIndex = 33;
-            this.txtFileIn.TabStop = false;
-            this.txtFileIn.TextChanged += new System.EventHandler(this.txtFileIn_TextChanged);
+            txtFileIn.BackColor = Color.Gainsboro;
+            txtFileIn.Location = new Point(157, 139);
+            txtFileIn.Name = "txtFileIn";
+            txtFileIn.ReadOnly = true;
+            txtFileIn.Size = new Size(226, 23);
+            txtFileIn.TabIndex = 33;
+            txtFileIn.TabStop = false;
+            txtFileIn.TextChanged += txtFileIn_TextChanged;
             // 
             // btnBrowseOut
             // 
-            this.btnBrowseOut.BackColor = System.Drawing.Color.Plum;
-            this.btnBrowseOut.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.btnBrowseOut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Violet;
-            this.btnBrowseOut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Plum;
-            this.btnBrowseOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnBrowseOut.ForeColor = System.Drawing.Color.White;
-            this.btnBrowseOut.Location = new System.Drawing.Point(389, 171);
-            this.btnBrowseOut.Name = "btnBrowseOut";
-            this.btnBrowseOut.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowseOut.TabIndex = 32;
-            this.btnBrowseOut.Text = "Browse";
-            this.btnBrowseOut.UseVisualStyleBackColor = false;
-            this.btnBrowseOut.Click += new System.EventHandler(this.btnBrowseOut_Click);
+            btnBrowseOut.BackColor = Color.Plum;
+            btnBrowseOut.FlatAppearance.BorderColor = Color.DimGray;
+            btnBrowseOut.FlatAppearance.MouseDownBackColor = Color.Violet;
+            btnBrowseOut.FlatAppearance.MouseOverBackColor = Color.Plum;
+            btnBrowseOut.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBrowseOut.ForeColor = Color.White;
+            btnBrowseOut.Location = new Point(389, 171);
+            btnBrowseOut.Name = "btnBrowseOut";
+            btnBrowseOut.Size = new Size(75, 23);
+            btnBrowseOut.TabIndex = 32;
+            btnBrowseOut.Text = "Browse";
+            btnBrowseOut.UseVisualStyleBackColor = false;
+            btnBrowseOut.Click += btnBrowseOut_Click;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(91, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(416, 86);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Choose file and destination, \r\nconversion options and click GO!\r\n";
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe Print", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(91, 12);
+            label3.Name = "label3";
+            label3.Size = new Size(416, 86);
+            label3.TabIndex = 2;
+            label3.Text = "Choose file and destination, \r\nconversion options and click GO!\r\n";
             // 
             // btnConvert
             // 
-            this.btnConvert.BackColor = System.Drawing.Color.Plum;
-            this.btnConvert.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnConvert.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Violet;
-            this.btnConvert.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Plum;
-            this.btnConvert.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnConvert.ForeColor = System.Drawing.Color.White;
-            this.btnConvert.Image = ((System.Drawing.Image)(resources.GetObject("btnConvert.Image")));
-            this.btnConvert.Location = new System.Drawing.Point(329, 203);
-            this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(81, 37);
-            this.btnConvert.TabIndex = 5;
-            this.btnConvert.UseVisualStyleBackColor = false;
-            this.btnConvert.Visible = false;
-            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
+            btnConvert.BackColor = Color.Plum;
+            btnConvert.FlatAppearance.BorderColor = Color.White;
+            btnConvert.FlatAppearance.MouseDownBackColor = Color.Violet;
+            btnConvert.FlatAppearance.MouseOverBackColor = Color.Plum;
+            btnConvert.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnConvert.ForeColor = Color.White;
+            btnConvert.Image = (Image)resources.GetObject("btnConvert.Image");
+            btnConvert.Location = new Point(329, 203);
+            btnConvert.Name = "btnConvert";
+            btnConvert.Size = new Size(81, 37);
+            btnConvert.TabIndex = 5;
+            btnConvert.UseVisualStyleBackColor = false;
+            btnConvert.Visible = false;
+            btnConvert.Click += btnConvert_Click;
             // 
             // lblProgress
             // 
-            this.lblProgress.AutoSize = true;
-            this.lblProgress.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblProgress.ForeColor = System.Drawing.Color.White;
-            this.lblProgress.Location = new System.Drawing.Point(36, -2);
-            this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(213, 26);
-            this.lblProgress.TabIndex = 39;
-            this.lblProgress.Text = "ENCODING IN PROGRESS";
+            lblProgress.AutoSize = true;
+            lblProgress.Font = new Font("Segoe Print", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblProgress.ForeColor = Color.White;
+            lblProgress.Location = new Point(36, -2);
+            lblProgress.Name = "lblProgress";
+            lblProgress.Size = new Size(213, 26);
+            lblProgress.TabIndex = 39;
+            lblProgress.Text = "ENCODING IN PROGRESS";
             // 
             // lblComplete
             // 
-            this.lblComplete.AutoSize = true;
-            this.lblComplete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblComplete.ForeColor = System.Drawing.Color.White;
-            this.lblComplete.Location = new System.Drawing.Point(432, 209);
-            this.lblComplete.Name = "lblComplete";
-            this.lblComplete.Size = new System.Drawing.Size(173, 26);
-            this.lblComplete.TabIndex = 40;
-            this.lblComplete.Text = "Conversion Complete!";
-            this.lblComplete.Visible = false;
+            lblComplete.AutoSize = true;
+            lblComplete.Font = new Font("Segoe Print", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblComplete.ForeColor = Color.White;
+            lblComplete.Location = new Point(432, 209);
+            lblComplete.Name = "lblComplete";
+            lblComplete.Size = new Size(173, 26);
+            lblComplete.TabIndex = 40;
+            lblComplete.Text = "Conversion Complete!";
+            lblComplete.Visible = false;
             // 
             // pbProgress
             // 
-            this.pbProgress.Image = ((System.Drawing.Image)(resources.GetObject("pbProgress.Image")));
-            this.pbProgress.Location = new System.Drawing.Point(72, 39);
-            this.pbProgress.Name = "pbProgress";
-            this.pbProgress.Size = new System.Drawing.Size(134, 64);
-            this.pbProgress.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbProgress.TabIndex = 41;
-            this.pbProgress.TabStop = false;
-            this.pbProgress.Click += new System.EventHandler(this.pictureBox1_Click);
+            pbProgress.Image = (Image)resources.GetObject("pbProgress.Image");
+            pbProgress.Location = new Point(72, 39);
+            pbProgress.Name = "pbProgress";
+            pbProgress.Size = new Size(134, 64);
+            pbProgress.SizeMode = PictureBoxSizeMode.CenterImage;
+            pbProgress.TabIndex = 41;
+            pbProgress.TabStop = false;
+            pbProgress.Click += pictureBox1_Click;
             // 
             // pnlCodec
             // 
-            this.pnlCodec.Controls.Add(this.label6);
-            this.pnlCodec.Controls.Add(this.rb264);
-            this.pnlCodec.Controls.Add(this.rbHEVC);
-            this.pnlCodec.Location = new System.Drawing.Point(187, 3);
-            this.pnlCodec.Name = "pnlCodec";
-            this.pnlCodec.Size = new System.Drawing.Size(106, 87);
-            this.pnlCodec.TabIndex = 45;
+            pnlCodec.Controls.Add(label6);
+            pnlCodec.Controls.Add(rb264);
+            pnlCodec.Controls.Add(rbHEVC);
+            pnlCodec.Location = new Point(187, 3);
+            pnlCodec.Name = "pnlCodec";
+            pnlCodec.Size = new Size(106, 87);
+            pnlCodec.TabIndex = 45;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(3, -3);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 26);
-            this.label6.TabIndex = 44;
-            this.label6.Text = "Codec:";
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe Print", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(3, -3);
+            label6.Name = "label6";
+            label6.Size = new Size(60, 26);
+            label6.TabIndex = 44;
+            label6.Text = "Codec:";
             // 
             // rb264
             // 
-            this.rb264.AutoSize = true;
-            this.rb264.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rb264.ForeColor = System.Drawing.Color.White;
-            this.rb264.Location = new System.Drawing.Point(12, 23);
-            this.rb264.Name = "rb264";
-            this.rb264.Size = new System.Drawing.Size(51, 23);
-            this.rb264.TabIndex = 42;
-            this.rb264.Text = "264";
-            this.rb264.UseVisualStyleBackColor = true;
-            this.rb264.CheckedChanged += new System.EventHandler(this.rb264_CheckedChanged);
+            rb264.AutoSize = true;
+            rb264.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rb264.ForeColor = Color.White;
+            rb264.Location = new Point(12, 23);
+            rb264.Name = "rb264";
+            rb264.Size = new Size(51, 23);
+            rb264.TabIndex = 42;
+            rb264.Text = "264";
+            rb264.UseVisualStyleBackColor = true;
+            rb264.CheckedChanged += rb264_CheckedChanged;
             // 
             // rbHEVC
             // 
-            this.rbHEVC.AutoSize = true;
-            this.rbHEVC.BackColor = System.Drawing.Color.MediumPurple;
-            this.rbHEVC.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rbHEVC.ForeColor = System.Drawing.Color.White;
-            this.rbHEVC.Location = new System.Drawing.Point(12, 41);
-            this.rbHEVC.Name = "rbHEVC";
-            this.rbHEVC.Size = new System.Drawing.Size(60, 23);
-            this.rbHEVC.TabIndex = 43;
-            this.rbHEVC.Text = "HEVC";
-            this.rbHEVC.UseVisualStyleBackColor = false;
-            this.rbHEVC.CheckedChanged += new System.EventHandler(this.rbHEVC_CheckedChanged);
+            rbHEVC.AutoSize = true;
+            rbHEVC.BackColor = Color.MediumPurple;
+            rbHEVC.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rbHEVC.ForeColor = Color.White;
+            rbHEVC.Location = new Point(12, 41);
+            rbHEVC.Name = "rbHEVC";
+            rbHEVC.Size = new Size(60, 23);
+            rbHEVC.TabIndex = 43;
+            rbHEVC.Text = "HEVC";
+            rbHEVC.UseVisualStyleBackColor = false;
+            rbHEVC.CheckedChanged += rbHEVC_CheckedChanged;
             // 
             // pnlEncoder
             // 
-            this.pnlEncoder.Controls.Add(this.label5);
-            this.pnlEncoder.Controls.Add(this.rbAMDGPU);
-            this.pnlEncoder.Controls.Add(this.rbNVIDIAGPU);
-            this.pnlEncoder.Controls.Add(this.rbCPUEncode);
-            this.pnlEncoder.Location = new System.Drawing.Point(7, 0);
-            this.pnlEncoder.Name = "pnlEncoder";
-            this.pnlEncoder.Size = new System.Drawing.Size(176, 90);
-            this.pnlEncoder.TabIndex = 46;
+            pnlEncoder.Controls.Add(label5);
+            pnlEncoder.Controls.Add(rbAMDGPU);
+            pnlEncoder.Controls.Add(rbNVIDIAGPU);
+            pnlEncoder.Controls.Add(rbCPUEncode);
+            pnlEncoder.Location = new Point(7, 0);
+            pnlEncoder.Name = "pnlEncoder";
+            pnlEncoder.Size = new Size(176, 90);
+            pnlEncoder.TabIndex = 46;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(12, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(161, 26);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "CPU/GPU Encoder:";
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe Print", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(12, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(161, 26);
+            label5.TabIndex = 8;
+            label5.Text = "CPU/GPU Encoder:";
             // 
             // rbAMDGPU
             // 
-            this.rbAMDGPU.AutoSize = true;
-            this.rbAMDGPU.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rbAMDGPU.ForeColor = System.Drawing.Color.White;
-            this.rbAMDGPU.Location = new System.Drawing.Point(26, 26);
-            this.rbAMDGPU.Name = "rbAMDGPU";
-            this.rbAMDGPU.Size = new System.Drawing.Size(85, 23);
-            this.rbAMDGPU.TabIndex = 6;
-            this.rbAMDGPU.Text = "AMD GPU";
-            this.rbAMDGPU.UseVisualStyleBackColor = true;
-            this.rbAMDGPU.CheckedChanged += new System.EventHandler(this.rbAMDGPU_CheckedChanged);
+            rbAMDGPU.AutoSize = true;
+            rbAMDGPU.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rbAMDGPU.ForeColor = Color.White;
+            rbAMDGPU.Location = new Point(26, 26);
+            rbAMDGPU.Name = "rbAMDGPU";
+            rbAMDGPU.Size = new Size(85, 23);
+            rbAMDGPU.TabIndex = 6;
+            rbAMDGPU.Text = "AMD GPU";
+            rbAMDGPU.UseVisualStyleBackColor = true;
+            rbAMDGPU.CheckedChanged += rbAMDGPU_CheckedChanged;
             // 
             // rbNVIDIAGPU
             // 
-            this.rbNVIDIAGPU.AutoSize = true;
-            this.rbNVIDIAGPU.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rbNVIDIAGPU.ForeColor = System.Drawing.Color.White;
-            this.rbNVIDIAGPU.Location = new System.Drawing.Point(26, 44);
-            this.rbNVIDIAGPU.Name = "rbNVIDIAGPU";
-            this.rbNVIDIAGPU.Size = new System.Drawing.Size(98, 23);
-            this.rbNVIDIAGPU.TabIndex = 7;
-            this.rbNVIDIAGPU.Text = "NVIDIA GPU";
-            this.rbNVIDIAGPU.UseVisualStyleBackColor = true;
-            this.rbNVIDIAGPU.CheckedChanged += new System.EventHandler(this.rbNVIDIAGPU_CheckedChanged);
+            rbNVIDIAGPU.AutoSize = true;
+            rbNVIDIAGPU.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rbNVIDIAGPU.ForeColor = Color.White;
+            rbNVIDIAGPU.Location = new Point(26, 44);
+            rbNVIDIAGPU.Name = "rbNVIDIAGPU";
+            rbNVIDIAGPU.Size = new Size(98, 23);
+            rbNVIDIAGPU.TabIndex = 7;
+            rbNVIDIAGPU.Text = "NVIDIA GPU";
+            rbNVIDIAGPU.UseVisualStyleBackColor = true;
+            rbNVIDIAGPU.CheckedChanged += rbNVIDIAGPU_CheckedChanged;
             // 
             // rbCPUEncode
             // 
-            this.rbCPUEncode.AutoSize = true;
-            this.rbCPUEncode.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rbCPUEncode.ForeColor = System.Drawing.Color.White;
-            this.rbCPUEncode.Location = new System.Drawing.Point(26, 61);
-            this.rbCPUEncode.Name = "rbCPUEncode";
-            this.rbCPUEncode.Size = new System.Drawing.Size(106, 23);
-            this.rbCPUEncode.TabIndex = 9;
-            this.rbCPUEncode.Text = "CPU Encoding";
-            this.rbCPUEncode.UseVisualStyleBackColor = true;
-            this.rbCPUEncode.CheckedChanged += new System.EventHandler(this.rbCPUEncode_CheckedChanged);
+            rbCPUEncode.AutoSize = true;
+            rbCPUEncode.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rbCPUEncode.ForeColor = Color.White;
+            rbCPUEncode.Location = new Point(26, 61);
+            rbCPUEncode.Name = "rbCPUEncode";
+            rbCPUEncode.Size = new Size(106, 23);
+            rbCPUEncode.TabIndex = 9;
+            rbCPUEncode.Text = "CPU Encoding";
+            rbCPUEncode.UseVisualStyleBackColor = true;
+            rbCPUEncode.CheckedChanged += rbCPUEncode_CheckedChanged;
             // 
             // pnlPreset
             // 
-            this.pnlPreset.Controls.Add(this.lbPresets);
-            this.pnlPreset.Controls.Add(this.label7);
-            this.pnlPreset.Location = new System.Drawing.Point(299, 3);
-            this.pnlPreset.Name = "pnlPreset";
-            this.pnlPreset.Size = new System.Drawing.Size(118, 87);
-            this.pnlPreset.TabIndex = 0;
+            pnlPreset.Controls.Add(lbPresets);
+            pnlPreset.Controls.Add(label7);
+            pnlPreset.Location = new Point(299, 3);
+            pnlPreset.Name = "pnlPreset";
+            pnlPreset.Size = new Size(118, 87);
+            pnlPreset.TabIndex = 0;
             // 
             // lbPresets
             // 
-            this.lbPresets.BackColor = System.Drawing.Color.MediumPurple;
-            this.lbPresets.ForeColor = System.Drawing.Color.White;
-            this.lbPresets.FormattingEnabled = true;
-            this.lbPresets.ItemHeight = 15;
-            this.lbPresets.Items.AddRange(new object[] {
-            "ultrafast",
-            "superfast",
-            "veryfast",
-            "faster",
-            "fast",
-            "medium",
-            "slow",
-            "slower",
-            "veryslow",
-            "placebo"});
-            this.lbPresets.Location = new System.Drawing.Point(3, 19);
-            this.lbPresets.Name = "lbPresets";
-            this.lbPresets.Size = new System.Drawing.Size(110, 64);
-            this.lbPresets.TabIndex = 46;
-            this.lbPresets.SelectedIndexChanged += new System.EventHandler(this.lbPresets_SelectedIndexChanged);
+            lbPresets.BackColor = Color.MediumPurple;
+            lbPresets.ForeColor = Color.White;
+            lbPresets.FormattingEnabled = true;
+            lbPresets.ItemHeight = 15;
+            lbPresets.Items.AddRange(new object[] { "ultrafast", "superfast", "veryfast", "faster", "fast", "medium", "slow", "slower", "veryslow", "placebo" });
+            lbPresets.Location = new Point(3, 19);
+            lbPresets.Name = "lbPresets";
+            lbPresets.Size = new Size(110, 64);
+            lbPresets.TabIndex = 46;
+            lbPresets.SelectedIndexChanged += lbPresets_SelectedIndexChanged;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(3, -3);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 26);
-            this.label7.TabIndex = 45;
-            this.label7.Text = "Preset:";
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe Print", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(3, -3);
+            label7.Name = "label7";
+            label7.Size = new Size(64, 26);
+            label7.TabIndex = 45;
+            label7.Text = "Preset:";
             // 
             // pnlRes
             // 
-            this.pnlRes.Controls.Add(this.rb1440);
-            this.pnlRes.Controls.Add(this.rb2160);
-            this.pnlRes.Controls.Add(this.rb540);
-            this.pnlRes.Controls.Add(this.rb1080p);
-            this.pnlRes.Controls.Add(this.rbResCopy);
-            this.pnlRes.Controls.Add(this.rbRes720);
-            this.pnlRes.Controls.Add(this.label8);
-            this.pnlRes.Location = new System.Drawing.Point(6, 90);
-            this.pnlRes.Name = "pnlRes";
-            this.pnlRes.Size = new System.Drawing.Size(177, 84);
-            this.pnlRes.TabIndex = 47;
-            this.pnlRes.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
+            pnlRes.Controls.Add(cbPortrait);
+            pnlRes.Controls.Add(rb1440);
+            pnlRes.Controls.Add(rb2160);
+            pnlRes.Controls.Add(rb540);
+            pnlRes.Controls.Add(rb1080p);
+            pnlRes.Controls.Add(rbResCopy);
+            pnlRes.Controls.Add(rbRes720);
+            pnlRes.Controls.Add(label8);
+            pnlRes.Location = new Point(6, 90);
+            pnlRes.Name = "pnlRes";
+            pnlRes.Size = new Size(177, 116);
+            pnlRes.TabIndex = 47;
+            pnlRes.Paint += panel6_Paint;
+            // 
+            // cbPortrait
+            // 
+            cbPortrait.AutoSize = true;
+            cbPortrait.Font = new Font("Segoe Print", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            cbPortrait.ForeColor = Color.White;
+            cbPortrait.Location = new Point(5, 83);
+            cbPortrait.Name = "cbPortrait";
+            cbPortrait.Size = new Size(140, 30);
+            cbPortrait.TabIndex = 51;
+            cbPortrait.Text = "Portrait mode";
+            cbPortrait.UseVisualStyleBackColor = true;
             // 
             // rb1440
             // 
-            this.rb1440.AutoSize = true;
-            this.rb1440.BackColor = System.Drawing.Color.MediumPurple;
-            this.rb1440.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rb1440.ForeColor = System.Drawing.Color.White;
-            this.rb1440.Location = new System.Drawing.Point(70, 44);
-            this.rb1440.Name = "rb1440";
-            this.rb1440.Size = new System.Drawing.Size(66, 23);
-            this.rb1440.TabIndex = 50;
-            this.rb1440.Text = "1440p";
-            this.rb1440.UseVisualStyleBackColor = false;
+            rb1440.AutoSize = true;
+            rb1440.BackColor = Color.MediumPurple;
+            rb1440.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rb1440.ForeColor = Color.White;
+            rb1440.Location = new Point(70, 44);
+            rb1440.Name = "rb1440";
+            rb1440.Size = new Size(66, 23);
+            rb1440.TabIndex = 50;
+            rb1440.Text = "1440p";
+            rb1440.UseVisualStyleBackColor = false;
             // 
             // rb2160
             // 
-            this.rb2160.AutoSize = true;
-            this.rb2160.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rb2160.ForeColor = System.Drawing.Color.White;
-            this.rb2160.Location = new System.Drawing.Point(70, 25);
-            this.rb2160.Name = "rb2160";
-            this.rb2160.Size = new System.Drawing.Size(66, 23);
-            this.rb2160.TabIndex = 48;
-            this.rb2160.Text = "2160p";
-            this.rb2160.UseVisualStyleBackColor = true;
+            rb2160.AutoSize = true;
+            rb2160.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rb2160.ForeColor = Color.White;
+            rb2160.Location = new Point(70, 25);
+            rb2160.Name = "rb2160";
+            rb2160.Size = new Size(66, 23);
+            rb2160.TabIndex = 48;
+            rb2160.Text = "2160p";
+            rb2160.UseVisualStyleBackColor = true;
             // 
             // rb540
             // 
-            this.rb540.AutoSize = true;
-            this.rb540.BackColor = System.Drawing.Color.MediumPurple;
-            this.rb540.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rb540.ForeColor = System.Drawing.Color.White;
-            this.rb540.Location = new System.Drawing.Point(70, 60);
-            this.rb540.Name = "rb540";
-            this.rb540.Size = new System.Drawing.Size(58, 23);
-            this.rb540.TabIndex = 49;
-            this.rb540.Text = "540p";
-            this.rb540.UseVisualStyleBackColor = false;
+            rb540.AutoSize = true;
+            rb540.BackColor = Color.MediumPurple;
+            rb540.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rb540.ForeColor = Color.White;
+            rb540.Location = new Point(70, 60);
+            rb540.Name = "rb540";
+            rb540.Size = new Size(58, 23);
+            rb540.TabIndex = 49;
+            rb540.Text = "540p";
+            rb540.UseVisualStyleBackColor = false;
             // 
             // rb1080p
             // 
-            this.rb1080p.AutoSize = true;
-            this.rb1080p.BackColor = System.Drawing.Color.MediumPurple;
-            this.rb1080p.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rb1080p.ForeColor = System.Drawing.Color.White;
-            this.rb1080p.Location = new System.Drawing.Point(6, 44);
-            this.rb1080p.Name = "rb1080p";
-            this.rb1080p.Size = new System.Drawing.Size(67, 23);
-            this.rb1080p.TabIndex = 47;
-            this.rb1080p.Text = "1080P";
-            this.rb1080p.UseVisualStyleBackColor = false;
+            rb1080p.AutoSize = true;
+            rb1080p.BackColor = Color.MediumPurple;
+            rb1080p.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rb1080p.ForeColor = Color.White;
+            rb1080p.Location = new Point(6, 44);
+            rb1080p.Name = "rb1080p";
+            rb1080p.Size = new Size(67, 23);
+            rb1080p.TabIndex = 47;
+            rb1080p.Text = "1080P";
+            rb1080p.UseVisualStyleBackColor = false;
             // 
             // rbResCopy
             // 
-            this.rbResCopy.AutoSize = true;
-            this.rbResCopy.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rbResCopy.ForeColor = System.Drawing.Color.White;
-            this.rbResCopy.Location = new System.Drawing.Point(6, 25);
-            this.rbResCopy.Name = "rbResCopy";
-            this.rbResCopy.Size = new System.Drawing.Size(54, 23);
-            this.rbResCopy.TabIndex = 45;
-            this.rbResCopy.Text = "Copy";
-            this.rbResCopy.UseVisualStyleBackColor = true;
+            rbResCopy.AutoSize = true;
+            rbResCopy.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rbResCopy.ForeColor = Color.White;
+            rbResCopy.Location = new Point(6, 25);
+            rbResCopy.Name = "rbResCopy";
+            rbResCopy.Size = new Size(54, 23);
+            rbResCopy.TabIndex = 45;
+            rbResCopy.Text = "Copy";
+            rbResCopy.UseVisualStyleBackColor = true;
             // 
             // rbRes720
             // 
-            this.rbRes720.AutoSize = true;
-            this.rbRes720.BackColor = System.Drawing.Color.MediumPurple;
-            this.rbRes720.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.rbRes720.ForeColor = System.Drawing.Color.White;
-            this.rbRes720.Location = new System.Drawing.Point(6, 60);
-            this.rbRes720.Name = "rbRes720";
-            this.rbRes720.Size = new System.Drawing.Size(58, 23);
-            this.rbRes720.TabIndex = 46;
-            this.rbRes720.Text = "720p";
-            this.rbRes720.UseVisualStyleBackColor = false;
-            this.rbRes720.CheckedChanged += new System.EventHandler(this.rbRes720_CheckedChanged);
+            rbRes720.AutoSize = true;
+            rbRes720.BackColor = Color.MediumPurple;
+            rbRes720.Font = new Font("Segoe Print", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            rbRes720.ForeColor = Color.White;
+            rbRes720.Location = new Point(6, 60);
+            rbRes720.Name = "rbRes720";
+            rbRes720.Size = new Size(58, 23);
+            rbRes720.TabIndex = 46;
+            rbRes720.Text = "720p";
+            rbRes720.UseVisualStyleBackColor = false;
+            rbRes720.CheckedChanged += rbRes720_CheckedChanged;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(13, 3);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(91, 26);
-            this.label8.TabIndex = 45;
-            this.label8.Text = "Resolution:";
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe Print", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.White;
+            label8.Location = new Point(13, 3);
+            label8.Name = "label8";
+            label8.Size = new Size(91, 26);
+            label8.TabIndex = 45;
+            label8.Text = "Resolution:";
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.MediumPurple;
-            this.panel2.Controls.Add(this.cbDeleteOrig);
-            this.panel2.Controls.Add(this.pnlProgress);
-            this.panel2.Controls.Add(this.pnlRes);
-            this.panel2.Controls.Add(this.pnlPreset);
-            this.panel2.Controls.Add(this.pnlEncoder);
-            this.panel2.Controls.Add(this.pnlCodec);
-            this.panel2.Controls.Add(this.lblComplete);
-            this.panel2.Controls.Add(this.btnConvert);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(177, 201);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(623, 249);
-            this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            panel2.BackColor = Color.MediumPurple;
+            panel2.Controls.Add(cbDeleteOrig);
+            panel2.Controls.Add(pnlProgress);
+            panel2.Controls.Add(pnlRes);
+            panel2.Controls.Add(pnlPreset);
+            panel2.Controls.Add(pnlEncoder);
+            panel2.Controls.Add(pnlCodec);
+            panel2.Controls.Add(lblComplete);
+            panel2.Controls.Add(btnConvert);
+            panel2.Dock = DockStyle.Bottom;
+            panel2.Location = new Point(177, 201);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(623, 249);
+            panel2.TabIndex = 1;
+            panel2.Paint += panel2_Paint;
             // 
             // cbDeleteOrig
             // 
-            this.cbDeleteOrig.AutoSize = true;
-            this.cbDeleteOrig.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbDeleteOrig.ForeColor = System.Drawing.Color.White;
-            this.cbDeleteOrig.Location = new System.Drawing.Point(139, 209);
-            this.cbDeleteOrig.Name = "cbDeleteOrig";
-            this.cbDeleteOrig.Size = new System.Drawing.Size(183, 30);
-            this.cbDeleteOrig.TabIndex = 49;
-            this.cbDeleteOrig.Text = "Delete Original File?";
-            this.cbDeleteOrig.UseVisualStyleBackColor = true;
+            cbDeleteOrig.AutoSize = true;
+            cbDeleteOrig.Font = new Font("Segoe Print", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            cbDeleteOrig.ForeColor = Color.White;
+            cbDeleteOrig.Location = new Point(139, 209);
+            cbDeleteOrig.Name = "cbDeleteOrig";
+            cbDeleteOrig.Size = new Size(183, 30);
+            cbDeleteOrig.TabIndex = 49;
+            cbDeleteOrig.Text = "Delete Original File?";
+            cbDeleteOrig.UseVisualStyleBackColor = true;
             // 
             // pnlProgress
             // 
-            this.pnlProgress.Controls.Add(this.lblCount);
-            this.pnlProgress.Controls.Add(this.lblProgress);
-            this.pnlProgress.Controls.Add(this.pbProgress);
-            this.pnlProgress.Location = new System.Drawing.Point(370, 94);
-            this.pnlProgress.Name = "pnlProgress";
-            this.pnlProgress.Size = new System.Drawing.Size(250, 112);
-            this.pnlProgress.TabIndex = 48;
-            this.pnlProgress.Visible = false;
+            pnlProgress.Controls.Add(lblCount);
+            pnlProgress.Controls.Add(lblProgress);
+            pnlProgress.Controls.Add(pbProgress);
+            pnlProgress.Location = new Point(370, 94);
+            pnlProgress.Name = "pnlProgress";
+            pnlProgress.Size = new Size(250, 112);
+            pnlProgress.TabIndex = 48;
+            pnlProgress.Visible = false;
             // 
             // lblCount
             // 
-            this.lblCount.AutoSize = true;
-            this.lblCount.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCount.ForeColor = System.Drawing.Color.White;
-            this.lblCount.Location = new System.Drawing.Point(95, 19);
-            this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(73, 21);
-            this.lblCount.TabIndex = 42;
-            this.lblCount.Text = "File 0 of 0";
-            this.lblCount.Visible = false;
+            lblCount.AutoSize = true;
+            lblCount.Font = new Font("Segoe Print", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCount.ForeColor = Color.White;
+            lblCount.Location = new Point(95, 19);
+            lblCount.Name = "lblCount";
+            lblCount.Size = new Size(73, 21);
+            lblCount.TabIndex = 42;
+            lblCount.Text = "File 0 of 0";
+            lblCount.Visible = false;
             // 
             // backgroundWorker1
             // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
+            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
             // 
             // backgroundWorker2
             // 
-            this.backgroundWorker2.WorkerSupportsCancellation = true;
-            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
+            backgroundWorker2.WorkerSupportsCancellation = true;
+            backgroundWorker2.DoWork += backgroundWorker2_DoWork;
             // 
             // FormShrink
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pnlIO);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormShrink";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ffmpegUI";
-            this.Load += new System.EventHandler(this.FormShrink_Load);
-            this.panel1.ResumeLayout(false);
-            this.panelIcon.ResumeLayout(false);
-            this.panelIcon.PerformLayout();
-            this.pnlIO.ResumeLayout(false);
-            this.pnlIO.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).EndInit();
-            this.pnlCodec.ResumeLayout(false);
-            this.pnlCodec.PerformLayout();
-            this.pnlEncoder.ResumeLayout(false);
-            this.pnlEncoder.PerformLayout();
-            this.pnlPreset.ResumeLayout(false);
-            this.pnlPreset.PerformLayout();
-            this.pnlRes.ResumeLayout(false);
-            this.pnlRes.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.pnlProgress.ResumeLayout(false);
-            this.pnlProgress.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            BackColor = Color.DimGray;
+            ClientSize = new Size(800, 450);
+            Controls.Add(pnlIO);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "FormShrink";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "ffmpegUI";
+            Load += FormShrink_Load;
+            panel1.ResumeLayout(false);
+            panelIcon.ResumeLayout(false);
+            panelIcon.PerformLayout();
+            pnlIO.ResumeLayout(false);
+            pnlIO.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbProgress).EndInit();
+            pnlCodec.ResumeLayout(false);
+            pnlCodec.PerformLayout();
+            pnlEncoder.ResumeLayout(false);
+            pnlEncoder.PerformLayout();
+            pnlPreset.ResumeLayout(false);
+            pnlPreset.PerformLayout();
+            pnlRes.ResumeLayout(false);
+            pnlRes.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            pnlProgress.ResumeLayout(false);
+            pnlProgress.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -834,5 +830,6 @@
         private Label lblCount;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private CheckBox cbDeleteOrig;
+        private CheckBox cbPortrait;
     }
 }

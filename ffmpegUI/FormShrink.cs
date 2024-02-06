@@ -127,7 +127,7 @@ namespace ffmpegUI
                 "exit"
             };
 
-        await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+            await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
         static async Task write264NVENC(string fileIn, string res, string path, string removeOrig, string safeName)
@@ -143,7 +143,7 @@ namespace ffmpegUI
                 "exit"
             };
 
-        await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+            await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
         static async Task writeHEVCNVENC(string fileIn, string res, string path, string removeOrig, string safeName)
@@ -159,8 +159,8 @@ namespace ffmpegUI
                 "exit"
             };
 
-        await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
-    }
+            await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+        }
         static async Task writeAutoFolder(string line0)
         {
             string[] lines =
@@ -251,7 +251,7 @@ namespace ffmpegUI
                         }
                         else
                         {
-                           
+
                             lblSize.Text = "Size: " + fileSizeKB.ToString("n2") + " KB";
                         }
                     }
@@ -336,30 +336,47 @@ namespace ffmpegUI
             panel1.Enabled = false;
             btnClose.Enabled = false;
             cbDeleteOrig.Enabled = false;
+            res = "";
 
             if (rbRes720.Checked == true)
             {
-                res = $"-vf \"scale=1280:720:flags=lanczos:force_original_aspect_ratio=increase,crop=1280:720,mpdecimate\"";
+                res = $"-vf \"scale=1280:720:flags=lanczos:force_original_aspect_ratio=increase,mpdecimate\"";
             }
-            else if (rb1080p.Checked == true)
+            else if (rbRes720.Checked == true && cbPortrait.Checked == true)
             {
-                res = $"-vf \"scale=1920:1080:flags=lanczos:force_original_aspect_ratio=increase,crop=1920:1080,mpdecimate\"";
+                res = $"-vf \"scale=720:1280:flags=lanczos:force_original_aspect_ratio=increase,mpdecimate\"";
             }
-            else if (rb2160.Checked == true)
+            if (rb1080p.Checked == true)
             {
-                res = $"-vf \"scale=3840:2160:flags=lanczos:force_original_aspect_ratio=increase,crop=3840:2160,mpdecimate\"";
+                res = $"-vf \"scale=1920:1080:flags=lanczos:force_original_aspect_ratio=increase,mpdecimate\"";
             }
-            else if (rb1440.Checked == true)
+            else if (rb1080p.Checked == true && cbPortrait.Checked == true)
             {
-                res = $"-vf \"scale=2560:1440:flags=lanczos:force_original_aspect_ratio=increase,crop=2560:1440,mpdecimate\"";
+                res = $"-vf \"scale=1080:720:flags=lanczos:force_original_aspect_ratio=increase,mpdecimate\"";
             }
-            else if (rb540.Checked == true)
+            if (rb2160.Checked == true)
             {
-                res = $"-vf \"scale=960:540:flags=lanczos:force_original_aspect_ratio=increase,crop=960:540,mpdecimate\"";
+                res = $"-vf \"scale=3840:2160:flags=lanczos:force_original_aspect_ratio=increase,mpdecimate\"";
             }
-            else
+            else if (rb2160.Checked == true && cbPortrait.Checked == true)
             {
-                res = "";
+                res = $"-vf \"scale=2160:3840:flags=lanczos:force_original_aspect_ratio=increase,mpdecimate\"";
+            }
+            if (rb1440.Checked == true)
+            {
+                res = $"-vf \"scale=2560:1440:flags=lanczos:force_original_aspect_ratio=increase,mpdecimate\"";
+            }
+            else if (rb1440.Checked == true && cbPortrait.Checked == true)
+            {
+                res = $"-vf \"scale=1440:2560:flags=lanczos:force_original_aspect_ratio=increase,mpdecimate\"";
+            }
+            if (rb540.Checked == true)
+            {
+                res = $"-vf \"scale=960:540:flags=lanczos:force_original_aspect_ratio=increase,mpdecimate\"";
+            }
+            else if (rb540.Checked == true && cbPortrait.Checked == true)
+            {
+                res = $"-vf \"scale=540:960:flags=lanczos:force_original_aspect_ratio=increase,mpdecimate\"";
             }
 
             //Check whether the folder conversion check box is checked
@@ -375,7 +392,7 @@ namespace ffmpegUI
                     if (rb264.Checked == true)
                     {
                         //Set control visibility appropriately
-                        pnlProgress.Visible= true ;
+                        pnlProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
 
@@ -460,11 +477,11 @@ namespace ffmpegUI
                 {
                     totalFiles++;
                 }
-                    foreach (var file in directory.GetFiles(getExt))
+                foreach (var file in directory.GetFiles(getExt))
                 {
                     List<string> files = new List<string>();
                     string file1 = file.ToString();
-                    files.Add(file1);;
+                    files.Add(file1); ;
                     for (int i = 0; i < files.Count; i++)
                     {
                         currentFile++;
@@ -579,11 +596,11 @@ namespace ffmpegUI
 
         private void cbExtension_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbExtension.SelectedIndex != 0 && txtFileIn.Text != "" && txtFileOut.Text != "")
+            if (cbExtension.SelectedIndex != 0 && txtFileIn.Text != "" && txtFileOut.Text != "")
             {
                 btnConvert.Visible = true;
             }
-            else 
+            else
             {
                 btnConvert.Visible = false;
             }
@@ -610,7 +627,7 @@ namespace ffmpegUI
             {
                 btnConvert.Visible = true;
             }
-            else 
+            else
             {
                 btnConvert.Visible = false;
             }
@@ -763,11 +780,11 @@ namespace ffmpegUI
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             ProcessStartInfo ffmpegInfo = new ProcessStartInfo();
-                ffmpegInfo.CreateNoWindow = false;  //true to hide console window, false to show
-                ffmpegInfo.UseShellExecute = false;
-                ffmpegInfo.FileName = "./ff.bat";
-                ffmpegInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                Process process = new Process();
+            ffmpegInfo.CreateNoWindow = false;  //true to hide console window, false to show
+            ffmpegInfo.UseShellExecute = false;
+            ffmpegInfo.FileName = "./ff.bat";
+            ffmpegInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            Process process = new Process();
             try
             {
                 using (process = Process.Start(ffmpegInfo))
@@ -786,7 +803,7 @@ namespace ffmpegUI
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            if (backgroundWorker1.IsBusy == false) 
+            if (backgroundWorker1.IsBusy == false)
             {
                 pnlProgress.Visible = false;
                 lblComplete.Visible = true;
@@ -795,7 +812,7 @@ namespace ffmpegUI
                 pnlCodec.Enabled = true;
                 pnlEncoder.Enabled = true;
                 pnlIO.Enabled = true;
-                panel1.Enabled= true;
+                panel1.Enabled = true;
                 btnClose.Enabled = true;
                 cbDeleteOrig.Enabled = true;
             }
@@ -806,7 +823,7 @@ namespace ffmpegUI
             pnlProgress.Visible = true;
             lblComplete.Visible = false;
             lblProgress.Visible = true;
-            pbProgress.Enabled= true;
+            pbProgress.Enabled = true;
         }
 
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
@@ -824,7 +841,7 @@ namespace ffmpegUI
                     pnlCodec.Enabled = false;
                     pnlEncoder.Enabled = false;
                     pnlIO.Enabled = false;
-                    panel1.Enabled= false;
+                    panel1.Enabled = false;
                     btnClose.Enabled = false;
                     cbDeleteOrig.Enabled = false;
                 }
@@ -844,7 +861,7 @@ namespace ffmpegUI
                     pnlCodec.Enabled = true;
                     pnlEncoder.Enabled = true;
                     pnlIO.Enabled = true;
-                    panel1.Enabled= true;
+                    panel1.Enabled = true;
                     btnClose.Enabled = true;
                     cbDeleteOrig.Enabled = true;
                     break;
