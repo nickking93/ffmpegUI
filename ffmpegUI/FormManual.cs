@@ -27,9 +27,9 @@ namespace ffmpegUI
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -c copy -ss {timeIn} -t {dur} tmp.mkv\"",
-            $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{fullName}\"",
-                "rm tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -c copy -ss {timeIn} -t {dur} tmp_{fullName}\"",
+                $"@ffmpeg.exe -y -hide_banner -i tmp_{fullName} -c copy \"{path}{fullName}\"",
+                $@"rm tmp_{fullName}",
                  "exit"
             };
 

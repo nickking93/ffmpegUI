@@ -66,15 +66,15 @@ namespace ffmpegUI
         }
 
         //Methods which build bat files containing ffmpeg command
-        static async Task write264AMF(string fileIn, string res, string path, string removeOrig, string safeName)
+        static async Task write264AMF(string fileIn, string res, string path, string removeOrig, string fullName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf {res} -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv\"",
-                $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
-                "rm tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf {res} -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr tmp_{fullName}\"",
+                $"@ffmpeg.exe -y -hide_banner -i tmp_{fullName} -c copy \"{path}{fullName}\"",
+                "rm tmp_{fullName}",
                 removeOrig,
                  "exit"
             };
@@ -82,15 +82,15 @@ namespace ffmpegUI
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task writeHEVCAMF(string fileIn, string res, string path, string removeOrig, string safeName)
+        static async Task writeHEVCAMF(string fileIn, string res, string path, string removeOrig, string fullName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
-                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_amf {res} -rc cqp -qp_i 28 -qp_p 28 -q:v 28 -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
-                 $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
-                 $"rm tmp.mkv",
+                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_amf {res} -rc cqp -qp_i 28 -qp_p 28 -q:v 28 -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp_{fullName}",
+                 $"@ffmpeg.exe -y -hide_banner -i tmp_{fullName} -c copy \"{path}{fullName}\"",
+                 $"rm tmp_{fullName}",
                  removeOrig,
                  "exit"
             };
@@ -98,15 +98,15 @@ namespace ffmpegUI
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task writeX264(string fileIn, string preset, string res, string removeOrig, string path, string safeName)
+        static async Task writeX264(string fileIn, string preset, string res, string removeOrig, string path, string fullName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx264 {res} -crf 24 -crf_max 24 -preset {preset} -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
-                $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
-                $"rm tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx264 {res} -crf 24 -crf_max 24 -preset {preset} -c:a copy -movflags +faststart -fps_mode vfr tmp_{fullName}",
+                $"@ffmpeg.exe -y -hide_banner -i tmp_{fullName} -c copy \"{path}{fullName}\"",
+                $"rm tmp_{fullName}",
                 removeOrig,
                 "exit"
             };
@@ -114,15 +114,15 @@ namespace ffmpegUI
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task writeX265(string fileIn, string preset, string res, string removeOrig, string path, string safeName)
+        static async Task writeX265(string fileIn, string preset, string res, string removeOrig, string path, string fullName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 {res} -crf 28 -qp 28 -preset {preset} -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
-                $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
-                $"rm tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 {res} -crf 28 -qp 28 -preset {preset} -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp_{fullName}",
+                $"@ffmpeg.exe -y -hide_banner -i tmp_{fullName} -c copy \"{path}{fullName}\"",
+                $"rm tmp_{fullName}",
                 removeOrig,
                 "exit"
             };
@@ -130,15 +130,15 @@ namespace ffmpegUI
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task write264NVENC(string fileIn, string res, string path, string removeOrig, string safeName)
+        static async Task write264NVENC(string fileIn, string res, string path, string removeOrig, string fullName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_nvenc {res} -rc constqp -qp 24 -preset fast -c:a copy -movflags faststart -fps_mode vfr tmp.mkv",
-                $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
-                $"rm tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_nvenc {res} -rc constqp -qp 24 -preset fast -c:a copy -movflags faststart -fps_mode vfr tmp_{fullName}",
+                $"@ffmpeg.exe -y -hide_banner -i tmp_{fullName} -c copy \"{path}{fullName}\"",
+                $"rm tmp_{fullName}",
                 removeOrig,
                 "exit"
             };
@@ -146,15 +146,15 @@ namespace ffmpegUI
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task writeHEVCNVENC(string fileIn, string res, string path, string removeOrig, string safeName)
+        static async Task writeHEVCNVENC(string fileIn, string res, string path, string removeOrig, string fullName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc {res} -rc constqp -qp 28 -preset fast -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr tmp.mkv",
-                $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
-                $"rm tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc {res} -rc constqp -qp 28 -preset fast -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr tmp_{fullName}",
+                $"@ffmpeg.exe -y -hide_banner -i tmp_{fullName} -c copy \"{path}{fullName}\"",
+                $"rm tmp_{fullName}",
                 removeOrig,
                 "exit"
             };
@@ -319,7 +319,7 @@ namespace ffmpegUI
         {
             //Declare variables
             string fileIn = txtFileIn.Text;
-            string safeName = System.IO.Path.GetFileNameWithoutExtension(fileIn);
+            string fullName = System.IO.Path.GetFileName(fileIn);
             string fileName = System.IO.Path.GetFileName(fileIn);
             string path = txtFileOut.Text + "\\";
             string dir = System.IO.Directory.GetCurrentDirectory();
@@ -397,7 +397,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await writeX264(fileIn, preset, res, removeOrig, path, safeName);
+                        await writeX264(fileIn, preset, res, removeOrig, path, fullName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                     else
@@ -408,7 +408,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await writeX265(fileIn, preset, res, removeOrig, path, safeName);
+                        await writeX265(fileIn, preset, res, removeOrig, path, fullName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                 }
@@ -422,7 +422,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await write264AMF(fileIn, res, path, removeOrig, safeName);
+                        await write264AMF(fileIn, res, path, removeOrig, fullName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                     else
@@ -433,7 +433,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await writeHEVCAMF(fileIn, res, path, removeOrig, safeName);
+                        await writeHEVCAMF(fileIn, res, path, removeOrig, fullName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                 }
@@ -447,7 +447,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await write264NVENC(fileIn, res, path, removeOrig, safeName);
+                        await write264NVENC(fileIn, res, path, removeOrig, fullName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                     else
@@ -458,7 +458,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await writeHEVCNVENC(fileIn, res, path, removeOrig, safeName);
+                        await writeHEVCNVENC(fileIn, res, path, removeOrig, fullName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                 }
