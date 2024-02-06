@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection.PortableExecutable;
+using System.Text.Encodings.Web;
 
 namespace ffmpegUI
 {
@@ -20,6 +21,21 @@ namespace ffmpegUI
             fileopener.Start();
         }
 
+        static async Task writeFFmpegTrim(string fileIn, string timeIn, string path, string dur, string safeName)
+        {
+            string[] lines =
+            {
+                "cd ffmpeg\\bin ",
+                $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -c copy -ss {timeIn} -t {dur} tmp.mkv\"",
+            $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
+                "rm tmp.mkv",
+                 "exit"
+            };
+
+            await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+        }
+
         static async Task writeAuto(string line0)
         {
             string[] lines =
@@ -30,32 +46,6 @@ namespace ffmpegUI
                 };
 
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FormManual_Load(object sender, EventArgs e)
-        {
-            rbAMDGPU.Checked = false;
-            rbNVIDIAGPU.Checked = false;
-            rbCPUEncode.Checked = true;
-            rb264.Checked = true;
-            rbHEVC.Checked = false;
-            rbCopyRes.Checked = true;
-            rbManualRes.Checked = false;
-            rbRemove.Checked= true;
-            rbKeep.Checked = false;
-            rbManualSpeed.Checked = false;
-            rbCopySpeed.Checked = true;
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -74,16 +64,6 @@ namespace ffmpegUI
             formClip.Show();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -94,105 +74,6 @@ namespace ffmpegUI
             FormShrink.Closed += (s, args) => this.Close();
             FormShrink.Show();
         }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbWidth_Validating(object sender, CancelEventArgs e)
-        {
-            e.Cancel = int.Parse(tbWidth.Text) <= 9999;
-        }
-
-        private void tbHeight_Validating(object sender, CancelEventArgs e)
-        {
-            e.Cancel = int.Parse(tbHeight.Text) <= 9999;
-        }
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btnConvert_Click(object sender, EventArgs e)
-        {
-            string fileIn = txtFileIn.Text;
-            string safeName = System.IO.Path.GetFileNameWithoutExtension(fileIn);
-            string fileName = System.IO.Path.GetFileName(fileIn);
-            string path = txtFileOut.Text + "\\";
-            string dir = System.IO.Directory.GetCurrentDirectory();
-            int qp = tbQP.Value;
-            string cmd0 = $"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -probesize 100M -analyzeduration 250M -i \"{fileIn}\" -fflags +genpts ";
-            string resW = tbWidth.Text;
-            string resH = tbHeight.Text;
-            string cmdEncoder = string.Empty;
-            string cmdCQP = string.Empty;
-            string dupFrames = string.Empty;
-            string speed = string.Empty;
-            string cmdEnd = $"-c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"";
-            if (rbAMDGPU.Checked == true && rb264.Checked == true)
-            {
-                cmdEncoder = $"-c:v h264_amf ";
-                cmdCQP = $"-rc cqp -qp_i {qp} -qp_p {qp} -qp_b {qp} ";
-            }
-            if (rbAMDGPU.Checked == true && rbHEVC.Checked == true)
-            {
-                cmdEncoder = $"-c:v hevc_amf ";
-                cmdCQP = $"-rc cqp -qp_i {qp} -qp_p {qp} ";
-            }
-            if (rbNVIDIAGPU.Checked == true && rb264.Checked == true)
-            {
-                cmdEncoder = $"-c:v h264_nvenc -preset fast ";
-                cmdCQP = $"-rc constqp -qp {qp} ";
-            }
-            if (rbNVIDIAGPU.Checked = true && rbHEVC.Checked == true)
-            {
-                cmdEncoder = $"-c:v hevc_nvenc -preset fast ";
-                cmdCQP = $"-rc constqp -qp {qp} ";
-            }
-            if (rbCPUEncode.Checked == true && rb264.Checked == true)
-            {
-                cmdEncoder = $"-c:v libx264 -preset veryfast ";
-                cmdCQP = $"-crf {qp} -crf_max {qp} ";
-                rbNVIDIAGPU.Checked = false;
-            }
-            if (rbCPUEncode.Checked == true && rbHEVC.Checked == true)
-            {
-                cmdEncoder = $"-c:v libx265 -preset veryfast ";
-                cmdCQP = $"-crf {qp} -crf_max {qp} ";
-                rbNVIDIAGPU.Checked = false;
-            }
-            //ADD REST OF SPEED OPTS
-            if (rbCopyRes.Checked == true && rbRemove.Checked == true)
-            {
-                dupFrames = $"-vf mpdecimate ";
-            }
-            if (rbManualRes.Checked == true && rbRemove.Checked == true)
-            {
-                dupFrames = $"-vf \"scale={resW}:{resH}:flags=lanczos,mpdecimate\" ";
-            }
-            if (rbManualRes.Checked == true && rbKeep.Checked == true)
-            {
-                dupFrames = $"-vf \"scale={resW}:{resH}:flags=lanczos\" ";
-            }
-            else
-            {
-                dupFrames = string.Empty;
-            }
-            if (rbCopySpeed.Checked == true)
-            {
-                speed = string.Empty;
-            }
-            else
-            {
-                speed = $"-r {speed} ";
-            }
-            string cmdFinal = cmd0 + cmdEncoder + cmdCQP + dupFrames + speed + cmdEnd;
-            writeAuto(cmdFinal);
-            Process.Start("./ff.bat");
-            this.Close();
-        }
-
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             int size = -1;
@@ -221,13 +102,6 @@ namespace ffmpegUI
                     {
                         btnConvert.Visible = true;
                     }
-                    txtVal.Visible = true;
-                    lblVal.Visible = true;
-                    lblHigh.Visible = true;
-                    lblLow.Visible = true;
-                    tbQP.Visible = true;
-                    tbQP.Value = 28;
-                    txtVal.Text = tbQP.Value.ToString();
                     lblSize.Visible = true;
 
                     if (tmpSize.Length >= 9)
@@ -271,6 +145,118 @@ namespace ffmpegUI
             }
         }
 
+        private async void btnConvert_Click(object sender, EventArgs e)
+        {
+            //Declare variables
+            string fileIn = txtFileIn.Text;
+            string safeName = System.IO.Path.GetFileNameWithoutExtension(fileIn);
+            string fileName = System.IO.Path.GetFileName(fileIn);
+            string path = txtFileOut.Text + "\\";
+            string dir = System.IO.Directory.GetCurrentDirectory();
+            int inH = Convert.ToInt16(nudInH.Value);
+            int inM = Convert.ToInt16(nudInM.Value);
+            int inS = Convert.ToInt16(nudInS.Value);
+            int outH = Convert.ToInt16(nudOutH.Value);
+            int outM = Convert.ToInt16(nudOutM.Value);
+            int outS = Convert.ToInt16(nudOutS.Value);
+            string timeIn = inH + ":" + inM + ":" + inS;
+            string dur = outH + ":" + outM + ":" + outS;
+
+            //Set control visibility appropriately
+            pnlProgress.Visible = true;
+            lblProgress.Visible = true;
+            btnConvert.Visible = false;
+
+            //Start conversion
+            await writeFFmpegTrim(fileIn, timeIn, path, dur, safeName);
+            backgroundWorker1.RunWorkerAsync();
+
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            ProcessStartInfo ffmpegInfo = new ProcessStartInfo();
+            ffmpegInfo.CreateNoWindow = false;  //true to hide console window, false to show
+            ffmpegInfo.UseShellExecute = false;
+            ffmpegInfo.FileName = "./ff.bat";
+            ffmpegInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            Process process = new Process();
+            try
+            {
+                using (process = Process.Start(ffmpegInfo))
+                {
+                    process.WaitForExit();
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+        private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if (backgroundWorker1.IsBusy == false)
+            {
+                pnlProgress.Visible = false;
+                lblComplete.Visible = true;
+            }
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            pnlProgress.Visible = true;
+            lblComplete.Visible = false;
+            lblProgress.Visible = true;
+            pbProgress.Enabled = true;
+        }
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormManual_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbWidth_Validating(object sender, CancelEventArgs e)
+        {
+        }
+
+        private void tbHeight_Validating(object sender, CancelEventArgs e)
+        {
+        }
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void txtVal_TextChanged(object sender, EventArgs e)
         {
 
@@ -278,47 +264,35 @@ namespace ffmpegUI
 
         private void rbManualRes_CheckedChanged(object sender, EventArgs e)
         {
-            tbWidth.Visible= true;
-            tbHeight.Visible= true;
-            lblX.Visible= true;
         }
 
         private void rbCopyRes_CheckedChanged(object sender, EventArgs e)
         {
-            tbWidth.Visible = false;
-            tbHeight.Visible = false;
-            lblX.Visible = false;
         }
 
         private void radioButton10_CheckedChanged(object sender, EventArgs e)
         {
-            lbSpeed.Visible= true;
         }
 
         private void rbCopySpeed_CheckedChanged(object sender, EventArgs e)
         {
-            lbSpeed.Visible= false;
         }
 
         private void rbCPUEncode_CheckedChanged(object sender, EventArgs e)
         {
-            rbAMDGPU.Checked = false;
-            rbNVIDIAGPU.Checked = false;
         }
 
         private void rbHEVC_CheckedChanged(object sender, EventArgs e)
         {
-            rb264.Checked = false;
         }
 
         private void pnlResolution_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
-        private void button5_Click(object sender, EventArgs e)
+        private void label6_Click(object sender, EventArgs e)
         {
-            this.Close();
+
         }
     }
 }

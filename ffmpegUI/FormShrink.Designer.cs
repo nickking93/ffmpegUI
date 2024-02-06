@@ -74,11 +74,11 @@
             this.rbRes720 = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbDeleteOrig = new System.Windows.Forms.CheckBox();
             this.pnlProgress = new System.Windows.Forms.Panel();
             this.lblCount = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.cbDeleteOrig = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
             this.pnlIO.SuspendLayout();
@@ -136,7 +136,7 @@
             this.btnFormClip.Name = "btnFormClip";
             this.btnFormClip.Size = new System.Drawing.Size(177, 113);
             this.btnFormClip.TabIndex = 2;
-            this.btnFormClip.Text = "Manual Conversion";
+            this.btnFormClip.Text = "Trim Tool";
             this.btnFormClip.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnFormClip.UseVisualStyleBackColor = true;
             this.btnFormClip.Click += new System.EventHandler(this.btnManual);
@@ -147,7 +147,7 @@
             this.btnFormShrink.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnFormShrink.FlatAppearance.BorderSize = 3;
             this.btnFormShrink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFormShrink.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnFormShrink.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnFormShrink.ForeColor = System.Drawing.Color.White;
             this.btnFormShrink.Image = ((System.Drawing.Image)(resources.GetObject("btnFormShrink.Image")));
             this.btnFormShrink.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -155,10 +155,10 @@
             this.btnFormShrink.Name = "btnFormShrink";
             this.btnFormShrink.Size = new System.Drawing.Size(177, 117);
             this.btnFormShrink.TabIndex = 1;
-            this.btnFormShrink.Text = "Shrink Video File";
+            this.btnFormShrink.Text = "Manual Conversion";
             this.btnFormShrink.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnFormShrink.UseMnemonic = false;
-            this.btnFormShrink.UseVisualStyleBackColor = false;
+            this.btnFormShrink.UseVisualStyleBackColor = true;
+            this.btnFormShrink.Click += new System.EventHandler(this.btnFormShrink_Click);
             // 
             // panelIcon
             // 
@@ -697,6 +697,18 @@
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // cbDeleteOrig
+            // 
+            this.cbDeleteOrig.AutoSize = true;
+            this.cbDeleteOrig.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbDeleteOrig.ForeColor = System.Drawing.Color.White;
+            this.cbDeleteOrig.Location = new System.Drawing.Point(139, 209);
+            this.cbDeleteOrig.Name = "cbDeleteOrig";
+            this.cbDeleteOrig.Size = new System.Drawing.Size(183, 30);
+            this.cbDeleteOrig.TabIndex = 49;
+            this.cbDeleteOrig.Text = "Delete Original File?";
+            this.cbDeleteOrig.UseVisualStyleBackColor = true;
+            // 
             // pnlProgress
             // 
             this.pnlProgress.Controls.Add(this.lblCount);
@@ -732,18 +744,6 @@
             // 
             this.backgroundWorker2.WorkerSupportsCancellation = true;
             this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
-            // 
-            // cbDeleteOrig
-            // 
-            this.cbDeleteOrig.AutoSize = true;
-            this.cbDeleteOrig.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbDeleteOrig.ForeColor = System.Drawing.Color.White;
-            this.cbDeleteOrig.Location = new System.Drawing.Point(139, 209);
-            this.cbDeleteOrig.Name = "cbDeleteOrig";
-            this.cbDeleteOrig.Size = new System.Drawing.Size(183, 30);
-            this.cbDeleteOrig.TabIndex = 49;
-            this.cbDeleteOrig.Text = "Delete Original File?";
-            this.cbDeleteOrig.UseVisualStyleBackColor = true;
             // 
             // FormShrink
             // 

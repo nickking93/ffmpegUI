@@ -853,5 +853,10 @@ namespace ffmpegUI
 
             }
         }
+
+        private void btnFormShrink_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
