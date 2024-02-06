@@ -66,84 +66,96 @@ namespace ffmpegUI
         }
 
         //Methods which build bat files containing ffmpeg command
-        static async Task write264AMF(string fileIn, string res, string path, string safeName)
+        static async Task write264AMF(string fileIn, string res, string path, string removeOrig, string safeName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
+                $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf {res} -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv\"",
                 $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
                 "rm tmp.mkv",
+                removeOrig,
                  "exit"
             };
 
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task writeHEVCAMF(string fileIn, string res, string path, string safeName)
+        static async Task writeHEVCAMF(string fileIn, string res, string path, string removeOrig, string safeName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
+                $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
                  $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_amf {res} -rc cqp -qp_i 28 -qp_p 28 -q:v 28 -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
                  $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
                  $"rm tmp.mkv",
+                 removeOrig,
                  "exit"
             };
 
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task writeX264(string fileIn, string preset, string path, string res, string safeName)
+        static async Task writeX264(string fileIn, string preset, string res, string removeOrig, string path, string safeName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx264 {res} -crf 24 -crf_max 24 24 -preset {preset} -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
+                $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx264 {res} -crf 24 -crf_max 24 -preset {preset} -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
                 $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
                 $"rm tmp.mkv",
+                removeOrig,
                 "exit"
             };
 
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task writeX265(string fileIn, string preset, string res, string path, string safeName)
+        static async Task writeX265(string fileIn, string preset, string res, string removeOrig, string path, string safeName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
+                $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 {res} -crf 24 -qp 24 -preset {preset} -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
                 $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
                 $"rm tmp.mkv",
+                removeOrig,
                 "exit"
             };
 
         await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task write264NVENC(string fileIn, string res, string path, string safeName)
+        static async Task write264NVENC(string fileIn, string res, string path, string removeOrig, string safeName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
+                $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_nvenc {res} -rc constqp -qp 24 -preset fast -c:a copy -movflags faststart -fps_mode vfr tmp.mkv",
                 $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
                 $"rm tmp.mkv",
+                removeOrig,
                 "exit"
             };
 
         await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task writeHEVCNVENC(string fileIn, string res, string path, string safeName)
+        static async Task writeHEVCNVENC(string fileIn, string res, string path, string removeOrig, string safeName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
+                $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc {res} -rc constqp -qp 24 -preset fast -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr tmp.mkv",
                 $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
                 $"rm tmp.mkv",
+                removeOrig,
                 "exit"
             };
 
@@ -313,7 +325,8 @@ namespace ffmpegUI
             string dir = System.IO.Directory.GetCurrentDirectory();
             string exn = cbExtension.Text.ToString();
             string preset = lbPresets.Text.ToString();
-            string res = string.Empty;
+            string res = $"-vf mpdecimate";
+            string removeOrig = string.Empty;
 
             pnlPreset.Enabled = false;
             pnlRes.Enabled = false;
@@ -322,26 +335,27 @@ namespace ffmpegUI
             pnlIO.Enabled = false;
             panel1.Enabled = false;
             btnClose.Enabled = false;
+            cbDeleteOrig.Enabled = false;
 
             if (rbRes720.Checked == true)
             {
-                res = $"-vf \"scale=1280:720:flags=lanczos\" -aspect 16:9";
+                res = $"-vf \"scale=1280:720:flags=lanczos:force_original_aspect_ratio=increase,crop=1280:720,mpdecimate\"";
             }
             else if (rb1080p.Checked == true)
             {
-                res = $"-vf \"scale=1920:1080:flags=lanczos\" -aspect 16:9";
+                res = $"-vf \"scale=1920:1080:flags=lanczos:force_original_aspect_ratio=increase,crop=1920:1080,mpdecimate\"";
             }
             else if (rb2160.Checked == true)
             {
-                res = $"-vf \"scale=3840:2160:flags=lanczos\" -aspect 16:9";
+                res = $"-vf \"scale=3840:2160:flags=lanczos:force_original_aspect_ratio=increase,crop=3840:2160,mpdecimate\"";
             }
             else if (rb1440.Checked == true)
             {
-                res = $"-vf \"scale=2560:1440:flags=lanczos\" -aspect 16:9";
+                res = $"-vf \"scale=2560:1440:flags=lanczos:force_original_aspect_ratio=increase,crop=2560:1440,mpdecimate\"";
             }
             else if (rb540.Checked == true)
             {
-                res = $"-vf \"scale=960:540:flags=lanczos\" -aspect 16:9";
+                res = $"-vf \"scale=960:540:flags=lanczos:force_original_aspect_ratio=increase,crop=960:540,mpdecimate\"";
             }
             else
             {
@@ -351,6 +365,11 @@ namespace ffmpegUI
             //Check whether the folder conversion check box is checked
             if (cbFolder.Checked == false)
             {
+                if (cbDeleteOrig.Checked == true)
+                {
+                    removeOrig = $"rm \"{fileIn}\"";
+                }
+
                 if (rbCPUEncode.Checked == true)
                 {
                     if (rb264.Checked == true)
@@ -361,7 +380,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await writeX264(fileIn, preset, res, path, safeName);
+                        await writeX264(fileIn, preset, res, removeOrig, path, safeName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                     else
@@ -372,7 +391,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await writeX265(fileIn, preset, res, path, safeName);
+                        await writeX265(fileIn, preset, res, removeOrig, path, safeName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                 }
@@ -386,7 +405,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await write264AMF(fileIn, res, path, safeName);
+                        await write264AMF(fileIn, res, path, removeOrig, safeName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                     else
@@ -397,7 +416,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await writeHEVCAMF(fileIn, res, path, safeName);
+                        await writeHEVCAMF(fileIn, res, path, removeOrig, safeName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                 }
@@ -411,7 +430,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await write264NVENC(fileIn, res, path, safeName);
+                        await write264NVENC(fileIn, res, path, removeOrig, safeName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                     else
@@ -422,7 +441,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await writeHEVCNVENC(fileIn, res, path, safeName);
+                        await writeHEVCNVENC(fileIn, res, path, removeOrig, safeName);
                         backgroundWorker1.RunWorkerAsync();
                     }
                 }
@@ -452,6 +471,12 @@ namespace ffmpegUI
                         lblCount.Visible = true;
                         lblCount.Text = $"File {currentFile} of {totalFiles}";
                         string safeEach = Path.GetFileNameWithoutExtension(files[i]);
+
+                        if (cbDeleteOrig.Checked == true)
+                        {
+                            removeOrig = $"rm \"{files[i]}\"";
+                        }
+
                         if (rbCPUEncode.Checked == true)
                         {
                             if (rb264.Checked == true)
@@ -459,7 +484,7 @@ namespace ffmpegUI
                                 //Set control visibility appropriately
 
                                 //Start conversion
-                                await writeX264(files[i], preset, res, path, safeEach);
+                                await writeX264(files[i], preset, res, path, removeOrig, safeEach);
                                 Process ffmpeg = new Process();
                                 OpenCMD(ffmpeg);
                                 ffmpeg.Close();
@@ -469,7 +494,7 @@ namespace ffmpegUI
                                 //Set control visibility appropriately
 
                                 //Start conversion
-                                await writeX265(files[i], preset, res, path, safeEach);
+                                await writeX265(files[i], preset, res, path, removeOrig, safeEach);
                                 Process ffmpeg = new Process();
                                 OpenCMD(ffmpeg);
                                 ffmpeg.Close();
@@ -482,7 +507,7 @@ namespace ffmpegUI
                                 //Set control visibility appropriately
 
                                 //Start conversion
-                                await write264AMF(files[i], res, path, safeEach);
+                                await write264AMF(files[i], res, path, removeOrig, safeEach);
                                 Process ffmpeg = new Process();
                                 OpenCMD(ffmpeg);
                                 ffmpeg.Close();
@@ -492,7 +517,7 @@ namespace ffmpegUI
                                 //Set control visibility appropriately
 
                                 //Start conversion
-                                await writeHEVCAMF(files[i], res, path, safeEach);
+                                await writeHEVCAMF(files[i], res, path, removeOrig, safeEach);
                                 Process ffmpeg = new Process();
                                 OpenCMD(ffmpeg);
                                 ffmpeg.Close();
@@ -504,7 +529,7 @@ namespace ffmpegUI
                             {
 
                                 //Start conversion
-                                await write264NVENC(files[i], res, path, safeEach);
+                                await write264NVENC(files[i], res, path, removeOrig, safeEach);
                                 Process ffmpeg = new Process();
                                 OpenCMD(ffmpeg);
                                 ffmpeg.Close();
@@ -513,7 +538,7 @@ namespace ffmpegUI
                             {
 
                                 //Start conversion
-                                await writeHEVCNVENC(files[i], res, path, safeEach);
+                                await writeHEVCNVENC(files[i], res, path, removeOrig, safeEach);
                                 Process ffmpeg = new Process();
                                 OpenCMD(ffmpeg);
                                 ffmpeg.Close();
@@ -530,6 +555,7 @@ namespace ffmpegUI
                 pnlIO.Enabled = true;
                 panel1.Enabled = true;
                 btnClose.Enabled = true;
+                cbDeleteOrig.Enabled = true;
             }
             //this.Close();
         }
@@ -770,6 +796,7 @@ namespace ffmpegUI
                 pnlIO.Enabled = true;
                 panel1.Enabled= true;
                 btnClose.Enabled = true;
+                cbDeleteOrig.Enabled = true;
             }
         }
 
@@ -798,6 +825,7 @@ namespace ffmpegUI
                     pnlIO.Enabled = false;
                     panel1.Enabled= false;
                     btnClose.Enabled = false;
+                    cbDeleteOrig.Enabled = false;
                 }
                 System.Threading.Thread.Sleep(1000);
 
@@ -817,6 +845,7 @@ namespace ffmpegUI
                     pnlIO.Enabled = true;
                     panel1.Enabled= true;
                     btnClose.Enabled = true;
+                    cbDeleteOrig.Enabled = true;
                     break;
                 }
                 System.Threading.Thread.Sleep(1000);

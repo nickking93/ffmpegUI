@@ -78,6 +78,7 @@
             this.lblCount = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.cbDeleteOrig = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
             this.pnlIO.SuspendLayout();
@@ -681,6 +682,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumPurple;
+            this.panel2.Controls.Add(this.cbDeleteOrig);
             this.panel2.Controls.Add(this.pnlProgress);
             this.panel2.Controls.Add(this.pnlRes);
             this.panel2.Controls.Add(this.pnlPreset);
@@ -730,6 +732,18 @@
             // 
             this.backgroundWorker2.WorkerSupportsCancellation = true;
             this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
+            // 
+            // cbDeleteOrig
+            // 
+            this.cbDeleteOrig.AutoSize = true;
+            this.cbDeleteOrig.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbDeleteOrig.ForeColor = System.Drawing.Color.White;
+            this.cbDeleteOrig.Location = new System.Drawing.Point(139, 209);
+            this.cbDeleteOrig.Name = "cbDeleteOrig";
+            this.cbDeleteOrig.Size = new System.Drawing.Size(183, 30);
+            this.cbDeleteOrig.TabIndex = 49;
+            this.cbDeleteOrig.Text = "Delete Original File?";
+            this.cbDeleteOrig.UseVisualStyleBackColor = true;
             // 
             // FormShrink
             // 
@@ -819,5 +833,6 @@
         private Panel pnlProgress;
         private Label lblCount;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private CheckBox cbDeleteOrig;
     }
 }
