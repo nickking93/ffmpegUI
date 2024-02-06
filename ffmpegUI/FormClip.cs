@@ -1,8 +1,8 @@
 namespace ffmpegUI
 {
-    public partial class FormTemplate : Form
+    public partial class FormClip : Form
     {
-        public FormTemplate()
+        public FormClip()
         {
             InitializeComponent();
         }
@@ -17,7 +17,7 @@ namespace ffmpegUI
 
         }
 
-        private void FormTemplate_Load(object sender, EventArgs e)
+        private void FormClip_Load(object sender, EventArgs e)
         {
 
         }

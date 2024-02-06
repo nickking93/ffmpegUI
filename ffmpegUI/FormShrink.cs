@@ -9,12 +9,13 @@ namespace ffmpegUI
             InitializeComponent();
         }
 
-        public static void OpenWithDefaultProgram(string pathIn)
+        public static async Task OpenWithDefaultProgram(string pathIn)
         {
             using Process fileopener = new Process();
             fileopener.StartInfo.FileName = pathIn;
             fileopener.StartInfo.UseShellExecute = true;
             fileopener.Start();
+            return;
         }
 
         static async Task writeAuto(string line0, string line1)
@@ -36,7 +37,13 @@ namespace ffmpegUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            var formManual = new FormManual();
+            formManual.Tag = this;
+            formManual.StartPosition = FormStartPosition.Manual;
+            formManual.Location = this.Location;
+            formManual.Closed += (s, args) => this.Close();
+            formManual.Show();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -51,7 +58,13 @@ namespace ffmpegUI
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            var formClip = new FormClip();
+            formClip.Tag = this;
+            formClip.StartPosition = FormStartPosition.Manual;
+            formClip.Location = this.Location;
+            formClip.Closed += (s, args) => this.Close();
+            formClip.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -63,7 +76,7 @@ namespace ffmpegUI
         {
             int size = -1;
             OpenFileDialog openFileDialog1 = new();
-            openFileDialog1.Filter = "Video Files|*.mkv;*.mp4;*.ts;*.mov;*.avi;";
+            openFileDialog1.Filter = "Video Files|*.mkv;*.mp4;*.ts;*.mov;*.avi;*.m4v;";
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
@@ -134,20 +147,52 @@ namespace ffmpegUI
             string dir = "tmp";
             Directory.CreateDirectory(dir);
             lblSize.Text = "Size: " + txtFileIn.Text;
+            rbCPUEncode.Checked = true;
         }
 
-        private void btnConvert_Click(object sender, EventArgs e)
+        private async void btnConvert_Click(object sender, EventArgs e)
         {
             string fileIn = txtFileIn.Text;
             string safeName = System.IO.Path.GetFileNameWithoutExtension(fileIn);
             string fileName = System.IO.Path.GetFileName(fileIn);
             string path = txtFileOut.Text + "\\";
             string dir = System.IO.Directory.GetCurrentDirectory();
-            string cmd0 = $"cd ffmpeg\\bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -probesize 100M -analyzeduration 250M -i \"{fileIn}\" -fflags +genpts -c:v h264_amf -vf mpdecimate -rc cqp -qp_i 28 -qp_p 28 -qp_b 28 -q:v 28 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"";
+            string cmd0 = string.Empty;
+            if (rbCPUEncode.Checked == true)
+            {
+                cmd0 = $"cd ffmpeg\\bin && ffmpeg.exe -y -hide_banner -probesize 100M -analyzeduration 250M -i \"{fileIn}\" -fflags +genpts -c:v libx264 -crf 28 -crf_max 28 -preset veryfast -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"";
+            }
+            if (rbAMDGPU.Checked == true)
+            {
+                cmd0 = $"cd ffmpeg\\bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -probesize 100M -analyzeduration 250M -i \"{fileIn}\" -fflags +genpts -c:v h264_amf -vf mpdecimate -rc cqp -qp_i 28 -qp_p 28 -qp_b 28 -q:v 28 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"";
+            }
+            if (rbNVIDIAGPU.Checked == true)
+            {
+                cmd0 = $"cd ffmpeg/bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_nvenc -rc constqp -qp 28 -preset fast -vf mpdecimate -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"";
+            }
             string cmd1 = string.Empty;
             writeAuto(cmd0, cmd1);
-            System.Diagnostics.Process.Start("./ff.bat");
-            this.Close();
+            Process ffmpeg = Process.Start("./ff.bat");
+            //ffmpeg.WaitForExit();
+            ffmpeg.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            ffmpeg.StartInfo.UseShellExecute = true;
+            while (ffmpeg.HasExited == false)
+            {
+                progressBar1.Visible = true;
+                lblProgress.Visible = true;
+                btnConvert.Visible = false;
+            }
+            if (ffmpeg.HasExited == true)
+            {
+                progressBar1.Visible = false;
+                lblProgress.Visible = false;
+            }
+            //this.Close();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

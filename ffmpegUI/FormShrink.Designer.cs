@@ -37,6 +37,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblProgress = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.rbCPUEncode = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.rbNVIDIAGPU = new System.Windows.Forms.RadioButton();
+            this.rbAMDGPU = new System.Windows.Forms.RadioButton();
+            this.btnConvert = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.lblSize = new System.Windows.Forms.Label();
@@ -47,7 +54,6 @@
             this.txtFileIn = new System.Windows.Forms.TextBox();
             this.btnBrowseOut = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnConvert = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -69,27 +75,31 @@
             // 
             // button3
             // 
+            this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Plum;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Violet;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.Location = new System.Drawing.Point(0, 347);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(177, 103);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Trim Video";
+            this.button3.Text = "Preset Conversions";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
+            this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Plum;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Violet;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button2.Location = new System.Drawing.Point(0, 234);
             this.button2.Name = "button2";
@@ -108,6 +118,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button1.Location = new System.Drawing.Point(0, 111);
             this.button1.Name = "button1";
@@ -153,12 +164,105 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.BlueViolet;
+            this.panel2.Controls.Add(this.lblProgress);
+            this.panel2.Controls.Add(this.progressBar1);
+            this.panel2.Controls.Add(this.rbCPUEncode);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.rbNVIDIAGPU);
+            this.panel2.Controls.Add(this.rbAMDGPU);
             this.panel2.Controls.Add(this.btnConvert);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(177, 273);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(623, 177);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // lblProgress
+            // 
+            this.lblProgress.AutoSize = true;
+            this.lblProgress.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblProgress.ForeColor = System.Drawing.Color.White;
+            this.lblProgress.Location = new System.Drawing.Point(402, 79);
+            this.lblProgress.Name = "lblProgress";
+            this.lblProgress.Size = new System.Drawing.Size(76, 26);
+            this.lblProgress.TabIndex = 39;
+            this.lblProgress.Text = "Progress";
+            this.lblProgress.Visible = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(402, 122);
+            this.progressBar1.MarqueeAnimationSpeed = 1000;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(154, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.TabIndex = 10;
+            this.progressBar1.Visible = false;
+            // 
+            // rbCPUEncode
+            // 
+            this.rbCPUEncode.AutoSize = true;
+            this.rbCPUEncode.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbCPUEncode.ForeColor = System.Drawing.Color.White;
+            this.rbCPUEncode.Location = new System.Drawing.Point(197, 79);
+            this.rbCPUEncode.Name = "rbCPUEncode";
+            this.rbCPUEncode.Size = new System.Drawing.Size(106, 23);
+            this.rbCPUEncode.TabIndex = 9;
+            this.rbCPUEncode.Text = "CPU Encoding";
+            this.rbCPUEncode.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(197, 4);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(161, 26);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "CPU/GPU Encoder:";
+            // 
+            // rbNVIDIAGPU
+            // 
+            this.rbNVIDIAGPU.AutoSize = true;
+            this.rbNVIDIAGPU.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbNVIDIAGPU.ForeColor = System.Drawing.Color.White;
+            this.rbNVIDIAGPU.Location = new System.Drawing.Point(197, 57);
+            this.rbNVIDIAGPU.Name = "rbNVIDIAGPU";
+            this.rbNVIDIAGPU.Size = new System.Drawing.Size(98, 23);
+            this.rbNVIDIAGPU.TabIndex = 7;
+            this.rbNVIDIAGPU.Text = "NVIDIA GPU";
+            this.rbNVIDIAGPU.UseVisualStyleBackColor = true;
+            // 
+            // rbAMDGPU
+            // 
+            this.rbAMDGPU.AutoSize = true;
+            this.rbAMDGPU.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbAMDGPU.ForeColor = System.Drawing.Color.White;
+            this.rbAMDGPU.Location = new System.Drawing.Point(197, 33);
+            this.rbAMDGPU.Name = "rbAMDGPU";
+            this.rbAMDGPU.Size = new System.Drawing.Size(85, 23);
+            this.rbAMDGPU.TabIndex = 6;
+            this.rbAMDGPU.Text = "AMD GPU";
+            this.rbAMDGPU.UseVisualStyleBackColor = true;
+            // 
+            // btnConvert
+            // 
+            this.btnConvert.BackColor = System.Drawing.Color.Plum;
+            this.btnConvert.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnConvert.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Violet;
+            this.btnConvert.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Plum;
+            this.btnConvert.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnConvert.ForeColor = System.Drawing.Color.White;
+            this.btnConvert.Image = ((System.Drawing.Image)(resources.GetObject("btnConvert.Image")));
+            this.btnConvert.Location = new System.Drawing.Point(221, 108);
+            this.btnConvert.Name = "btnConvert";
+            this.btnConvert.Size = new System.Drawing.Size(162, 37);
+            this.btnConvert.TabIndex = 5;
+            this.btnConvert.UseVisualStyleBackColor = false;
+            this.btnConvert.Visible = false;
+            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
             // panel3
             // 
@@ -288,23 +392,6 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "To Continue with auto shrink, \r\nchoose file and destination, then \r\nclick GO!\r\n";
             // 
-            // btnConvert
-            // 
-            this.btnConvert.BackColor = System.Drawing.Color.Plum;
-            this.btnConvert.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnConvert.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Violet;
-            this.btnConvert.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Plum;
-            this.btnConvert.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnConvert.ForeColor = System.Drawing.Color.White;
-            this.btnConvert.Location = new System.Drawing.Point(230, 77);
-            this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(162, 37);
-            this.btnConvert.TabIndex = 5;
-            this.btnConvert.Text = "Convert";
-            this.btnConvert.UseVisualStyleBackColor = false;
-            this.btnConvert.Visible = false;
-            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
-            // 
             // FormShrink
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -324,6 +411,7 @@
             this.panelIcon.ResumeLayout(false);
             this.panelIcon.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -351,5 +439,11 @@
         private Button btnBrowseOut;
         private Button button4;
         private Button btnConvert;
+        private RadioButton rbCPUEncode;
+        private Label label5;
+        private RadioButton rbNVIDIAGPU;
+        private RadioButton rbAMDGPU;
+        private ProgressBar progressBar1;
+        private Label lblProgress;
     }
 }
