@@ -46,6 +46,9 @@
             this.rbAMDGPU = new System.Windows.Forms.RadioButton();
             this.btnConvert = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblExn = new System.Windows.Forms.Label();
+            this.cbExtension = new System.Windows.Forms.ComboBox();
+            this.cbFolder = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.lblSize = new System.Windows.Forms.Label();
             this.lblInput = new System.Windows.Forms.Label();
@@ -283,6 +286,9 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.MediumPurple;
+            this.panel3.Controls.Add(this.lblExn);
+            this.panel3.Controls.Add(this.cbExtension);
+            this.panel3.Controls.Add(this.cbFolder);
             this.panel3.Controls.Add(this.button4);
             this.panel3.Controls.Add(this.lblSize);
             this.panel3.Controls.Add(this.lblInput);
@@ -297,6 +303,55 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(623, 274);
             this.panel3.TabIndex = 0;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // lblExn
+            // 
+            this.lblExn.AutoSize = true;
+            this.lblExn.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblExn.ForeColor = System.Drawing.Color.White;
+            this.lblExn.Location = new System.Drawing.Point(238, 154);
+            this.lblExn.Name = "lblExn";
+            this.lblExn.Size = new System.Drawing.Size(179, 26);
+            this.lblExn.TabIndex = 41;
+            this.lblExn.Text = "Choose input file type:";
+            this.lblExn.Visible = false;
+            // 
+            // cbExtension
+            // 
+            this.cbExtension.BackColor = System.Drawing.Color.MediumPurple;
+            this.cbExtension.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbExtension.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbExtension.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbExtension.ForeColor = System.Drawing.Color.White;
+            this.cbExtension.FormattingEnabled = true;
+            this.cbExtension.Items.AddRange(new object[] {
+            "--Select Type--",
+            ".mp4",
+            ".mkv",
+            ".mov",
+            ".ts",
+            ".avi",
+            ".m4v"});
+            this.cbExtension.Location = new System.Drawing.Point(433, 150);
+            this.cbExtension.Name = "cbExtension";
+            this.cbExtension.Size = new System.Drawing.Size(150, 34);
+            this.cbExtension.TabIndex = 40;
+            this.cbExtension.Visible = false;
+            this.cbExtension.SelectedIndexChanged += new System.EventHandler(this.cbExtension_SelectedIndexChanged);
+            // 
+            // cbFolder
+            // 
+            this.cbFolder.AutoSize = true;
+            this.cbFolder.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbFolder.ForeColor = System.Drawing.Color.White;
+            this.cbFolder.Location = new System.Drawing.Point(53, 155);
+            this.cbFolder.Name = "cbFolder";
+            this.cbFolder.Size = new System.Drawing.Size(174, 30);
+            this.cbFolder.TabIndex = 39;
+            this.cbFolder.Text = "All Videos in folder";
+            this.cbFolder.UseVisualStyleBackColor = true;
+            this.cbFolder.CheckedChanged += new System.EventHandler(this.cbFolder_CheckedChanged);
             // 
             // button4
             // 
@@ -315,7 +370,7 @@
             this.lblSize.AutoSize = true;
             this.lblSize.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSize.ForeColor = System.Drawing.Color.White;
-            this.lblSize.Location = new System.Drawing.Point(468, 168);
+            this.lblSize.Location = new System.Drawing.Point(468, 187);
             this.lblSize.Name = "lblSize";
             this.lblSize.Size = new System.Drawing.Size(46, 26);
             this.lblSize.TabIndex = 37;
@@ -327,7 +382,7 @@
             this.lblInput.AutoSize = true;
             this.lblInput.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblInput.ForeColor = System.Drawing.Color.White;
-            this.lblInput.Location = new System.Drawing.Point(63, 172);
+            this.lblInput.Location = new System.Drawing.Point(63, 191);
             this.lblInput.Name = "lblInput";
             this.lblInput.Size = new System.Drawing.Size(88, 26);
             this.lblInput.TabIndex = 36;
@@ -338,7 +393,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(47, 201);
+            this.label4.Location = new System.Drawing.Point(47, 220);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(112, 26);
             this.label4.TabIndex = 34;
@@ -353,7 +408,7 @@
             this.btnBrowse.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Plum;
             this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnBrowse.ForeColor = System.Drawing.Color.White;
-            this.btnBrowse.Location = new System.Drawing.Point(389, 171);
+            this.btnBrowse.Location = new System.Drawing.Point(389, 190);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnBrowse.TabIndex = 31;
@@ -364,7 +419,7 @@
             // txtFileOut
             // 
             this.txtFileOut.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtFileOut.Location = new System.Drawing.Point(157, 205);
+            this.txtFileOut.Location = new System.Drawing.Point(157, 224);
             this.txtFileOut.Name = "txtFileOut";
             this.txtFileOut.ReadOnly = true;
             this.txtFileOut.Size = new System.Drawing.Size(226, 23);
@@ -374,12 +429,13 @@
             // txtFileIn
             // 
             this.txtFileIn.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtFileIn.Location = new System.Drawing.Point(157, 172);
+            this.txtFileIn.Location = new System.Drawing.Point(157, 191);
             this.txtFileIn.Name = "txtFileIn";
             this.txtFileIn.ReadOnly = true;
             this.txtFileIn.Size = new System.Drawing.Size(226, 23);
             this.txtFileIn.TabIndex = 33;
             this.txtFileIn.TabStop = false;
+            this.txtFileIn.TextChanged += new System.EventHandler(this.txtFileIn_TextChanged);
             // 
             // btnBrowseOut
             // 
@@ -389,7 +445,7 @@
             this.btnBrowseOut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Plum;
             this.btnBrowseOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnBrowseOut.ForeColor = System.Drawing.Color.White;
-            this.btnBrowseOut.Location = new System.Drawing.Point(389, 204);
+            this.btnBrowseOut.Location = new System.Drawing.Point(389, 223);
             this.btnBrowseOut.Name = "btnBrowseOut";
             this.btnBrowseOut.Size = new System.Drawing.Size(75, 23);
             this.btnBrowseOut.TabIndex = 32;
@@ -463,5 +519,8 @@
         private Label lblProgress;
         private Label lblComplete;
         private PictureBox pbProgress;
+        private CheckBox cbFolder;
+        private ComboBox cbExtension;
+        private Label lblExn;
     }
 }
