@@ -41,6 +41,9 @@
     <None Update="ffmpeg\doc\bootstrap.min.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="ffmpeg\doc\community.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="ffmpeg\doc\default.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

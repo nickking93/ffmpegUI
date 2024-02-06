@@ -23,6 +23,7 @@ namespace ffmpegUI
             cbExtension.SelectedIndex = 0;
             lbPresets.SelectedIndex = 1;
             rbResCopy.Checked = true;
+            rbAV1.Visible = false;
 
             //Tooltips
             ToolTip tooltipAMD = new ToolTip();
@@ -89,6 +90,22 @@ namespace ffmpegUI
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
                  $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_amf {res} -rc cqp -qp_i 28 -qp_p 28 -q:v 28 -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp_{fullName}",
+                 $"@ffmpeg.exe -y -hide_banner -i tmp_{fullName} -c copy \"{path}{fullName}\"",
+                 $"rm tmp_{fullName}",
+                 removeOrig,
+                 "exit"
+            };
+
+            await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+        }
+
+        static async Task writeAV1AMF(string fileIn, string res, string path, string removeOrig, string fullName)
+        {
+            string[] lines =
+            {
+                "cd ffmpeg\\bin ",
+                $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
+                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v av1_amf {res} -rc cqp -qp_i 105 -qp_p 105 -q:v 105 -quality speed -enforce_hrd true -c:a copy -movflags +faststart -fps_mode vfr tmp_{fullName}",
                  $"@ffmpeg.exe -y -hide_banner -i tmp_{fullName} -c copy \"{path}{fullName}\"",
                  $"rm tmp_{fullName}",
                  removeOrig,
@@ -425,6 +442,17 @@ namespace ffmpegUI
                         await write264AMF(fileIn, res, path, removeOrig, fullName);
                         backgroundWorker1.RunWorkerAsync();
                     }
+                    if (rbAV1.Checked == true)
+                    {
+                        //Set control visibility appropriately
+                        pnlProgress.Visible = true;
+                        lblProgress.Visible = true;
+                        btnConvert.Visible = false;
+
+                        //Start conversion
+                        await writeAV1AMF(fileIn, res, path, removeOrig, fullName);
+                        backgroundWorker1.RunWorkerAsync();
+                    }
                     else
                     {
                         //Set control visibility appropriately
@@ -612,10 +640,12 @@ namespace ffmpegUI
             if (rbCPUEncode.Checked == true)
             {
                 pnlPreset.Visible = true;
+                rbAV1.Visible = false;
             }
             else
             {
                 pnlPreset.Visible = false;
+                rbAV1.Visible = true;
             }
 
             lblComplete.Visible = false;
@@ -703,6 +733,23 @@ namespace ffmpegUI
         }
 
         private void rbHEVC_CheckedChanged(object sender, EventArgs e)
+        {
+            lblComplete.Visible = false;
+            if (txtFileIn.Text != "" && txtFileOut.Text != "" && cbFolder.Checked == false)
+            {
+                btnConvert.Visible = true;
+            }
+            else if (txtFileIn.Text != "" && txtFileOut.Text != "" && cbFolder.Checked == true && cbExtension.SelectedIndex != 0)
+            {
+                btnConvert.Visible = true;
+            }
+            else
+            {
+                btnConvert.Visible = false;
+            }
+        }
+
+        private void rbAV1_CheckedChanged(object sender, EventArgs e)
         {
             lblComplete.Visible = false;
             if (txtFileIn.Text != "" && txtFileOut.Text != "" && cbFolder.Checked == false)
