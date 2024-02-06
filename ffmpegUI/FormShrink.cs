@@ -21,7 +21,7 @@ namespace ffmpegUI
             {
                 using (process = Process.Start(ffmpegInfo))
                 {
-                    process.WaitForExit();                    
+                    process.WaitForExit();
                    
                 }
             }
@@ -37,8 +37,7 @@ namespace ffmpegUI
             string[] lines =
             {
                     line0,
-                    line1,
-                    "pause"
+                    line1
                 };
 
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
@@ -162,6 +161,7 @@ namespace ffmpegUI
             Directory.CreateDirectory(dir);
             lblSize.Text = "Size: " + txtFileIn.Text;
             rbCPUEncode.Checked = true;
+            pbProgress.Visible = false;
         }
 
         private async void btnConvert_Click(object sender, EventArgs e)
@@ -186,9 +186,10 @@ namespace ffmpegUI
             }
             string cmd1 = string.Empty;
             writeAuto(cmd0, cmd1);
-            progressBar1.Visible = true;
+            pbProgress.Visible = true;
             lblProgress.Visible = true;
             btnConvert.Visible = false;
+            Application.EnableVisualStyles();
             Process ffmpeg = new Process();
             OpenCMD(ffmpeg);
             while (true)
@@ -196,19 +197,26 @@ namespace ffmpegUI
                 System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcessesByName("ffmpeg.exe");
                 if (procs.Count() == 0)
                 {
-                    progressBar1.Visible = false;
+                    pbProgress.Visible = false;
                     lblProgress.Visible = false;
                     lblComplete.Visible = true;
                     break;
                 }
+                pbProgress.Visible = true;
+                lblProgress.Visible = true;
+                btnConvert.Visible = false;
                 System.Threading.Thread.Sleep(1000);
-                progressBar1.Value++;
 
             }
             //this.Close();
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

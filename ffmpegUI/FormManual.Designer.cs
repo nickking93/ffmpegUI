@@ -73,6 +73,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.lblSize = new System.Windows.Forms.Label();
             this.lblInput = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -81,7 +82,6 @@
             this.txtFileIn = new System.Windows.Forms.TextBox();
             this.btnBrowseOut = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -201,6 +201,7 @@
             // 
             // panel6
             // 
+            this.panel6.BackColor = System.Drawing.Color.MediumPurple;
             this.panel6.Controls.Add(this.txtVal);
             this.panel6.Controls.Add(this.lblVal);
             this.panel6.Controls.Add(this.lblHigh);
@@ -219,7 +220,7 @@
             // 
             this.txtVal.BackColor = System.Drawing.Color.Gainsboro;
             this.txtVal.ForeColor = System.Drawing.Color.Firebrick;
-            this.txtVal.Location = new System.Drawing.Point(410, 70);
+            this.txtVal.Location = new System.Drawing.Point(410, 58);
             this.txtVal.Name = "txtVal";
             this.txtVal.ReadOnly = true;
             this.txtVal.Size = new System.Drawing.Size(79, 23);
@@ -262,7 +263,7 @@
             // 
             // tbQP
             // 
-            this.tbQP.BackColor = System.Drawing.Color.BlueViolet;
+            this.tbQP.BackColor = System.Drawing.Color.MediumPurple;
             this.tbQP.Location = new System.Drawing.Point(27, 45);
             this.tbQP.Maximum = 51;
             this.tbQP.Name = "tbQP";
@@ -316,6 +317,7 @@
             // 
             // pnlCqp
             // 
+            this.pnlCqp.BackColor = System.Drawing.Color.MediumPurple;
             this.pnlCqp.Controls.Add(this.lbSpeed);
             this.pnlCqp.Controls.Add(this.label8);
             this.pnlCqp.Controls.Add(this.rbManualSpeed);
@@ -385,6 +387,7 @@
             // 
             // pnlResolution
             // 
+            this.pnlResolution.BackColor = System.Drawing.Color.MediumPurple;
             this.pnlResolution.Controls.Add(this.label6);
             this.pnlResolution.Controls.Add(this.rbKeep);
             this.pnlResolution.Controls.Add(this.rbRemove);
@@ -432,6 +435,7 @@
             // 
             // pnlFrameRate
             // 
+            this.pnlFrameRate.BackColor = System.Drawing.Color.MediumPurple;
             this.pnlFrameRate.Controls.Add(this.tbHeight);
             this.pnlFrameRate.Controls.Add(this.tbWidth);
             this.pnlFrameRate.Controls.Add(this.lblX);
@@ -510,6 +514,7 @@
             // 
             // pnlCodec
             // 
+            this.pnlCodec.BackColor = System.Drawing.Color.MediumPurple;
             this.pnlCodec.Controls.Add(this.label5);
             this.pnlCodec.Controls.Add(this.rbHEVC);
             this.pnlCodec.Controls.Add(this.rb264);
@@ -533,6 +538,7 @@
             // rbHEVC
             // 
             this.rbHEVC.AutoSize = true;
+            this.rbHEVC.BackColor = System.Drawing.Color.MediumPurple;
             this.rbHEVC.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbHEVC.ForeColor = System.Drawing.Color.White;
             this.rbHEVC.Location = new System.Drawing.Point(3, 45);
@@ -540,7 +546,7 @@
             this.rbHEVC.Size = new System.Drawing.Size(60, 23);
             this.rbHEVC.TabIndex = 5;
             this.rbHEVC.Text = "HEVC";
-            this.rbHEVC.UseVisualStyleBackColor = true;
+            this.rbHEVC.UseVisualStyleBackColor = false;
             this.rbHEVC.CheckedChanged += new System.EventHandler(this.rbHEVC_CheckedChanged);
             // 
             // rb264
@@ -557,6 +563,7 @@
             // 
             // pnlHwChoice
             // 
+            this.pnlHwChoice.BackColor = System.Drawing.Color.MediumPurple;
             this.pnlHwChoice.Controls.Add(this.rbCPUEncode);
             this.pnlHwChoice.Controls.Add(this.label2);
             this.pnlHwChoice.Controls.Add(this.rbNVIDIAGPU);
@@ -637,7 +644,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.BlueViolet;
+            this.panel3.BackColor = System.Drawing.Color.MediumPurple;
             this.panel3.Controls.Add(this.button5);
             this.panel3.Controls.Add(this.lblSize);
             this.panel3.Controls.Add(this.lblInput);
@@ -653,6 +660,18 @@
             this.panel3.Size = new System.Drawing.Size(623, 247);
             this.panel3.TabIndex = 40;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            // 
+            // button5
+            // 
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+            this.button5.Location = new System.Drawing.Point(586, 0);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(37, 23);
+            this.button5.TabIndex = 45;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // lblSize
             // 
@@ -752,18 +771,6 @@
             this.label3.Text = "To continue, choose input video and\r\noutput Destination, then conversion options\r" +
     "\nand press GO!\r\n\r\n";
             this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // button5
-            // 
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(586, 0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(37, 23);
-            this.button5.TabIndex = 45;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // FormManual
             // 

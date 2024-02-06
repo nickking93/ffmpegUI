@@ -37,9 +37,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pbProgress = new System.Windows.Forms.PictureBox();
             this.lblComplete = new System.Windows.Forms.Label();
             this.lblProgress = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.rbCPUEncode = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.rbNVIDIAGPU = new System.Windows.Forms.RadioButton();
@@ -58,6 +58,7 @@
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -164,10 +165,10 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.BlueViolet;
+            this.panel2.BackColor = System.Drawing.Color.MediumPurple;
+            this.panel2.Controls.Add(this.pbProgress);
             this.panel2.Controls.Add(this.lblComplete);
             this.panel2.Controls.Add(this.lblProgress);
-            this.panel2.Controls.Add(this.progressBar1);
             this.panel2.Controls.Add(this.rbCPUEncode);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.rbNVIDIAGPU);
@@ -180,12 +181,23 @@
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // pbProgress
+            // 
+            this.pbProgress.Image = ((System.Drawing.Image)(resources.GetObject("pbProgress.Image")));
+            this.pbProgress.Location = new System.Drawing.Point(433, 61);
+            this.pbProgress.Name = "pbProgress";
+            this.pbProgress.Size = new System.Drawing.Size(134, 64);
+            this.pbProgress.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbProgress.TabIndex = 41;
+            this.pbProgress.TabStop = false;
+            this.pbProgress.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // lblComplete
             // 
             this.lblComplete.AutoSize = true;
             this.lblComplete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblComplete.ForeColor = System.Drawing.Color.White;
-            this.lblComplete.Location = new System.Drawing.Point(409, 95);
+            this.lblComplete.Location = new System.Drawing.Point(410, 128);
             this.lblComplete.Name = "lblComplete";
             this.lblComplete.Size = new System.Drawing.Size(173, 26);
             this.lblComplete.TabIndex = 40;
@@ -203,17 +215,6 @@
             this.lblProgress.TabIndex = 39;
             this.lblProgress.Text = "Encoding in progress";
             this.lblProgress.Visible = false;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(409, 75);
-            this.progressBar1.MarqueeAnimationSpeed = 1000;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(154, 23);
-            this.progressBar1.Step = 30;
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 10;
-            this.progressBar1.Visible = false;
             // 
             // rbCPUEncode
             // 
@@ -281,7 +282,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.BlueViolet;
+            this.panel3.BackColor = System.Drawing.Color.MediumPurple;
             this.panel3.Controls.Add(this.button4);
             this.panel3.Controls.Add(this.lblSize);
             this.panel3.Controls.Add(this.lblInput);
@@ -427,6 +428,7 @@
             this.panelIcon.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -458,8 +460,8 @@
         private Label label5;
         private RadioButton rbNVIDIAGPU;
         private RadioButton rbAMDGPU;
-        private ProgressBar progressBar1;
         private Label lblProgress;
         private Label lblComplete;
+        private PictureBox pbProgress;
     }
 }

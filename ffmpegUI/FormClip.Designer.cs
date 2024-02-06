@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
             this.SuspendLayout();
@@ -123,11 +124,13 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.MediumPurple;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(177, 273);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(623, 177);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // button4
             // 
@@ -141,12 +144,22 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.MediumPurple;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(177, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(623, 276);
+            this.panel3.TabIndex = 41;
+            // 
             // FormClip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -172,5 +185,6 @@
         private Button button1;
         private Button button3;
         private Button button4;
+        private Panel panel3;
     }
 }
