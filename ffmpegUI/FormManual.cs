@@ -21,15 +21,14 @@ namespace ffmpegUI
             fileopener.Start();
         }
 
-        static async Task writeFFmpegTrim(string fileIn, string timeIn, string path, string dur, string safeName)
+        static async Task writeFFmpegTrim(string fileIn, string timeIn, string path, string dur, string fullName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -c copy -ss {timeIn} -t {dur} tmp.mkv\"",
-            //$"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
-            $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{fileIn}\"",
+            $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{fullName}\"",
                 "rm tmp.mkv",
                  "exit"
             };
@@ -150,7 +149,7 @@ namespace ffmpegUI
         {
             //Declare variables
             string fileIn = txtFileIn.Text;
-            string safeName = System.IO.Path.GetFileNameWithoutExtension(fileIn);
+            string fullName = System.IO.Path.GetFileName(fileIn);
             string fileName = System.IO.Path.GetFileName(fileIn);
             string path = txtFileOut.Text + "\\";
             string dir = System.IO.Directory.GetCurrentDirectory();
@@ -169,7 +168,7 @@ namespace ffmpegUI
             btnConvert.Visible = false;
 
             //Start conversion
-            await writeFFmpegTrim(fileIn, timeIn, path, dur, safeName);
+            await writeFFmpegTrim(fileIn, timeIn, path, dur, fullName);
             backgroundWorker1.RunWorkerAsync();
 
         }
