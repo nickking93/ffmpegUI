@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using static System.Net.WebRequestMethods;
@@ -19,7 +20,6 @@ namespace ffmpegUI
             lblSize.Text = "Size: " + txtFileIn.Text;
             rbCPUEncode.Checked = true;
             rbHEVC.Checked = true;
-            pbProgress.Visible = false;
             cbExtension.SelectedIndex = 0;
             lbPresets.SelectedIndex = 1;
             rbResCopy.Checked = true;
@@ -335,28 +335,24 @@ namespace ffmpegUI
                     if (rb264.Checked == true)
                     {
                         //Set control visibility appropriately
-                        pbProgress.Visible = true;
+                        pnlProgress.Visible= true ;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
 
                         //Start conversion
                         await writeX264(fileIn, preset, res, path, safeName);
-                        Process ffmpeg = new Process();
-                        OpenCMD(ffmpeg);
-                        ffmpeg.Close();
+                        backgroundWorker1.RunWorkerAsync();
                     }
                     else
                     {
                         //Set control visibility appropriately
-                        pbProgress.Visible = true;
+                        pnlProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
 
                         //Start conversion
                         await writeX265(fileIn, preset, res, path, safeName);
-                        Process ffmpeg = new Process();
-                        OpenCMD(ffmpeg);
-                        ffmpeg.Close();
+                        backgroundWorker1.RunWorkerAsync();
                     }
                 }
                 if (rbAMDGPU.Checked == true)
@@ -364,28 +360,24 @@ namespace ffmpegUI
                     if (rb264.Checked == true)
                     {
                         //Set control visibility appropriately
-                        pbProgress.Visible = true;
+                        pnlProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
 
                         //Start conversion
                         await write264AMF(fileIn, res, path, safeName);
-                        Process ffmpeg = new Process();
-                        OpenCMD(ffmpeg);
-                        ffmpeg.Close();
+                        backgroundWorker1.RunWorkerAsync();
                     }
                     else
                     {
                         //Set control visibility appropriately
-                        pbProgress.Visible = true;
+                        pnlProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
 
                         //Start conversion
                         await writeHEVCAMF(fileIn, res, path, safeName);
-                        Process ffmpeg = new Process();
-                        OpenCMD(ffmpeg);
-                        ffmpeg.Close();
+                        backgroundWorker1.RunWorkerAsync();
                     }
                 }
                 if (rbNVIDIAGPU.Checked == true)
@@ -393,28 +385,24 @@ namespace ffmpegUI
                     if (rb264.Checked == true)
                     {
                         //Set control visibility appropriately
-                        pbProgress.Visible = true;
+                        pnlProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
 
                         //Start conversion
                         await write264NVENC(fileIn, res, path, safeName);
-                        Process ffmpeg = new Process();
-                        OpenCMD(ffmpeg);
-                        ffmpeg.Close();
+                        backgroundWorker1.RunWorkerAsync();
                     }
                     else
                     {
                         //Set control visibility appropriately
-                        pbProgress.Visible = true;
+                        pnlProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
 
                         //Start conversion
                         await writeHEVCNVENC(fileIn, res, path, safeName);
-                        Process ffmpeg = new Process();
-                        OpenCMD(ffmpeg);
-                        ffmpeg.Close();
+                        backgroundWorker1.RunWorkerAsync();
                     }
                 }
             }
@@ -435,7 +423,7 @@ namespace ffmpegUI
                             if (rb264.Checked == true)
                             {
                                 //Set control visibility appropriately
-                                pbProgress.Visible = true;
+                                pnlProgress.Visible = true;
                                 lblProgress.Visible = true;
                                 btnConvert.Visible = false;
 
@@ -448,7 +436,7 @@ namespace ffmpegUI
                             else
                             {
                                 //Set control visibility appropriately
-                                pbProgress.Visible = true;
+                                pnlProgress.Visible = true;
                                 lblProgress.Visible = true;
                                 btnConvert.Visible = false;
 
@@ -464,7 +452,7 @@ namespace ffmpegUI
                             if (rb264.Checked == true)
                             {
                                 //Set control visibility appropriately
-                                pbProgress.Visible = true;
+                                pnlProgress.Visible = true;
                                 lblProgress.Visible = true;
                                 btnConvert.Visible = false;
 
@@ -477,7 +465,7 @@ namespace ffmpegUI
                             else
                             {
                                 //Set control visibility appropriately
-                                pbProgress.Visible = true;
+                                pnlProgress.Visible = true;
                                 lblProgress.Visible = true;
                                 btnConvert.Visible = false;
 
@@ -493,7 +481,7 @@ namespace ffmpegUI
                             if (rb264.Checked == true)
                             {
                                 //Set control visibility appropriately
-                                pbProgress.Visible = true;
+                                pnlProgress.Visible = true;
                                 lblProgress.Visible = true;
                                 btnConvert.Visible = false;
 
@@ -506,7 +494,7 @@ namespace ffmpegUI
                             else
                             {
                                 //Set control visibility appropriately
-                                pbProgress.Visible = true;
+                                pnlProgress.Visible = true;
                                 lblProgress.Visible = true;
                                 btnConvert.Visible = false;
 
@@ -519,23 +507,6 @@ namespace ffmpegUI
                         }
                     }
                 }
-            }
-            Application.EnableVisualStyles();
-            while (true)
-            {
-                System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcessesByName("ffmpeg.exe");
-                if (procs.Count() == 0)
-                {
-                    pbProgress.Visible = false;
-                    lblProgress.Visible = false;
-                    lblComplete.Visible = true;
-                    break;
-                }
-                pbProgress.Visible = true;
-                lblProgress.Visible = true;
-                btnConvert.Visible = false;
-                pbProgress.Enabled = true;
-
             }
             //this.Close();
         }
@@ -737,6 +708,47 @@ namespace ffmpegUI
         private void rbRes720_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            ProcessStartInfo ffmpegInfo = new ProcessStartInfo();
+                ffmpegInfo.CreateNoWindow = true;  //true to hide console window, false to show
+                ffmpegInfo.UseShellExecute = false;
+                ffmpegInfo.FileName = "./ff.bat";
+                ffmpegInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                Process process = new Process();
+            try
+            {
+                using (process = Process.Start(ffmpegInfo))
+                {
+                    process.WaitForExit();
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if (backgroundWorker1.IsBusy == false) 
+            {
+                pnlProgress.Visible = false;
+                lblComplete.Visible = true;
+            }
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            pnlProgress.Visible = true;
+            lblComplete.Visible = false;
+            lblProgress.Visible = true;
+            pbProgress.Enabled= true;
         }
     }
 }
