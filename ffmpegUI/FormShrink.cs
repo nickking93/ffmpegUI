@@ -67,7 +67,7 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx264 -crf 24 -crf_max 24 -preset {preset} -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx264 -crf 24 -crf_max 24 24 -preset {preset} -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
                 "exit"
             };
 
@@ -79,7 +79,7 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 -crf 28 -preset {preset} -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 -crf 24 -qp 24 -preset {preset} -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
                 "exit"
             };
 
