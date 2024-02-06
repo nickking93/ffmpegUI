@@ -37,6 +37,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.rb1440 = new System.Windows.Forms.RadioButton();
+            this.rb2160 = new System.Windows.Forms.RadioButton();
+            this.rb540 = new System.Windows.Forms.RadioButton();
+            this.rb1080p = new System.Windows.Forms.RadioButton();
+            this.rbResCopy = new System.Windows.Forms.RadioButton();
+            this.rbRes720 = new System.Windows.Forms.RadioButton();
+            this.label8 = new System.Windows.Forms.Label();
             this.pnlPreset = new System.Windows.Forms.Panel();
             this.lbPresets = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -69,6 +77,7 @@
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.pnlPreset.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -180,6 +189,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumPurple;
+            this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.pnlPreset);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel4);
@@ -188,11 +198,114 @@
             this.panel2.Controls.Add(this.lblProgress);
             this.panel2.Controls.Add(this.btnConvert);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(177, 273);
+            this.panel2.Location = new System.Drawing.Point(177, 201);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(623, 177);
+            this.panel2.Size = new System.Drawing.Size(623, 249);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.rb1440);
+            this.panel6.Controls.Add(this.rb2160);
+            this.panel6.Controls.Add(this.rb540);
+            this.panel6.Controls.Add(this.rb1080p);
+            this.panel6.Controls.Add(this.rbResCopy);
+            this.panel6.Controls.Add(this.rbRes720);
+            this.panel6.Controls.Add(this.label8);
+            this.panel6.Location = new System.Drawing.Point(6, 90);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(177, 84);
+            this.panel6.TabIndex = 47;
+            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
+            // 
+            // rb1440
+            // 
+            this.rb1440.AutoSize = true;
+            this.rb1440.BackColor = System.Drawing.Color.MediumPurple;
+            this.rb1440.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rb1440.ForeColor = System.Drawing.Color.White;
+            this.rb1440.Location = new System.Drawing.Point(70, 44);
+            this.rb1440.Name = "rb1440";
+            this.rb1440.Size = new System.Drawing.Size(66, 23);
+            this.rb1440.TabIndex = 50;
+            this.rb1440.Text = "1440p";
+            this.rb1440.UseVisualStyleBackColor = false;
+            // 
+            // rb2160
+            // 
+            this.rb2160.AutoSize = true;
+            this.rb2160.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rb2160.ForeColor = System.Drawing.Color.White;
+            this.rb2160.Location = new System.Drawing.Point(70, 25);
+            this.rb2160.Name = "rb2160";
+            this.rb2160.Size = new System.Drawing.Size(66, 23);
+            this.rb2160.TabIndex = 48;
+            this.rb2160.Text = "2160p";
+            this.rb2160.UseVisualStyleBackColor = true;
+            // 
+            // rb540
+            // 
+            this.rb540.AutoSize = true;
+            this.rb540.BackColor = System.Drawing.Color.MediumPurple;
+            this.rb540.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rb540.ForeColor = System.Drawing.Color.White;
+            this.rb540.Location = new System.Drawing.Point(70, 60);
+            this.rb540.Name = "rb540";
+            this.rb540.Size = new System.Drawing.Size(58, 23);
+            this.rb540.TabIndex = 49;
+            this.rb540.Text = "540p";
+            this.rb540.UseVisualStyleBackColor = false;
+            // 
+            // rb1080p
+            // 
+            this.rb1080p.AutoSize = true;
+            this.rb1080p.BackColor = System.Drawing.Color.MediumPurple;
+            this.rb1080p.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rb1080p.ForeColor = System.Drawing.Color.White;
+            this.rb1080p.Location = new System.Drawing.Point(6, 44);
+            this.rb1080p.Name = "rb1080p";
+            this.rb1080p.Size = new System.Drawing.Size(67, 23);
+            this.rb1080p.TabIndex = 47;
+            this.rb1080p.Text = "1080P";
+            this.rb1080p.UseVisualStyleBackColor = false;
+            // 
+            // rbResCopy
+            // 
+            this.rbResCopy.AutoSize = true;
+            this.rbResCopy.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbResCopy.ForeColor = System.Drawing.Color.White;
+            this.rbResCopy.Location = new System.Drawing.Point(6, 25);
+            this.rbResCopy.Name = "rbResCopy";
+            this.rbResCopy.Size = new System.Drawing.Size(54, 23);
+            this.rbResCopy.TabIndex = 45;
+            this.rbResCopy.Text = "Copy";
+            this.rbResCopy.UseVisualStyleBackColor = true;
+            // 
+            // rbRes720
+            // 
+            this.rbRes720.AutoSize = true;
+            this.rbRes720.BackColor = System.Drawing.Color.MediumPurple;
+            this.rbRes720.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbRes720.ForeColor = System.Drawing.Color.White;
+            this.rbRes720.Location = new System.Drawing.Point(6, 60);
+            this.rbRes720.Name = "rbRes720";
+            this.rbRes720.Size = new System.Drawing.Size(58, 23);
+            this.rbRes720.TabIndex = 46;
+            this.rbRes720.Text = "720p";
+            this.rbRes720.UseVisualStyleBackColor = false;
+            this.rbRes720.CheckedChanged += new System.EventHandler(this.rbRes720_CheckedChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(13, 3);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(91, 26);
+            this.label8.TabIndex = 45;
+            this.label8.Text = "Resolution:";
             // 
             // pnlPreset
             // 
@@ -200,7 +313,7 @@
             this.pnlPreset.Controls.Add(this.label7);
             this.pnlPreset.Location = new System.Drawing.Point(299, 3);
             this.pnlPreset.Name = "pnlPreset";
-            this.pnlPreset.Size = new System.Drawing.Size(118, 100);
+            this.pnlPreset.Size = new System.Drawing.Size(118, 87);
             this.pnlPreset.TabIndex = 0;
             // 
             // lbPresets
@@ -220,7 +333,7 @@
             "slower",
             "veryslow",
             "placebo"});
-            this.lbPresets.Location = new System.Drawing.Point(3, 28);
+            this.lbPresets.Location = new System.Drawing.Point(3, 19);
             this.lbPresets.Name = "lbPresets";
             this.lbPresets.Size = new System.Drawing.Size(110, 64);
             this.lbPresets.TabIndex = 46;
@@ -231,7 +344,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(3, 1);
+            this.label7.Location = new System.Drawing.Point(3, -3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 26);
             this.label7.TabIndex = 45;
@@ -245,7 +358,7 @@
             this.panel5.Controls.Add(this.rbCPUEncode);
             this.panel5.Location = new System.Drawing.Point(7, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(176, 102);
+            this.panel5.Size = new System.Drawing.Size(176, 90);
             this.panel5.TabIndex = 46;
             // 
             // label5
@@ -264,7 +377,7 @@
             this.rbAMDGPU.AutoSize = true;
             this.rbAMDGPU.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbAMDGPU.ForeColor = System.Drawing.Color.White;
-            this.rbAMDGPU.Location = new System.Drawing.Point(26, 25);
+            this.rbAMDGPU.Location = new System.Drawing.Point(26, 26);
             this.rbAMDGPU.Name = "rbAMDGPU";
             this.rbAMDGPU.Size = new System.Drawing.Size(85, 23);
             this.rbAMDGPU.TabIndex = 6;
@@ -290,7 +403,7 @@
             this.rbCPUEncode.AutoSize = true;
             this.rbCPUEncode.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbCPUEncode.ForeColor = System.Drawing.Color.White;
-            this.rbCPUEncode.Location = new System.Drawing.Point(26, 65);
+            this.rbCPUEncode.Location = new System.Drawing.Point(26, 61);
             this.rbCPUEncode.Name = "rbCPUEncode";
             this.rbCPUEncode.Size = new System.Drawing.Size(106, 23);
             this.rbCPUEncode.TabIndex = 9;
@@ -305,7 +418,7 @@
             this.panel4.Controls.Add(this.rbHEVC);
             this.panel4.Location = new System.Drawing.Point(187, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(106, 99);
+            this.panel4.Size = new System.Drawing.Size(106, 87);
             this.panel4.TabIndex = 45;
             // 
             // label6
@@ -313,7 +426,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(3, -6);
+            this.label6.Location = new System.Drawing.Point(3, -3);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 26);
             this.label6.TabIndex = 44;
@@ -338,7 +451,7 @@
             this.rbHEVC.BackColor = System.Drawing.Color.MediumPurple;
             this.rbHEVC.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbHEVC.ForeColor = System.Drawing.Color.White;
-            this.rbHEVC.Location = new System.Drawing.Point(12, 48);
+            this.rbHEVC.Location = new System.Drawing.Point(12, 41);
             this.rbHEVC.Name = "rbHEVC";
             this.rbHEVC.Size = new System.Drawing.Size(60, 23);
             this.rbHEVC.TabIndex = 43;
@@ -349,7 +462,7 @@
             // pbProgress
             // 
             this.pbProgress.Image = ((System.Drawing.Image)(resources.GetObject("pbProgress.Image")));
-            this.pbProgress.Location = new System.Drawing.Point(433, 61);
+            this.pbProgress.Location = new System.Drawing.Point(455, 142);
             this.pbProgress.Name = "pbProgress";
             this.pbProgress.Size = new System.Drawing.Size(134, 64);
             this.pbProgress.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -362,7 +475,7 @@
             this.lblComplete.AutoSize = true;
             this.lblComplete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblComplete.ForeColor = System.Drawing.Color.White;
-            this.lblComplete.Location = new System.Drawing.Point(410, 128);
+            this.lblComplete.Location = new System.Drawing.Point(432, 209);
             this.lblComplete.Name = "lblComplete";
             this.lblComplete.Size = new System.Drawing.Size(173, 26);
             this.lblComplete.TabIndex = 40;
@@ -374,11 +487,11 @@
             this.lblProgress.AutoSize = true;
             this.lblProgress.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblProgress.ForeColor = System.Drawing.Color.White;
-            this.lblProgress.Location = new System.Drawing.Point(418, 32);
+            this.lblProgress.Location = new System.Drawing.Point(405, 113);
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(170, 26);
+            this.lblProgress.Size = new System.Drawing.Size(213, 26);
             this.lblProgress.TabIndex = 39;
-            this.lblProgress.Text = "Encoding in progress";
+            this.lblProgress.Text = "ENCODING IN PROGRESS";
             this.lblProgress.Visible = false;
             // 
             // btnConvert
@@ -390,9 +503,9 @@
             this.btnConvert.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnConvert.ForeColor = System.Drawing.Color.White;
             this.btnConvert.Image = ((System.Drawing.Image)(resources.GetObject("btnConvert.Image")));
-            this.btnConvert.Location = new System.Drawing.Point(221, 108);
+            this.btnConvert.Location = new System.Drawing.Point(329, 203);
             this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(162, 37);
+            this.btnConvert.Size = new System.Drawing.Size(81, 37);
             this.btnConvert.TabIndex = 5;
             this.btnConvert.UseVisualStyleBackColor = false;
             this.btnConvert.Visible = false;
@@ -416,7 +529,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(177, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(623, 274);
+            this.panel3.Size = new System.Drawing.Size(623, 210);
             this.panel3.TabIndex = 0;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
@@ -425,7 +538,7 @@
             this.lblExn.AutoSize = true;
             this.lblExn.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblExn.ForeColor = System.Drawing.Color.White;
-            this.lblExn.Location = new System.Drawing.Point(238, 154);
+            this.lblExn.Location = new System.Drawing.Point(238, 102);
             this.lblExn.Name = "lblExn";
             this.lblExn.Size = new System.Drawing.Size(179, 26);
             this.lblExn.TabIndex = 41;
@@ -448,7 +561,7 @@
             ".ts",
             ".avi",
             ".m4v"});
-            this.cbExtension.Location = new System.Drawing.Point(433, 150);
+            this.cbExtension.Location = new System.Drawing.Point(433, 98);
             this.cbExtension.Name = "cbExtension";
             this.cbExtension.Size = new System.Drawing.Size(150, 34);
             this.cbExtension.TabIndex = 40;
@@ -460,7 +573,7 @@
             this.cbFolder.AutoSize = true;
             this.cbFolder.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbFolder.ForeColor = System.Drawing.Color.White;
-            this.cbFolder.Location = new System.Drawing.Point(53, 155);
+            this.cbFolder.Location = new System.Drawing.Point(53, 103);
             this.cbFolder.Name = "cbFolder";
             this.cbFolder.Size = new System.Drawing.Size(174, 30);
             this.cbFolder.TabIndex = 39;
@@ -485,7 +598,7 @@
             this.lblSize.AutoSize = true;
             this.lblSize.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSize.ForeColor = System.Drawing.Color.White;
-            this.lblSize.Location = new System.Drawing.Point(468, 187);
+            this.lblSize.Location = new System.Drawing.Point(468, 135);
             this.lblSize.Name = "lblSize";
             this.lblSize.Size = new System.Drawing.Size(46, 26);
             this.lblSize.TabIndex = 37;
@@ -497,7 +610,7 @@
             this.lblInput.AutoSize = true;
             this.lblInput.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblInput.ForeColor = System.Drawing.Color.White;
-            this.lblInput.Location = new System.Drawing.Point(63, 191);
+            this.lblInput.Location = new System.Drawing.Point(63, 139);
             this.lblInput.Name = "lblInput";
             this.lblInput.Size = new System.Drawing.Size(88, 26);
             this.lblInput.TabIndex = 36;
@@ -508,7 +621,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(47, 220);
+            this.label4.Location = new System.Drawing.Point(47, 168);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(112, 26);
             this.label4.TabIndex = 34;
@@ -523,7 +636,7 @@
             this.btnBrowse.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Plum;
             this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnBrowse.ForeColor = System.Drawing.Color.White;
-            this.btnBrowse.Location = new System.Drawing.Point(389, 190);
+            this.btnBrowse.Location = new System.Drawing.Point(389, 138);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnBrowse.TabIndex = 31;
@@ -534,7 +647,7 @@
             // txtFileOut
             // 
             this.txtFileOut.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtFileOut.Location = new System.Drawing.Point(157, 224);
+            this.txtFileOut.Location = new System.Drawing.Point(157, 172);
             this.txtFileOut.Name = "txtFileOut";
             this.txtFileOut.ReadOnly = true;
             this.txtFileOut.Size = new System.Drawing.Size(226, 23);
@@ -544,7 +657,7 @@
             // txtFileIn
             // 
             this.txtFileIn.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtFileIn.Location = new System.Drawing.Point(157, 191);
+            this.txtFileIn.Location = new System.Drawing.Point(157, 139);
             this.txtFileIn.Name = "txtFileIn";
             this.txtFileIn.ReadOnly = true;
             this.txtFileIn.Size = new System.Drawing.Size(226, 23);
@@ -560,7 +673,7 @@
             this.btnBrowseOut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Plum;
             this.btnBrowseOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnBrowseOut.ForeColor = System.Drawing.Color.White;
-            this.btnBrowseOut.Location = new System.Drawing.Point(389, 223);
+            this.btnBrowseOut.Location = new System.Drawing.Point(389, 171);
             this.btnBrowseOut.Name = "btnBrowseOut";
             this.btnBrowseOut.Size = new System.Drawing.Size(75, 23);
             this.btnBrowseOut.TabIndex = 32;
@@ -573,11 +686,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe Print", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(91, 20);
+            this.label3.Location = new System.Drawing.Point(91, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(423, 129);
+            this.label3.Size = new System.Drawing.Size(416, 86);
             this.label3.TabIndex = 2;
-            this.label3.Text = "To Continue with auto shrink, \r\nchoose file and destination, then \r\nclick GO!\r\n";
+            this.label3.Text = "Choose file and destination, \r\nconversion options and click GO!\r\n";
             // 
             // FormShrink
             // 
@@ -599,6 +712,8 @@
             this.panelIcon.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.pnlPreset.ResumeLayout(false);
             this.pnlPreset.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -651,5 +766,13 @@
         private Panel pnlPreset;
         private Label label7;
         private ListBox lbPresets;
+        private Panel panel6;
+        private RadioButton rbResCopy;
+        private RadioButton rbRes720;
+        private Label label8;
+        private RadioButton rb1080p;
+        private RadioButton rb1440;
+        private RadioButton rb2160;
+        private RadioButton rb540;
     }
 }
