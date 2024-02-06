@@ -74,8 +74,9 @@
             this.rbRes720 = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnlProgress = new System.Windows.Forms.Panel();
+            this.lblCount = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -392,7 +393,7 @@
             this.lblProgress.AutoSize = true;
             this.lblProgress.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblProgress.ForeColor = System.Drawing.Color.White;
-            this.lblProgress.Location = new System.Drawing.Point(36, 12);
+            this.lblProgress.Location = new System.Drawing.Point(36, -2);
             this.lblProgress.Name = "lblProgress";
             this.lblProgress.Size = new System.Drawing.Size(213, 26);
             this.lblProgress.TabIndex = 39;
@@ -693,16 +694,9 @@
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
             // pnlProgress
             // 
+            this.pnlProgress.Controls.Add(this.lblCount);
             this.pnlProgress.Controls.Add(this.lblProgress);
             this.pnlProgress.Controls.Add(this.pbProgress);
             this.pnlProgress.Location = new System.Drawing.Point(370, 94);
@@ -710,6 +704,26 @@
             this.pnlProgress.Size = new System.Drawing.Size(250, 112);
             this.pnlProgress.TabIndex = 48;
             this.pnlProgress.Visible = false;
+            // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCount.ForeColor = System.Drawing.Color.White;
+            this.lblCount.Location = new System.Drawing.Point(95, 19);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(73, 21);
+            this.lblCount.TabIndex = 42;
+            this.lblCount.Text = "File 0 of 0";
+            this.lblCount.Visible = false;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // FormShrink
             // 
@@ -797,5 +811,6 @@
         private Panel panel2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Panel pnlProgress;
+        private Label lblCount;
     }
 }

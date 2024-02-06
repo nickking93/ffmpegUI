@@ -71,7 +71,9 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf {res} -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf {res} -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv\"",
+                $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
+                "rm tmp.mkv",
                  "exit"
             };
 
@@ -83,7 +85,9 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_amf {res} -rc cqp -qp_i 28 -qp_p 28 -q:v 28 -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_amf {res} -rc cqp -qp_i 28 -qp_p 28 -q:v 28 -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
+                 $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
+                 $"rm tmp.mkv",
                  "exit"
             };
 
@@ -95,7 +99,9 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx264 {res} -crf 24 -crf_max 24 24 -preset {preset} -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx264 {res} -crf 24 -crf_max 24 24 -preset {preset} -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
+                $"rm tmp.mkv",
                 "exit"
             };
 
@@ -107,7 +113,9 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 {res} -crf 24 -qp 24 -preset {preset} -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 {res} -crf 24 -qp 24 -preset {preset} -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
+                $"rm tmp.mkv",
                 "exit"
             };
 
@@ -119,7 +127,9 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_nvenc {res} -rc constqp -qp 24 -preset fast -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_nvenc {res} -rc constqp -qp 24 -preset fast -c:a copy -movflags faststart -fps_mode vfr tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
+                $"rm tmp.mkv",
                 "exit"
             };
 
@@ -131,7 +141,9 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc {res} -rc constqp -qp 24 -preset fast -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc {res} -rc constqp -qp 24 -preset fast -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
+                $"rm tmp.mkv",
                 "exit"
             };
 
@@ -410,13 +422,22 @@ namespace ffmpegUI
             {
                 string getExt = "*" + cbExtension.Text.ToString();
                 DirectoryInfo directory = new DirectoryInfo(txtFileIn.Text);
+                int currentFile = 0;
+                int totalFiles = 0;
                 foreach (var file in directory.GetFiles(getExt))
+                {
+                    totalFiles++;
+                }
+                    foreach (var file in directory.GetFiles(getExt))
                 {
                     List<string> files = new List<string>();
                     string file1 = file.ToString();
-                    files.Add(file1);
+                    files.Add(file1);;
                     for (int i = 0; i < files.Count; i++)
                     {
+                        currentFile++;
+                        lblCount.Visible = true;
+                        lblCount.Text = $"File {currentFile} of {totalFiles}";
                         string safeEach = Path.GetFileNameWithoutExtension(files[i]);
                         if (rbCPUEncode.Checked == true)
                         {
