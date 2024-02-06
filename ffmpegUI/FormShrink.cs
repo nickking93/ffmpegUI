@@ -43,7 +43,7 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf -vf mpdecimate -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf -vf mpdecimate -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
                  "exit"
             };
 
@@ -55,31 +55,31 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                 $"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_amf -vf mpdecimate -rc cqp -qp_i 28 -qp_p 28 -q:v 28 -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                 $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_amf -vf mpdecimate -rc cqp -qp_i 28 -qp_p 28 -q:v 28 -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
                  "exit"
             };
 
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task writeX264(string fileIn, string path, string safeName)
+        static async Task writeX264(string fileIn, string preset, string path, string safeName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx264 -crf 24 -crf_max 24 -preset superfast -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx264 -crf 24 -crf_max 24 -preset {preset} -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
                 "exit"
             };
 
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        static async Task writeX265(string fileIn, string path, string safeName)
+        static async Task writeX265(string fileIn, string preset, string path, string safeName)
         {
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 -crf 28 -preset superfast -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 -crf 28 -preset {preset} -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
                 "exit"
             };
 
@@ -91,7 +91,7 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"cd ffmpeg/bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_nvenc -rc constqp -qp 24 -preset fast -vf mpdecimate -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_nvenc -rc constqp -qp 24 -preset fast -vf mpdecimate -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
                 "exit"
             };
 
@@ -103,7 +103,7 @@ namespace ffmpegUI
             string[] lines =
             {
                 "cd ffmpeg\\bin ",
-                $"cd ffmpeg/bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc -rc constqp -qp 24 -preset fast -vf mpdecimate -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc -rc constqp -qp 24 -preset fast -vf mpdecimate -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
                 "exit"
             };
 
@@ -269,6 +269,7 @@ namespace ffmpegUI
             rbHEVC.Checked = true;
             pbProgress.Visible = false;
             cbExtension.SelectedIndex = 0;
+            lbPresets.SelectedIndex = 1;
 
             //Tooltips
             ToolTip tooltipAMD = new ToolTip();
@@ -297,6 +298,7 @@ namespace ffmpegUI
             string path = txtFileOut.Text + "\\";
             string dir = System.IO.Directory.GetCurrentDirectory();
             string exn = cbExtension.Text.ToString();
+            string preset = lbPresets.Text.ToString();
 
             //Check whether the folder conversion check box is checked
             if (cbFolder.Checked == false)
@@ -311,7 +313,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await writeX264(fileIn, path, safeName);
+                        await writeX264(fileIn, preset, path, safeName);
                         Process ffmpeg = new Process();
                         OpenCMD(ffmpeg);
                         ffmpeg.Close();
@@ -324,7 +326,7 @@ namespace ffmpegUI
                         btnConvert.Visible = false;
 
                         //Start conversion
-                        await writeX265(fileIn, path, safeName);
+                        await writeX265(fileIn, preset, path, safeName);
                         Process ffmpeg = new Process();
                         OpenCMD(ffmpeg);
                         ffmpeg.Close();
@@ -411,7 +413,7 @@ namespace ffmpegUI
                                 btnConvert.Visible = false;
 
                                 //Start conversion
-                                await writeX264(files[i], path, safeEach);
+                                await writeX264(files[i], preset, path, safeEach);
                                 Process ffmpeg = new Process();
                                 OpenCMD(ffmpeg);
                                 ffmpeg.Close();
@@ -424,7 +426,7 @@ namespace ffmpegUI
                                 btnConvert.Visible = false;
 
                                 //Start conversion
-                                await writeX265(files[i], path, safeEach);
+                                await writeX265(files[i], preset, path, safeEach);
                                 Process ffmpeg = new Process();
                                 OpenCMD(ffmpeg);
                                 ffmpeg.Close();
@@ -542,6 +544,15 @@ namespace ffmpegUI
 
         private void rbAMDGPU_CheckedChanged(object sender, EventArgs e)
         {
+            if (rbCPUEncode.Checked == true)
+            {
+                pnlPreset.Visible = true;
+            }
+            else
+            {
+                pnlPreset.Visible = false;
+            }
+
             lblComplete.Visible = false;
             if (txtFileIn.Text != "" && txtFileOut.Text != "" && cbFolder.Checked == false)
             {
@@ -559,6 +570,15 @@ namespace ffmpegUI
 
         private void rbNVIDIAGPU_CheckedChanged(object sender, EventArgs e)
         {
+            if (rbCPUEncode.Checked == true)
+            {
+                pnlPreset.Visible = true;
+            }
+            else
+            {
+                pnlPreset.Visible = false;
+            }
+
             lblComplete.Visible = false;
             if (txtFileIn.Text != "" && txtFileOut.Text != "" && cbFolder.Checked == false)
             {
@@ -576,6 +596,15 @@ namespace ffmpegUI
 
         private void rbCPUEncode_CheckedChanged(object sender, EventArgs e)
         {
+            if (rbCPUEncode.Checked == true)
+            {
+                pnlPreset.Visible = true;
+            }
+            else
+            {
+                pnlPreset.Visible = false;
+            }
+
             lblComplete.Visible = false;
             if (txtFileIn.Text != "" && txtFileOut.Text != "" && cbFolder.Checked == false)
             {
@@ -624,6 +653,22 @@ namespace ffmpegUI
                 btnConvert.Visible = false;
             }
         }
+        private void lbPresets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lblComplete.Visible = false;
+            if (txtFileIn.Text != "" && txtFileOut.Text != "" && cbFolder.Checked == false)
+            {
+                btnConvert.Visible = true;
+            }
+            else if (txtFileIn.Text != "" && txtFileOut.Text != "" && cbFolder.Checked == true && cbExtension.SelectedIndex != 0)
+            {
+                btnConvert.Visible = true;
+            }
+            else
+            {
+                btnConvert.Visible = false;
+            }
+        }
 
         //Unused Events
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -656,5 +701,6 @@ namespace ffmpegUI
         {
 
         }
+                
     }
 }

@@ -37,6 +37,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlPreset = new System.Windows.Forms.Panel();
+            this.lbPresets = new System.Windows.Forms.ListBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.rbAMDGPU = new System.Windows.Forms.RadioButton();
@@ -66,6 +69,7 @@
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.pnlPreset.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).BeginInit();
@@ -176,6 +180,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumPurple;
+            this.panel2.Controls.Add(this.pnlPreset);
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.pbProgress);
@@ -189,15 +194,58 @@
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // pnlPreset
+            // 
+            this.pnlPreset.Controls.Add(this.lbPresets);
+            this.pnlPreset.Controls.Add(this.label7);
+            this.pnlPreset.Location = new System.Drawing.Point(299, 3);
+            this.pnlPreset.Name = "pnlPreset";
+            this.pnlPreset.Size = new System.Drawing.Size(118, 100);
+            this.pnlPreset.TabIndex = 0;
+            // 
+            // lbPresets
+            // 
+            this.lbPresets.BackColor = System.Drawing.Color.MediumPurple;
+            this.lbPresets.ForeColor = System.Drawing.Color.White;
+            this.lbPresets.FormattingEnabled = true;
+            this.lbPresets.ItemHeight = 15;
+            this.lbPresets.Items.AddRange(new object[] {
+            "ultrafast",
+            "superfast",
+            "veryfast",
+            "faster",
+            "fast",
+            "medium",
+            "slow",
+            "slower",
+            "veryslow",
+            "placebo"});
+            this.lbPresets.Location = new System.Drawing.Point(3, 28);
+            this.lbPresets.Name = "lbPresets";
+            this.lbPresets.Size = new System.Drawing.Size(110, 64);
+            this.lbPresets.TabIndex = 46;
+            this.lbPresets.SelectedIndexChanged += new System.EventHandler(this.lbPresets_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(3, 1);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 26);
+            this.label7.TabIndex = 45;
+            this.label7.Text = "Preset:";
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.rbAMDGPU);
             this.panel5.Controls.Add(this.rbNVIDIAGPU);
             this.panel5.Controls.Add(this.rbCPUEncode);
-            this.panel5.Location = new System.Drawing.Point(47, 0);
+            this.panel5.Location = new System.Drawing.Point(7, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(200, 102);
+            this.panel5.Size = new System.Drawing.Size(176, 102);
             this.panel5.TabIndex = 46;
             // 
             // label5
@@ -255,7 +303,7 @@
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.rb264);
             this.panel4.Controls.Add(this.rbHEVC);
-            this.panel4.Location = new System.Drawing.Point(275, 3);
+            this.panel4.Location = new System.Drawing.Point(187, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(106, 99);
             this.panel4.TabIndex = 45;
@@ -326,7 +374,7 @@
             this.lblProgress.AutoSize = true;
             this.lblProgress.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblProgress.ForeColor = System.Drawing.Color.White;
-            this.lblProgress.Location = new System.Drawing.Point(409, 32);
+            this.lblProgress.Location = new System.Drawing.Point(418, 32);
             this.lblProgress.Name = "lblProgress";
             this.lblProgress.Size = new System.Drawing.Size(170, 26);
             this.lblProgress.TabIndex = 39;
@@ -551,6 +599,8 @@
             this.panelIcon.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.pnlPreset.ResumeLayout(false);
+            this.pnlPreset.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
@@ -598,5 +648,8 @@
         private Label label6;
         private RadioButton rb264;
         private RadioButton rbHEVC;
+        private Panel pnlPreset;
+        private Label label7;
+        private ListBox lbPresets;
     }
 }
