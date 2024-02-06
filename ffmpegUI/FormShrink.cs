@@ -1,4 +1,8 @@
+using System;
 using System.Diagnostics;
+using System.IO;
+using static System.Net.WebRequestMethods;
+using static System.Windows.Forms.LinkLabel;
 
 namespace ffmpegUI
 {
@@ -9,10 +13,11 @@ namespace ffmpegUI
             InitializeComponent();
         }
 
+        //Method for running batch script containing ffmpeg command
         public static void OpenCMD(Process process)
         {
             ProcessStartInfo ffmpegInfo = new ProcessStartInfo();
-            ffmpegInfo.CreateNoWindow = false;  //true to hide console window, false to show
+            ffmpegInfo.CreateNoWindow = true;  //true to hide console window, false to show
             ffmpegInfo.UseShellExecute = false;
             ffmpegInfo.FileName = "./ff.bat";
             ffmpegInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -32,11 +37,83 @@ namespace ffmpegUI
             }
         }
 
-        static async Task writeAuto(string line0)
+        //Methods which build bat files containing ffmpeg command
+        static async Task write264AMF(string fileIn, string path, string safeName)
         {
             string[] lines =
             {
-                    "cd ffmpeg\\bin ",
+                "cd ffmpeg\\bin ",
+                $"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf -vf mpdecimate -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                 "exit"
+            };
+
+            await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+        }
+
+        static async Task writeHEVCAMF(string fileIn, string path, string safeName)
+        {
+            string[] lines =
+            {
+                "cd ffmpeg\\bin ",
+                 $"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_amf -vf mpdecimate -rc cqp -qp_i 28 -qp_p 28 -q:v 28 -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                 "exit"
+            };
+
+            await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+        }
+
+        static async Task writeX264(string fileIn, string path, string safeName)
+        {
+            string[] lines =
+            {
+                "cd ffmpeg\\bin ",
+                $"ffmpeg.exe -y -hide_banner -i \"{fileIn}\" -fflags +genpts -c:v libx264 -crf 24 -crf_max 24 -preset veryfast -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                "exit"
+            };
+
+            await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+        }
+
+        static async Task writeX265(string fileIn, string path, string safeName)
+        {
+            string[] lines =
+            {
+                "cd ffmpeg\\bin ",
+                $"ffmpeg.exe -y -hide_banner -i \"{fileIn}\" -fflags +genpts -c:v libx265 -crf 28 -preset veryfast -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                "exit"
+            };
+
+        await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+        }
+
+        static async Task write264NVENC(string fileIn, string path, string safeName)
+        {
+            string[] lines =
+            {
+                "cd ffmpeg\\bin ",
+                $"cd ffmpeg/bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_nvenc -rc constqp -qp 24 -preset fast -vf mpdecimate -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                "exit"
+            };
+
+        await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+        }
+
+        static async Task writeHEVCNVENC(string fileIn, string path, string safeName)
+        {
+            string[] lines =
+            {
+                "cd ffmpeg\\bin ",
+                $"cd ffmpeg/bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc -rc constqp -qp 24 -preset fast -vf mpdecimate -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"",
+                "exit"
+            };
+
+        await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
+    }
+        static async Task writeAutoFolder(string line0)
+        {
+            string[] lines =
+            {
+                    "cd ffmpeg\\bin && ",
                     line0,
                     "exit"
                 };
@@ -44,12 +121,8 @@ namespace ffmpegUI
             await System.IO.File.WriteAllLinesAsync("ff.bat", lines);
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        //Control Events
+        private void btnManual(object sender, EventArgs e)
         {
             this.Hide();
             var formManual = new FormManual();
@@ -60,16 +133,7 @@ namespace ffmpegUI
             formManual.Show();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        //Button for "Presets Library" tab
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -86,6 +150,7 @@ namespace ffmpegUI
             this.Close();
         }
 
+        //Browse Button for input file
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             if (cbFolder.Checked == false)
@@ -165,6 +230,7 @@ namespace ffmpegUI
             }
         }
 
+        //Browse button for output directory
         private void btnBrowseOut_Click(object sender, EventArgs e)
         {
             lblComplete.Visible = false;
@@ -197,13 +263,14 @@ namespace ffmpegUI
 
         private void FormShrink_Load(object sender, EventArgs e)
         {
-            string dir = "tmp";
-            Directory.CreateDirectory(dir);
+            //Set default control properties
             lblSize.Text = "Size: " + txtFileIn.Text;
             rbCPUEncode.Checked = true;
             rbHEVC.Checked = true;
             pbProgress.Visible = false;
             cbExtension.SelectedIndex = 0;
+
+            //Tooltips
             ToolTip tooltipAMD = new ToolTip();
             tooltipAMD.SetToolTip(rbAMDGPU, "Select this option if your pc has an AMD Graphics card installed.");
             ToolTip tooltipNVIDIA = new ToolTip();
@@ -214,39 +281,51 @@ namespace ffmpegUI
             tooltip264.SetToolTip(rb264, "Slightly less compressed than HEVC, but compatibile with most devices and playback software.");
             ToolTip tooltipHEVC = new ToolTip();
             tooltipHEVC.SetToolTip(rbHEVC, "Offers more compression without quality loss, but some devices may require an extension or a 3rd party media player application.");
+
+            //Variables and Tasks
+            string dir = "tmp";
+            Directory.CreateDirectory(dir);
         }
 
+        //Main Conversion Click Event!!
         private async void btnConvert_Click(object sender, EventArgs e)
         {
+            //Declare variables
             string fileIn = txtFileIn.Text;
             string safeName = System.IO.Path.GetFileNameWithoutExtension(fileIn);
             string fileName = System.IO.Path.GetFileName(fileIn);
             string path = txtFileOut.Text + "\\";
             string dir = System.IO.Directory.GetCurrentDirectory();
             string exn = cbExtension.Text.ToString();
+
+            //Check whether the folder conversion check box is checked
             if (cbFolder.Checked == false)
             {
                 if (rbCPUEncode.Checked == true)
                 {
                     if (rb264.Checked == true)
                     {
-                        string cmd0 = $"ffmpeg.exe -y -hide_banner -i \"{fileIn}\" -fflags +genpts -c:v libx264 -crf 24 -crf_max 24 -preset veryfast -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"";
-                        writeAuto(cmd0);
-                        Process ffmpeg = new Process();
+                        //Set control visibility appropriately
                         pbProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
+
+                        //Start conversion
+                        await writeX264(fileIn, path, safeName);
+                        Process ffmpeg = new Process();
                         OpenCMD(ffmpeg);
                         ffmpeg.Close();
                     }
                     else
                     {
-                        string cmd0 = $"ffmpeg.exe -y -hide_banner -i \"{fileIn}\" -fflags +genpts -c:v libx265 -crf 28 -preset veryfast -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\"";
-                        writeAuto(cmd0);
-                        Process ffmpeg = new Process();
+                        //Set control visibility appropriately
                         pbProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
+
+                        //Start conversion
+                        await writeX265(fileIn, path, safeName);
+                        Process ffmpeg = new Process();
                         OpenCMD(ffmpeg);
                         ffmpeg.Close();
                     }
@@ -255,23 +334,27 @@ namespace ffmpegUI
                 {
                     if (rb264.Checked == true)
                     {
-                        string cmd0 = $"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf -vf mpdecimate -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\" >> log.txt";
-                        writeAuto(cmd0);
-                        Process ffmpeg = new Process();
+                        //Set control visibility appropriately
                         pbProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
+
+                        //Start conversion
+                        await write264AMF(fileIn, path, safeName);
+                        Process ffmpeg = new Process();
                         OpenCMD(ffmpeg);
                         ffmpeg.Close();
                     }
                     else
                     {
-                        string cmd0 = $"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_amf -vf mpdecimate -rc cqp -qp_i 28 -qp_p 28 -q:v 28 -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeName}.mp4\" >> log.txt";
-                        writeAuto(cmd0);
-                        Process ffmpeg = new Process();
+                        //Set control visibility appropriately
                         pbProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
+
+                        //Start conversion
+                        await writeHEVCAMF(fileIn, path, safeName);
+                        Process ffmpeg = new Process();
                         OpenCMD(ffmpeg);
                         ffmpeg.Close();
                     }
@@ -280,23 +363,27 @@ namespace ffmpegUI
                 {
                     if (rb264.Checked == true)
                     {
-                        string cmd0 = $"cd ffmpeg/bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_nvenc -rc constqp -qp 24 -preset fast -vf mpdecimate -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"";
-                        writeAuto(cmd0);
-                        Process ffmpeg = new Process();
+                        //Set control visibility appropriately
                         pbProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
+
+                        //Start conversion
+                        await write264NVENC(fileIn, path, safeName);
+                        Process ffmpeg = new Process();
                         OpenCMD(ffmpeg);
                         ffmpeg.Close();
                     }
                     else
                     {
-                        string cmd0 = $"cd ffmpeg/bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc -rc constqp -qp 24 -preset fast -vf mpdecimate -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeName}.mp4\"";
-                        writeAuto(cmd0);
-                        Process ffmpeg = new Process();
+                        //Set control visibility appropriately
                         pbProgress.Visible = true;
                         lblProgress.Visible = true;
                         btnConvert.Visible = false;
+
+                        //Start conversion
+                        await writeHEVCNVENC(fileIn, path, safeName);
+                        Process ffmpeg = new Process();
                         OpenCMD(ffmpeg);
                         ffmpeg.Close();
                     }
@@ -314,7 +401,7 @@ namespace ffmpegUI
                     if (rbCPUEncode.Checked == true)
                     {
                        cmds.Add($"ffmpeg.exe -y -hide_banner -i \"{file}\" -fflags +genpts -c:v libx264 -crf 24 -crf_max 24 -preset veryfast -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeEach}.mp4\"");
-                        writeAuto(cmds[0]);
+                        writeAutoFolder(cmds[0]);
                         Process ffmpeg = new Process();
                         pbProgress.Visible = true;
                         lblProgress.Visible = true;
@@ -326,7 +413,7 @@ namespace ffmpegUI
                     if (rbAMDGPU.Checked == true)
                     {
                         cmds.Add($"ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{file}\" -fflags +genpts -c:v h264_amf -vf mpdecimate -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr \"{path}{safeEach}.mp4\"");
-                        writeAuto(cmds[0]);
+                        writeAutoFolder(cmds[0]);
                         Process ffmpeg = new Process();
                         pbProgress.Visible = true;
                         lblProgress.Visible = true;
@@ -338,7 +425,7 @@ namespace ffmpegUI
                     if (rbNVIDIAGPU.Checked == true)
                     {
                         cmds.Add($"cd ffmpeg/bin && ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{file}\" -fflags +genpts -c:v h264_nvenc -rc constqp -qp 24 -preset fast -vf mpdecimate -c:a copy -movflags faststart -fps_mode vfr \"{path}{safeEach}.mp4\"");
-                        writeAuto(cmds[0]);
+                        writeAutoFolder(cmds[0]);
                         Process ffmpeg = new Process();
                         pbProgress.Visible = true;
                         lblProgress.Visible = true;
@@ -363,26 +450,11 @@ namespace ffmpegUI
                 pbProgress.Visible = true;
                 lblProgress.Visible = true;
                 btnConvert.Visible = false;
+                pbProgress.Enabled = true;
 
             }
             //this.Close();
         }
-    
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtFileIn_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void cbFolder_CheckedChanged(object sender, EventArgs e)
         {
             if (cbFolder.Checked)
@@ -398,11 +470,6 @@ namespace ffmpegUI
                 lblExn.Visible = false;
             }
             lblComplete.Visible = false;
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void cbExtension_SelectedIndexChanged(object sender, EventArgs e)
@@ -501,6 +568,38 @@ namespace ffmpegUI
             {
                 btnConvert.Visible = false;
             }
+        }
+
+        //Unused Events
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFileIn_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

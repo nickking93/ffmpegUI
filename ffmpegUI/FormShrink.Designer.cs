@@ -120,7 +120,7 @@
             this.button2.Text = "Manual Conversion";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.btnManual);
             // 
             // button1
             // 
