@@ -37,6 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblComplete = new System.Windows.Forms.Label();
             this.lblProgress = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.rbCPUEncode = new System.Windows.Forms.RadioButton();
@@ -164,6 +165,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.BlueViolet;
+            this.panel2.Controls.Add(this.lblComplete);
             this.panel2.Controls.Add(this.lblProgress);
             this.panel2.Controls.Add(this.progressBar1);
             this.panel2.Controls.Add(this.rbCPUEncode);
@@ -178,25 +180,38 @@
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
+            // lblComplete
+            // 
+            this.lblComplete.AutoSize = true;
+            this.lblComplete.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblComplete.ForeColor = System.Drawing.Color.White;
+            this.lblComplete.Location = new System.Drawing.Point(409, 95);
+            this.lblComplete.Name = "lblComplete";
+            this.lblComplete.Size = new System.Drawing.Size(173, 26);
+            this.lblComplete.TabIndex = 40;
+            this.lblComplete.Text = "Conversion Complete!";
+            this.lblComplete.Visible = false;
+            // 
             // lblProgress
             // 
             this.lblProgress.AutoSize = true;
             this.lblProgress.Font = new System.Drawing.Font("Segoe Print", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblProgress.ForeColor = System.Drawing.Color.White;
-            this.lblProgress.Location = new System.Drawing.Point(402, 79);
+            this.lblProgress.Location = new System.Drawing.Point(409, 32);
             this.lblProgress.Name = "lblProgress";
-            this.lblProgress.Size = new System.Drawing.Size(76, 26);
+            this.lblProgress.Size = new System.Drawing.Size(170, 26);
             this.lblProgress.TabIndex = 39;
-            this.lblProgress.Text = "Progress";
+            this.lblProgress.Text = "Encoding in progress";
             this.lblProgress.Visible = false;
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(402, 122);
+            this.progressBar1.Location = new System.Drawing.Point(409, 75);
             this.progressBar1.MarqueeAnimationSpeed = 1000;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(154, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar1.Step = 30;
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 10;
             this.progressBar1.Visible = false;
             // 
@@ -445,5 +460,6 @@
         private RadioButton rbAMDGPU;
         private ProgressBar progressBar1;
         private Label lblProgress;
+        private Label lblComplete;
     }
 }

@@ -9,13 +9,27 @@ namespace ffmpegUI
             InitializeComponent();
         }
 
-        public static async Task OpenWithDefaultProgram(string pathIn)
+        public static void OpenCMD(Process process)
         {
-            using Process fileopener = new Process();
-            fileopener.StartInfo.FileName = pathIn;
-            fileopener.StartInfo.UseShellExecute = true;
-            fileopener.Start();
-            return;
+            ProcessStartInfo ffmpegInfo = new ProcessStartInfo();
+            ffmpegInfo.CreateNoWindow = true;
+            ffmpegInfo.UseShellExecute = false;
+            ffmpegInfo.FileName = "./ff.bat";
+            ffmpegInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+            try
+            {
+                using (process = Process.Start(ffmpegInfo))
+                {
+                    process.WaitForExit();                    
+                   
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         static async Task writeAuto(string line0, string line1)
@@ -172,20 +186,24 @@ namespace ffmpegUI
             }
             string cmd1 = string.Empty;
             writeAuto(cmd0, cmd1);
-            Process ffmpeg = Process.Start("./ff.bat");
-            //ffmpeg.WaitForExit();
-            ffmpeg.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            ffmpeg.StartInfo.UseShellExecute = true;
-            while (ffmpeg.HasExited == false)
+            progressBar1.Visible = true;
+            lblProgress.Visible = true;
+            btnConvert.Visible = false;
+            Process ffmpeg = new Process();
+            OpenCMD(ffmpeg);
+            while (true)
             {
-                progressBar1.Visible = true;
-                lblProgress.Visible = true;
-                btnConvert.Visible = false;
-            }
-            if (ffmpeg.HasExited == true)
-            {
-                progressBar1.Visible = false;
-                lblProgress.Visible = false;
+                System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcessesByName("ffmpeg.exe");
+                if (procs.Count() == 0)
+                {
+                    progressBar1.Visible = false;
+                    lblProgress.Visible = false;
+                    lblComplete.Visible = true;
+                    break;
+                }
+                System.Threading.Thread.Sleep(1000);
+                progressBar1.Value++;
+
             }
             //this.Close();
         }
