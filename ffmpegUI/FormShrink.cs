@@ -72,7 +72,7 @@ namespace ffmpegUI
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf {res} -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv\"",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v h264_amf {res} -rc cqp -qp_i 24 -qp_p 24 -qp_b 24 -q:v 24 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv\"",
                 $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
                 "rm tmp.mkv",
                 removeOrig,
@@ -120,7 +120,7 @@ namespace ffmpegUI
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 {res} -crf 24 -qp 24 -preset {preset} -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v libx265 {res} -crf 28 -qp 28 -preset {preset} -tag:v hvc1 -c:a copy -movflags +faststart -fps_mode vfr tmp.mkv",
                 $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
                 $"rm tmp.mkv",
                 removeOrig,
@@ -152,7 +152,7 @@ namespace ffmpegUI
             {
                 "cd ffmpeg\\bin ",
                 $"ffprobe -v quiet -show_streams -select_streams v:0 \"{fileIn}\" > probe.txt",
-                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc {res} -rc constqp -qp 24 -preset fast -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr tmp.mkv",
+                $"@ffmpeg.exe -y -hide_banner -hwaccel d3d11va -i \"{fileIn}\" -fflags +genpts -c:v hevc_nvenc {res} -rc constqp -qp 28 -preset fast -tag:v hvc1 -c:a copy -movflags faststart -fps_mode vfr tmp.mkv",
                 $"@ffmpeg.exe -y -hide_banner -i tmp.mkv -c copy \"{path}{safeName}.mp4\"",
                 $"rm tmp.mkv",
                 removeOrig,
@@ -561,6 +561,7 @@ namespace ffmpegUI
         }
         private void cbFolder_CheckedChanged(object sender, EventArgs e)
         {
+            btnConvert.Visible = false;
             if (cbFolder.Checked)
             {
                 cbExtension.Visible = true;
@@ -762,7 +763,7 @@ namespace ffmpegUI
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             ProcessStartInfo ffmpegInfo = new ProcessStartInfo();
-                ffmpegInfo.CreateNoWindow = true;  //true to hide console window, false to show
+                ffmpegInfo.CreateNoWindow = false;  //true to hide console window, false to show
                 ffmpegInfo.UseShellExecute = false;
                 ffmpegInfo.FileName = "./ff.bat";
                 ffmpegInfo.WindowStyle = ProcessWindowStyle.Hidden;
