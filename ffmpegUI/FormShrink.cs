@@ -314,6 +314,15 @@ namespace ffmpegUI
             string exn = cbExtension.Text.ToString();
             string preset = lbPresets.Text.ToString();
             string res = string.Empty;
+
+            pnlPreset.Enabled = false;
+            pnlRes.Enabled = false;
+            pnlCodec.Enabled = false;
+            pnlEncoder.Enabled = false;
+            pnlIO.Enabled = false;
+            panel1.Enabled = false;
+            btnClose.Enabled = false;
+
             if (rbRes720.Checked == true)
             {
                 res = $"-vf \"scale=1280:720:flags=lanczos\" -aspect 16:9";
@@ -424,6 +433,10 @@ namespace ffmpegUI
                 DirectoryInfo directory = new DirectoryInfo(txtFileIn.Text);
                 int currentFile = 0;
                 int totalFiles = 0;
+                pnlProgress.Visible = true;
+                lblProgress.Visible = true;
+                btnConvert.Visible = false;
+
                 foreach (var file in directory.GetFiles(getExt))
                 {
                     totalFiles++;
@@ -444,9 +457,6 @@ namespace ffmpegUI
                             if (rb264.Checked == true)
                             {
                                 //Set control visibility appropriately
-                                pnlProgress.Visible = true;
-                                lblProgress.Visible = true;
-                                btnConvert.Visible = false;
 
                                 //Start conversion
                                 await writeX264(files[i], preset, res, path, safeEach);
@@ -457,9 +467,6 @@ namespace ffmpegUI
                             else
                             {
                                 //Set control visibility appropriately
-                                pnlProgress.Visible = true;
-                                lblProgress.Visible = true;
-                                btnConvert.Visible = false;
 
                                 //Start conversion
                                 await writeX265(files[i], preset, res, path, safeEach);
@@ -473,9 +480,6 @@ namespace ffmpegUI
                             if (rb264.Checked == true)
                             {
                                 //Set control visibility appropriately
-                                pnlProgress.Visible = true;
-                                lblProgress.Visible = true;
-                                btnConvert.Visible = false;
 
                                 //Start conversion
                                 await write264AMF(files[i], res, path, safeEach);
@@ -486,9 +490,6 @@ namespace ffmpegUI
                             else
                             {
                                 //Set control visibility appropriately
-                                pnlProgress.Visible = true;
-                                lblProgress.Visible = true;
-                                btnConvert.Visible = false;
 
                                 //Start conversion
                                 await writeHEVCAMF(files[i], res, path, safeEach);
@@ -501,10 +502,6 @@ namespace ffmpegUI
                         {
                             if (rb264.Checked == true)
                             {
-                                //Set control visibility appropriately
-                                pnlProgress.Visible = true;
-                                lblProgress.Visible = true;
-                                btnConvert.Visible = false;
 
                                 //Start conversion
                                 await write264NVENC(files[i], res, path, safeEach);
@@ -514,10 +511,6 @@ namespace ffmpegUI
                             }
                             else
                             {
-                                //Set control visibility appropriately
-                                pnlProgress.Visible = true;
-                                lblProgress.Visible = true;
-                                btnConvert.Visible = false;
 
                                 //Start conversion
                                 await writeHEVCNVENC(files[i], res, path, safeEach);
@@ -528,6 +521,15 @@ namespace ffmpegUI
                         }
                     }
                 }
+                pnlProgress.Visible = false;
+                lblComplete.Visible = true;
+                pnlPreset.Enabled = true;
+                pnlRes.Enabled = true;
+                pnlCodec.Enabled = true;
+                pnlEncoder.Enabled = true;
+                pnlIO.Enabled = true;
+                panel1.Enabled = true;
+                btnClose.Enabled = true;
             }
             //this.Close();
         }
@@ -761,6 +763,13 @@ namespace ffmpegUI
             {
                 pnlProgress.Visible = false;
                 lblComplete.Visible = true;
+                pnlPreset.Enabled = true;
+                pnlRes.Enabled = true;
+                pnlCodec.Enabled = true;
+                pnlEncoder.Enabled = true;
+                pnlIO.Enabled = true;
+                panel1.Enabled= true;
+                btnClose.Enabled = true;
             }
         }
 
@@ -770,6 +779,49 @@ namespace ffmpegUI
             lblComplete.Visible = false;
             lblProgress.Visible = true;
             pbProgress.Enabled= true;
+        }
+
+        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcessesByName("ffmpeg.exe");
+                if (procs.Count() != 0)
+                {
+                    pnlProgress.Visible = true;
+                    lblComplete.Visible = false;
+                    lblComplete.Visible = true;
+                    pnlPreset.Enabled = false;
+                    pnlRes.Enabled = false;
+                    pnlCodec.Enabled = false;
+                    pnlEncoder.Enabled = false;
+                    pnlIO.Enabled = false;
+                    panel1.Enabled= false;
+                    btnClose.Enabled = false;
+                }
+                System.Threading.Thread.Sleep(1000);
+
+            }
+            while (false)
+            {
+                System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcessesByName("ffmpeg.exe");
+                if (procs.Count() != 0)
+                {
+                    pnlProgress.Visible = false;
+                    lblComplete.Visible = true;
+                    lblComplete.Visible = false;
+                    pnlPreset.Enabled = true;
+                    pnlRes.Enabled = true;
+                    pnlCodec.Enabled = true;
+                    pnlEncoder.Enabled = true;
+                    pnlIO.Enabled = true;
+                    panel1.Enabled= true;
+                    btnClose.Enabled = true;
+                    break;
+                }
+                System.Threading.Thread.Sleep(1000);
+
+            }
         }
     }
 }

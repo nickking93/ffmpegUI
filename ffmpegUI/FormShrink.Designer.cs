@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormShrink));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnFormPreset = new System.Windows.Forms.Button();
+            this.btnFormClip = new System.Windows.Forms.Button();
+            this.btnFormShrink = new System.Windows.Forms.Button();
             this.panelIcon = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlIO = new System.Windows.Forms.Panel();
             this.lblExn = new System.Windows.Forms.Label();
             this.cbExtension = new System.Windows.Forms.ComboBox();
             this.cbFolder = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.lblSize = new System.Windows.Forms.Label();
             this.lblInput = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,11 +53,11 @@
             this.lblProgress = new System.Windows.Forms.Label();
             this.lblComplete = new System.Windows.Forms.Label();
             this.pbProgress = new System.Windows.Forms.PictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.pnlCodec = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.rb264 = new System.Windows.Forms.RadioButton();
             this.rbHEVC = new System.Windows.Forms.RadioButton();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.pnlEncoder = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.rbAMDGPU = new System.Windows.Forms.RadioButton();
             this.rbNVIDIAGPU = new System.Windows.Forms.RadioButton();
@@ -65,7 +65,7 @@
             this.pnlPreset = new System.Windows.Forms.Panel();
             this.lbPresets = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.pnlRes = new System.Windows.Forms.Panel();
             this.rb1440 = new System.Windows.Forms.RadioButton();
             this.rb2160 = new System.Windows.Forms.RadioButton();
             this.rb540 = new System.Windows.Forms.RadioButton();
@@ -77,23 +77,24 @@
             this.pnlProgress = new System.Windows.Forms.Panel();
             this.lblCount = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             this.panelIcon.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pnlIO.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).BeginInit();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.pnlCodec.SuspendLayout();
+            this.pnlEncoder.SuspendLayout();
             this.pnlPreset.SuspendLayout();
-            this.panel6.SuspendLayout();
+            this.pnlRes.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlProgress.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnFormPreset);
+            this.panel1.Controls.Add(this.btnFormClip);
+            this.panel1.Controls.Add(this.btnFormShrink);
             this.panel1.Controls.Add(this.panelIcon);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -102,61 +103,61 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // button3
+            // btnFormPreset
             // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Plum;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Violet;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(0, 347);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(177, 103);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Preset Conversions";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnFormPreset.FlatAppearance.BorderSize = 0;
+            this.btnFormPreset.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Plum;
+            this.btnFormPreset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Violet;
+            this.btnFormPreset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFormPreset.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnFormPreset.ForeColor = System.Drawing.Color.White;
+            this.btnFormPreset.Image = ((System.Drawing.Image)(resources.GetObject("btnFormPreset.Image")));
+            this.btnFormPreset.Location = new System.Drawing.Point(0, 347);
+            this.btnFormPreset.Name = "btnFormPreset";
+            this.btnFormPreset.Size = new System.Drawing.Size(177, 103);
+            this.btnFormPreset.TabIndex = 3;
+            this.btnFormPreset.Text = "Preset Conversions";
+            this.btnFormPreset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnFormPreset.UseVisualStyleBackColor = true;
+            this.btnFormPreset.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // btnFormClip
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Plum;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Violet;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(0, 234);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(177, 113);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Manual Conversion";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnManual);
+            this.btnFormClip.FlatAppearance.BorderSize = 0;
+            this.btnFormClip.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Plum;
+            this.btnFormClip.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Violet;
+            this.btnFormClip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFormClip.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnFormClip.ForeColor = System.Drawing.Color.White;
+            this.btnFormClip.Image = ((System.Drawing.Image)(resources.GetObject("btnFormClip.Image")));
+            this.btnFormClip.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnFormClip.Location = new System.Drawing.Point(0, 234);
+            this.btnFormClip.Name = "btnFormClip";
+            this.btnFormClip.Size = new System.Drawing.Size(177, 113);
+            this.btnFormClip.TabIndex = 2;
+            this.btnFormClip.Text = "Manual Conversion";
+            this.btnFormClip.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnFormClip.UseVisualStyleBackColor = true;
+            this.btnFormClip.Click += new System.EventHandler(this.btnManual);
             // 
-            // button1
+            // btnFormShrink
             // 
-            this.button1.BackColor = System.Drawing.Color.Plum;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button1.FlatAppearance.BorderSize = 3;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(0, 111);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(177, 117);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Shrink Video File";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button1.UseMnemonic = false;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnFormShrink.BackColor = System.Drawing.Color.Plum;
+            this.btnFormShrink.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnFormShrink.FlatAppearance.BorderSize = 3;
+            this.btnFormShrink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFormShrink.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnFormShrink.ForeColor = System.Drawing.Color.White;
+            this.btnFormShrink.Image = ((System.Drawing.Image)(resources.GetObject("btnFormShrink.Image")));
+            this.btnFormShrink.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnFormShrink.Location = new System.Drawing.Point(0, 111);
+            this.btnFormShrink.Name = "btnFormShrink";
+            this.btnFormShrink.Size = new System.Drawing.Size(177, 117);
+            this.btnFormShrink.TabIndex = 1;
+            this.btnFormShrink.Text = "Shrink Video File";
+            this.btnFormShrink.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnFormShrink.UseMnemonic = false;
+            this.btnFormShrink.UseVisualStyleBackColor = false;
             // 
             // panelIcon
             // 
@@ -190,27 +191,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "ffmpegUI";
             // 
-            // panel3
+            // pnlIO
             // 
-            this.panel3.BackColor = System.Drawing.Color.MediumPurple;
-            this.panel3.Controls.Add(this.lblExn);
-            this.panel3.Controls.Add(this.cbExtension);
-            this.panel3.Controls.Add(this.cbFolder);
-            this.panel3.Controls.Add(this.button4);
-            this.panel3.Controls.Add(this.lblSize);
-            this.panel3.Controls.Add(this.lblInput);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.btnBrowse);
-            this.panel3.Controls.Add(this.txtFileOut);
-            this.panel3.Controls.Add(this.txtFileIn);
-            this.panel3.Controls.Add(this.btnBrowseOut);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(177, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(623, 210);
-            this.panel3.TabIndex = 0;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+            this.pnlIO.BackColor = System.Drawing.Color.MediumPurple;
+            this.pnlIO.Controls.Add(this.lblExn);
+            this.pnlIO.Controls.Add(this.cbExtension);
+            this.pnlIO.Controls.Add(this.cbFolder);
+            this.pnlIO.Controls.Add(this.btnClose);
+            this.pnlIO.Controls.Add(this.lblSize);
+            this.pnlIO.Controls.Add(this.lblInput);
+            this.pnlIO.Controls.Add(this.label4);
+            this.pnlIO.Controls.Add(this.btnBrowse);
+            this.pnlIO.Controls.Add(this.txtFileOut);
+            this.pnlIO.Controls.Add(this.txtFileIn);
+            this.pnlIO.Controls.Add(this.btnBrowseOut);
+            this.pnlIO.Controls.Add(this.label3);
+            this.pnlIO.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlIO.Location = new System.Drawing.Point(177, 0);
+            this.pnlIO.Name = "pnlIO";
+            this.pnlIO.Size = new System.Drawing.Size(623, 210);
+            this.pnlIO.TabIndex = 0;
+            this.pnlIO.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // lblExn
             // 
@@ -260,17 +261,17 @@
             this.cbFolder.UseVisualStyleBackColor = true;
             this.cbFolder.CheckedChanged += new System.EventHandler(this.cbFolder_CheckedChanged);
             // 
-            // button4
+            // btnClose
             // 
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(583, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(37, 23);
-            this.button4.TabIndex = 38;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Location = new System.Drawing.Point(583, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(37, 23);
+            this.btnClose.TabIndex = 38;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.button4_Click);
             // 
             // lblSize
             // 
@@ -422,15 +423,15 @@
             this.pbProgress.TabStop = false;
             this.pbProgress.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // panel4
+            // pnlCodec
             // 
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.rb264);
-            this.panel4.Controls.Add(this.rbHEVC);
-            this.panel4.Location = new System.Drawing.Point(187, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(106, 87);
-            this.panel4.TabIndex = 45;
+            this.pnlCodec.Controls.Add(this.label6);
+            this.pnlCodec.Controls.Add(this.rb264);
+            this.pnlCodec.Controls.Add(this.rbHEVC);
+            this.pnlCodec.Location = new System.Drawing.Point(187, 3);
+            this.pnlCodec.Name = "pnlCodec";
+            this.pnlCodec.Size = new System.Drawing.Size(106, 87);
+            this.pnlCodec.TabIndex = 45;
             // 
             // label6
             // 
@@ -470,16 +471,16 @@
             this.rbHEVC.UseVisualStyleBackColor = false;
             this.rbHEVC.CheckedChanged += new System.EventHandler(this.rbHEVC_CheckedChanged);
             // 
-            // panel5
+            // pnlEncoder
             // 
-            this.panel5.Controls.Add(this.label5);
-            this.panel5.Controls.Add(this.rbAMDGPU);
-            this.panel5.Controls.Add(this.rbNVIDIAGPU);
-            this.panel5.Controls.Add(this.rbCPUEncode);
-            this.panel5.Location = new System.Drawing.Point(7, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(176, 90);
-            this.panel5.TabIndex = 46;
+            this.pnlEncoder.Controls.Add(this.label5);
+            this.pnlEncoder.Controls.Add(this.rbAMDGPU);
+            this.pnlEncoder.Controls.Add(this.rbNVIDIAGPU);
+            this.pnlEncoder.Controls.Add(this.rbCPUEncode);
+            this.pnlEncoder.Location = new System.Drawing.Point(7, 0);
+            this.pnlEncoder.Name = "pnlEncoder";
+            this.pnlEncoder.Size = new System.Drawing.Size(176, 90);
+            this.pnlEncoder.TabIndex = 46;
             // 
             // label5
             // 
@@ -574,20 +575,20 @@
             this.label7.TabIndex = 45;
             this.label7.Text = "Preset:";
             // 
-            // panel6
+            // pnlRes
             // 
-            this.panel6.Controls.Add(this.rb1440);
-            this.panel6.Controls.Add(this.rb2160);
-            this.panel6.Controls.Add(this.rb540);
-            this.panel6.Controls.Add(this.rb1080p);
-            this.panel6.Controls.Add(this.rbResCopy);
-            this.panel6.Controls.Add(this.rbRes720);
-            this.panel6.Controls.Add(this.label8);
-            this.panel6.Location = new System.Drawing.Point(6, 90);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(177, 84);
-            this.panel6.TabIndex = 47;
-            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
+            this.pnlRes.Controls.Add(this.rb1440);
+            this.pnlRes.Controls.Add(this.rb2160);
+            this.pnlRes.Controls.Add(this.rb540);
+            this.pnlRes.Controls.Add(this.rb1080p);
+            this.pnlRes.Controls.Add(this.rbResCopy);
+            this.pnlRes.Controls.Add(this.rbRes720);
+            this.pnlRes.Controls.Add(this.label8);
+            this.pnlRes.Location = new System.Drawing.Point(6, 90);
+            this.pnlRes.Name = "pnlRes";
+            this.pnlRes.Size = new System.Drawing.Size(177, 84);
+            this.pnlRes.TabIndex = 47;
+            this.pnlRes.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
             // rb1440
             // 
@@ -681,10 +682,10 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.MediumPurple;
             this.panel2.Controls.Add(this.pnlProgress);
-            this.panel2.Controls.Add(this.panel6);
+            this.panel2.Controls.Add(this.pnlRes);
             this.panel2.Controls.Add(this.pnlPreset);
-            this.panel2.Controls.Add(this.panel5);
-            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.pnlEncoder);
+            this.panel2.Controls.Add(this.pnlCodec);
             this.panel2.Controls.Add(this.lblComplete);
             this.panel2.Controls.Add(this.btnConvert);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -725,6 +726,11 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // backgroundWorker2
+            // 
+            this.backgroundWorker2.WorkerSupportsCancellation = true;
+            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
+            // 
             // FormShrink
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -732,7 +738,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pnlIO);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -743,17 +749,17 @@
             this.panel1.ResumeLayout(false);
             this.panelIcon.ResumeLayout(false);
             this.panelIcon.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.pnlIO.ResumeLayout(false);
+            this.pnlIO.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProgress)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.pnlCodec.ResumeLayout(false);
+            this.pnlCodec.PerformLayout();
+            this.pnlEncoder.ResumeLayout(false);
+            this.pnlEncoder.PerformLayout();
             this.pnlPreset.ResumeLayout(false);
             this.pnlPreset.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
+            this.pnlRes.ResumeLayout(false);
+            this.pnlRes.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pnlProgress.ResumeLayout(false);
@@ -767,11 +773,11 @@
         private Panel panel1;
         private Panel panelIcon;
         private Label label1;
-        private Button button2;
-        private Button button1;
-        private Button button3;
+        private Button btnFormClip;
+        private Button btnFormShrink;
+        private Button btnFormPreset;
         private Label label2;
-        private Panel panel3;
+        private Panel pnlIO;
         private Label label3;
         private Label lblSize;
         private Label lblInput;
@@ -780,7 +786,7 @@
         private TextBox txtFileOut;
         private TextBox txtFileIn;
         private Button btnBrowseOut;
-        private Button button4;
+        private Button btnClose;
         private CheckBox cbFolder;
         private ComboBox cbExtension;
         private Label lblExn;
@@ -788,11 +794,11 @@
         private Label lblProgress;
         private Label lblComplete;
         private PictureBox pbProgress;
-        private Panel panel4;
+        private Panel pnlCodec;
         private Label label6;
         private RadioButton rb264;
         private RadioButton rbHEVC;
-        private Panel panel5;
+        private Panel pnlEncoder;
         private Label label5;
         private RadioButton rbAMDGPU;
         private RadioButton rbNVIDIAGPU;
@@ -800,7 +806,7 @@
         private Panel pnlPreset;
         private ListBox lbPresets;
         private Label label7;
-        private Panel panel6;
+        private Panel pnlRes;
         private RadioButton rb1440;
         private RadioButton rb2160;
         private RadioButton rb540;
@@ -812,5 +818,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Panel pnlProgress;
         private Label lblCount;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }
