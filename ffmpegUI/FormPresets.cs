@@ -1,8 +1,8 @@
 namespace ffmpegUI
 {
-    public partial class FormClip : Form
+    public partial class FormPresets : Form
     {
-        public FormClip()
+        public FormPresets()
         {
             InitializeComponent();
         }
